@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/知识库.md",
-                "mode": "preview",
+                "file": "source/内核驱动/08 通信接口/蓝牙.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/知识库.md",
+                "file": "source/内核驱动/08 通信接口/蓝牙.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/知识库.md",
+                "file": "source/内核驱动/08 通信接口/蓝牙.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/知识库.md"
+                "file": "source/内核驱动/08 通信接口/蓝牙.md"
               }
             }
           },
@@ -196,9 +196,24 @@
   },
   "active": "c6a47daf67bb4fe7",
   "lastOpenFiles": [
-    "source/开发环境搭建/Docker.md",
+    "source/内核驱动/11 多媒体/index.rst",
+    "source/内核驱动/08 通信接口/index.rst",
+    "source/内核驱动/index.rst",
+    "source/文件系统/index.rst",
+    "source/文件系统/systemd.md",
+    "source/文件系统/buildroot.md",
+    "source/开发环境搭建/repo.md",
+    "source/文件系统",
+    "source/开发环境搭建/git.md",
+    "source/内核驱动/08 通信接口/wifi.md",
+    "source/内核驱动/08 通信接口/蓝牙.md",
+    "source/内核驱动/11 多媒体/摄像头.md",
+    "source/内核驱动/08 通信接口",
+    "source/内核驱动/11 多媒体",
     "source/开发环境搭建/SSH登录.md",
+    "source/开发环境搭建/Docker.md",
     "source/开发环境搭建/知识库.md",
+    "source/内核驱动",
     "source/开发环境搭建/pic/index.rst",
     "README.md",
     "source/开发环境搭建/pic/Pasted image 20240723132621.png",
@@ -214,16 +229,9 @@
     "source/Cpp/02数据结构/index.rst",
     "source/Cpp/02数据结构/02链表.md",
     "source/Cpp/02数据结构/01队列.md",
-    "source/Cpp/01设计模式/index.rst",
     "source/Cpp/01设计模式/03知识库构建.md",
     "source/Cpp/01设计模式/02工厂方法模式.md",
     "source/Cpp/01设计模式/01单例模式.md",
-    "source/Cpp/index.rst",
-    "source/Cpp/03多线程",
-    "source/Cpp/02数据结构",
-    "source/Cpp/01设计模式",
-    "source/index.rst",
-    "source/conf.py",
     "pic/video.png",
     "pic/wxgzh.png",
     "pic/3.png",
@@ -234,13 +242,6 @@
     "textgenerator/templates/default/getTitles.md",
     "textgenerator/templates/default/getParagraph.md",
     "textgenerator/templates/default/rewrite.md",
-    "textgenerator/templates/default/summarizeLarge.md",
-    "textgenerator/templates/default/getEmailPos.md",
-    "textgenerator/templates/default/simplify.md",
-    "textgenerator/templates/default/getIdeas.md",
-    "textgenerator/templates/default/getEmailNeg.md",
-    "textgenerator/templates/default/getOutline.md",
-    "textgenerator/templates/default/getTags.md",
     "未命名.canvas"
   ]
 }

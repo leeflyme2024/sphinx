@@ -1,16 +1,44 @@
 {
   "recentFiles": [
     {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
+      "basename": "蓝牙",
+      "path": "source/内核驱动/08 通信接口/蓝牙.md"
+    },
+    {
+      "basename": "systemd",
+      "path": "source/文件系统/systemd.md"
+    },
+    {
+      "basename": "buildroot",
+      "path": "source/文件系统/buildroot.md"
+    },
+    {
+      "basename": "repo",
+      "path": "source/开发环境搭建/repo.md"
+    },
+    {
+      "basename": "git",
+      "path": "source/开发环境搭建/git.md"
+    },
+    {
+      "basename": "wifi",
+      "path": "source/内核驱动/08 通信接口/wifi.md"
+    },
+    {
+      "basename": "摄像头",
+      "path": "source/内核驱动/11 多媒体/摄像头.md"
+    },
+    {
+      "basename": "SSH登录",
+      "path": "source/开发环境搭建/SSH登录.md"
     },
     {
       "basename": "Docker",
       "path": "source/开发环境搭建/Docker.md"
     },
     {
-      "basename": "SSH登录",
-      "path": "source/开发环境搭建/SSH登录.md"
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
     },
     {
       "basename": "README",

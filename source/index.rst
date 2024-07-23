@@ -10,7 +10,7 @@ Welcome to SphinxDemo's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   Cpp/index
+   开发环境搭建/index
 
 Indices and tables
 ==================

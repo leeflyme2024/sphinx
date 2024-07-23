@@ -7,7 +7,7 @@ Welcome to SphinxDemo's documentation!
 ======================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
    :caption: Contents:
 
    开发环境搭建/index

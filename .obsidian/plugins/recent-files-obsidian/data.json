@@ -1,44 +1,112 @@
 {
   "recentFiles": [
     {
-      "basename": "蓝牙",
-      "path": "source/内核驱动/08 通信接口/蓝牙.md"
-    },
-    {
-      "basename": "systemd",
-      "path": "source/文件系统/systemd.md"
-    },
-    {
-      "basename": "buildroot",
-      "path": "source/文件系统/buildroot.md"
-    },
-    {
-      "basename": "repo",
-      "path": "source/开发环境搭建/repo.md"
-    },
-    {
-      "basename": "git",
-      "path": "source/开发环境搭建/git.md"
-    },
-    {
-      "basename": "wifi",
-      "path": "source/内核驱动/08 通信接口/wifi.md"
-    },
-    {
-      "basename": "摄像头",
-      "path": "source/内核驱动/11 多媒体/摄像头.md"
-    },
-    {
-      "basename": "SSH登录",
-      "path": "source/开发环境搭建/SSH登录.md"
-    },
-    {
       "basename": "Docker",
       "path": "source/开发环境搭建/Docker.md"
     },
     {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
       "basename": "知识库",
       "path": "source/开发环境搭建/知识库.md"
+    },
+    {
+      "basename": "Markdown",
+      "path": "source/开发环境搭建/Markdown.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "02 Yocto",
+      "path": "source/文件系统/02 Yocto.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
+    },
+    {
+      "basename": "wifi",
+      "path": "source/内核驱动/08 通信接口/wifi/wifi.md"
+    },
+    {
+      "basename": "蓝牙",
+      "path": "source/内核驱动/08 通信接口/蓝牙/蓝牙.md"
+    },
+    {
+      "basename": "03 System V",
+      "path": "source/文件系统/03 System V.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/摄像头/测试报告.md"
+    },
+    {
+      "basename": "516fd9f7-140f-422f-ba54-61a37277f562",
+      "path": "pic/516fd9f7-140f-422f-ba54-61a37277f562.png"
+    },
+    {
+      "basename": "c38f209b-8934-4618-a93d-217381326957",
+      "path": "pic/c38f209b-8934-4618-a93d-217381326957.png"
+    },
+    {
+      "basename": "d41346a3-3fb6-4a00-ac46-4ff106e900ce",
+      "path": "pic/d41346a3-3fb6-4a00-ac46-4ff106e900ce.png"
+    },
+    {
+      "basename": "d1ced305-da74-471c-9ebe-0d23eef30c57",
+      "path": "pic/d1ced305-da74-471c-9ebe-0d23eef30c57.png"
+    },
+    {
+      "basename": "48a1b9c5-082f-4da3-9674-42c9ded10a9e",
+      "path": "pic/48a1b9c5-082f-4da3-9674-42c9ded10a9e.png"
+    },
+    {
+      "basename": "b406bc6e-91cf-4396-b5b5-566ed2508954",
+      "path": "pic/b406bc6e-91cf-4396-b5b5-566ed2508954.png"
+    },
+    {
+      "basename": "9c6ce57f-c150-4145-a227-52c9d9ee4f97",
+      "path": "pic/9c6ce57f-c150-4145-a227-52c9d9ee4f97.png"
+    },
+    {
+      "basename": "83c11940-21c1-41e3-a661-294bf7a47ee7",
+      "path": "pic/83c11940-21c1-41e3-a661-294bf7a47ee7.png"
+    },
+    {
+      "basename": "9d6991bd-7cf5-47b7-bf41-2f1b571b5c7c",
+      "path": "pic/9d6991bd-7cf5-47b7-bf41-2f1b571b5c7c.png"
+    },
+    {
+      "basename": "f61fde11-0b0b-460e-b87f-24079530a238",
+      "path": "pic/f61fde11-0b0b-460e-b87f-24079530a238.png"
+    },
+    {
+      "basename": "1280X1280 (4)",
+      "path": "pic/1280X1280 (4).PNG"
+    },
+    {
+      "basename": "Pasted image 20240724140243",
+      "path": "pic/Pasted image 20240724140243.png"
+    },
+    {
+      "basename": "Pasted image 20240723103945",
+      "path": "pic/Pasted image 20240723103945.png"
+    },
+    {
+      "basename": "04 Systemd",
+      "path": "source/文件系统/04 Systemd.md"
+    },
+    {
+      "basename": "01 Buildroot",
+      "path": "source/文件系统/01 Buildroot.md"
     },
     {
       "basename": "README",
@@ -46,31 +114,27 @@
     },
     {
       "basename": "Pasted image 20240723132621",
-      "path": "source/开发环境搭建/pic/Pasted image 20240723132621.png"
-    },
-    {
-      "basename": "Pasted image 20240723103945",
-      "path": "source/开发环境搭建/pic/Pasted image 20240723103945.png"
+      "path": "pic/Pasted image 20240723132621.png"
     },
     {
       "basename": "Pasted image 20240723163357",
-      "path": "source/开发环境搭建/pic/Pasted image 20240723163357.png"
+      "path": "pic/Pasted image 20240723163357.png"
     },
     {
       "basename": "Pasted image 20240723152754",
-      "path": "source/开发环境搭建/pic/Pasted image 20240723152754.png"
+      "path": "pic/Pasted image 20240723152754.png"
     },
     {
       "basename": "Pasted image 20240723152613",
-      "path": "source/开发环境搭建/pic/Pasted image 20240723152613.png"
+      "path": "pic/Pasted image 20240723152613.png"
     },
     {
       "basename": "Pasted image 20240723152539",
-      "path": "source/开发环境搭建/pic/Pasted image 20240723152539.png"
+      "path": "pic/Pasted image 20240723152539.png"
     },
     {
       "basename": "Pasted image 20240723145326",
-      "path": "source/开发环境搭建/pic/Pasted image 20240723145326.png"
+      "path": "pic/Pasted image 20240723145326.png"
     },
     {
       "basename": "知识库",

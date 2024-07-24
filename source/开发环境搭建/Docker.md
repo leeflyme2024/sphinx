@@ -1,2 +1,412 @@
 
 [Fetching Title#kxwe](https://linux.do/t/topic/150936)
+
+# 命令集
+
+## 1. 基本镜像命令
+
+### 拉取镜像
+```bash
+docker pull <镜像名>:<标签>
+```
+
+- 从 Docker 仓库拉取镜像
+```bash
+docker pull ubuntu:latest
+```
+
+### 列出本地镜像
+```bash
+docker images
+```
+
+
+### 删除镜像
+```bash
+docker rmi <镜像名或ID>
+```
+
+- 删除指定的 Docker 镜像
+```bash
+docker rmi ubuntu:latest
+```
+
+### 保存镜像到文件
+```bash
+docker save -o <文件名>.tar <镜像名>:<标签>
+```
+
+- 将镜像保存到本地文件
+```bash
+docker save -o redis-6-alpine.tar redis:6-alpine
+```
+
+### 加载镜像文件
+```bash
+docker load -i <文件名>.tar
+```
+
+- 从本地文件加载镜像
+```bash
+docker load -i redis-6-alpine.tar
+```
+
+## 2. 基本容器命令
+
+### 运行容器
+```bash
+docker run [选项] <镜像名>:<标签>
+```
+
+- 启动一个新的容器
+```bash
+docker run -it ubuntu:latest
+```
+常用选项：
+- `-d`：后台运行容器并返回容器ID。
+- `-it`：以交互模式运行容器，并打开一个终端。
+- `-p`：映射端口（如 `-p 8080:80`）。
+- `-v`：挂载卷（如 `-v /host/path:/container/path`）。
+- `--name`：为容器命名。
+
+### 列出运行中的容器
+```bash
+docker ps
+```
+
+
+### 列出所有容器
+```bash
+docker ps -a
+```
+
+- 显示所有容器（包括未运行的）。
+
+### 停止容器
+```bash
+docker stop <容器名或ID>
+```
+
+- 停止指定的容器
+```bash
+docker stop my_container
+```
+
+### 启动容器
+```bash
+docker start <容器名或ID>
+```
+
+- 启动已经停止的容器
+```bash
+docker start my_container
+```
+
+### 重启容器
+```bash
+docker restart <容器名或ID>
+```
+
+- 重启指定的容器
+```bash
+docker restart my_container
+```
+
+### 删除容器
+```bash
+docker rm <容器名或ID>
+```
+
+- 删除指定的容器
+```bash
+docker rm my_container
+```
+
+### 进入运行中的容器
+```bash
+docker exec -it <容器名或ID> /bin/bash
+```
+
+- 在正在运行的容器中打开一个新的终端
+```bash
+docker exec -it my_container /bin/bash
+```
+
+## 3. 网络管理
+
+### 列出所有网络
+```bash
+docker network ls
+```
+
+- 显示所有 Docker 网络
+
+### 创建网络
+```bash
+docker network create <网络名>
+```
+
+- 创建一个新的 Docker 网络
+```bash
+docker network create my_network
+```
+
+### 删除网络
+```bash
+docker network rm <网络名>
+```
+
+- 删除指定的 Docker 网络
+```bash
+docker network rm my_network
+```
+
+### 将容器连接到网络
+```bash
+docker network connect <网络名> <容器名或ID>
+```
+
+- 将一个容器连接到指定的网络
+```bash
+docker network connect my_network my_container
+```
+
+### 从网络断开容器
+```bash
+docker network disconnect <网络名> <容器名或ID>
+```
+
+- 将一个容器从指定的网络断开
+```bash
+docker network disconnect my_network my_container
+```
+
+## 4. 卷管理
+
+### 创建卷
+```bash
+docker volume create <卷名>
+```
+
+- 创建一个新的 Docker 卷
+```bash
+docker volume create my_volume
+```
+
+### 列出所有卷
+```bash
+docker volume ls
+```
+
+
+### 删除卷
+```bash
+docker volume rm <卷名>
+```
+
+- 删除指定的 Docker 卷
+```bash
+docker volume rm my_volume
+```
+
+## 5. Compose
+
+### 5.1 `docker-compose up`
+
+该命令用于构建、（重新）创建、启动并连接到容器。如果容器已经存在并且正在运行，`up` 命令不会重建或重启容器，除非它们被配置为在容器停止后重建。
+
+- **语法**：
+```bash
+  docker-compose up [options] [SERVICE...]
+```
+
+- **常用选项**：
+  - `-d`, `--detach`: 后台运行服务容器，并打印新容器的 ID。
+  - `--build`: 在启动容器之前重新构建服务的镜像。
+  - `--force-recreate`: 如果容器已经存在，则强制重新创建容器，无论容器的状态如何。
+  - `--no-build`: 不重新构建镜像，即使 Dockerfile 存在。
+  - `--no-start`: 创建容器但不启动它们。
+
+
+- `docker-compose up -d` 命令用于启动由 Docker Compose 定义的多个服务容器，并在后台运行它们
+	- `docker-compose up`：构建、（重新）创建、启动并关联一个多容器 Docker 应用。它会根据 `docker-compose.yml` 文件中的配置创建和启动所有服务容器。
+	- `-d`：代表 "detached mode"（分离模式），即在后台运行容器。运行该命令后，你的终端会立即返回，你的容器将继续在后台运行。
+
+- 该命令会执行以下操作：
+1. **读取 `docker-compose.yml` 文件**：解析并理解文件中的所有配置。
+2. **拉取镜像**：如果本地没有定义的镜像，Docker Compose 会从 Docker Hub 或其他指定的镜像仓库拉取这些镜像。
+3. **创建并启动容器**：根据文件中的配置创建和启动所有定义的服务容器。
+4. **后台运行**：由于使用了 `-d` 选项，所有容器会在后台运行，你的终端会立即返回，而不会显示容器的输出。
+
+ `docker-compose.yml` 文件:：
+
+```yaml
+version: '3.8'
+
+services:
+  squid:
+    image: ubuntu/squid:latest
+    container_name: squid-container
+    ports:
+      - "3128:3128"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-container
+    ports:
+      - "8080:80"
+
+  dify:
+    image: langgenius/dify-sandbox:0.2.1
+    container_name: dify-sandbox-container
+
+  redis:
+    image: redis:6-alpine
+    container_name: redis-container
+    ports:
+      - "6379:6379"
+
+  weaviate:
+    image: semitechnologies/weaviate:1.19.0
+    container_name: weaviate-container
+    ports:
+      - "8081:8080"
+```
+
+
+
+### 5.2 `docker-compose down`
+该命令用于停止并删除由 `docker-compose up` 或 `docker-compose run` 创建的容器、网络、卷以及镜像。
+
+- **语法**：
+```bash
+  docker-compose down [options]
+```
+
+- **常用选项**：
+  - `--volumes`, `-v`: 删除数据卷。
+  - `--rmi`, `--remove-orphans`: 删除未被任何服务使用的镜像。
+
+
+
+### 5.3`docker-compose start`
+
+此命令用于启动已创建但停止的容器。
+
+- **语法**：
+```bash
+  docker-compose start [SERVICE...]
+  ```
+
+### 5.4 `docker-compose stop`
+
+此命令用于停止正在运行的容器。
+
+- **语法**：
+```bash
+  docker-compose stop [SERVICE...]
+```
+
+### 5.5 `docker-compose restart`
+
+此命令用于重启容器。
+
+- **语法**：
+```bash
+  docker-compose restart [SERVICE...]
+```
+
+### 5.6 `docker-compose build`
+
+此命令用于构建或重新构建服务的 Docker 镜像。
+
+- **语法**：
+```bash
+  docker-compose build [options] [SERVICE...]
+```
+
+- **常用选项**：
+  - `--no-cache`: 构建镜像时不使用缓存。
+  - `--pull`: 尝试拉取镜像的基础镜像的最新版本。
+
+### 5.7 `docker-compose logs`
+
+此命令用于查看服务容器的日志输出。
+
+- **语法**：
+```bash
+  docker-compose logs [options] [SERVICE...]
+```
+
+- **常用选项**：
+  - `-f`, `--follow`: 跟踪日志输出。
+  - `--tail`: 输出日志的行数。
+  - `--timestamps`: 显示时间戳。
+
+### 5.8 `docker-compose ps`
+
+此命令用于列出所有服务的容器状态。
+
+- **语法**：
+```bash
+  docker-compose ps [SERVICE...]
+```
+
+### 5.9`docker-compose config`
+
+此命令用于验证并查看组合文件的完整有效配置。
+
+- **语法**：
+```bash
+  docker-compose config [options]
+```
+
+### 5.10`docker-compose exec`
+
+此命令用于在运行的容器中执行命令。
+
+- **语法**：
+```bash
+  docker-compose exec [options] SERVICE COMMAND [ARGS...]
+```
+
+### 5.11 `docker-compose run`
+
+此命令用于运行一个一次性命令容器。
+
+- **语法**：
+```bash
+  docker-compose run [options] [SERVICE] [COMMAND] [ARGS...]
+```
+
+- **常用选项**：
+  - `-d`, `--detach`: 后台运行命令容器。
+  - `--service-ports`: 分配容器的端口到主机，就像在服务定义中一样。
+
+
+# 应用
+## Docker Desktop
+![[img_v3_02d1_77940bf2-d0fa-48ba-b2b7-fdfb0795a33g.jpg]]
+
+![[Pasted image 20240724140243.png]]
+
+
+```json
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "registry-mirrors": [
+    "https://hub-mirror.c.163.com",
+    "https://docker.mirrors.ustc.edu.cn",
+    "https://docker.nju.edu.cn",
+    "https://mirror.baidubce.com",
+    "https://mirror.iscas.ac.cn"
+  ]
+}
+```
+

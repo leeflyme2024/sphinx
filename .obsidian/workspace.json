@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/文件系统/03 System V.md",
+                "file": "source/文件系统/04 Systemd.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 530.5
+    "width": 256.5
   },
   "right": {
     "id": "9fe260630bf57eef",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/文件系统/03 System V.md",
+                "file": "source/文件系统/04 Systemd.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/文件系统/03 System V.md",
+                "file": "source/文件系统/04 Systemd.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/文件系统/03 System V.md"
+                "file": "source/文件系统/04 Systemd.md"
               }
             }
           },
@@ -171,7 +171,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 331.5
+    "width": 433.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -196,32 +196,39 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
+    "source/内核驱动/09 工控接口/CAN/命令集.md",
+    "source/内核驱动/09 工控接口/CAN/DFT.md",
+    "source/内核驱动/10 高速接口/USB/DFT.md",
+    "source/内核驱动/09 工控接口/CAN/测试报告.md",
+    "source/内核驱动/08 通信接口/蓝牙/命令集.md",
+    "source/内核驱动/09 工控接口/CAN",
+    "source/内核驱动/09 工控接口",
+    "source/内核驱动/08 通信接口/蓝牙/DFT.md",
+    "source/内核驱动/11 多媒体/摄像头/命令集.md",
+    "source/内核驱动/11 多媒体/音频/命令集.md",
+    "source/内核驱动/11 多媒体/音频/DFT.md",
     "source/内核驱动/04 存储管理/MMCSD/命令集.md",
-    "source/内核驱动/08 通信接口/wifi/命令集.md",
-    "source/内核驱动/04 存储管理/MMCSD/DFT.md",
-    "source/内核驱动/08 通信接口/wifi/DFT.md",
     "source/内核驱动/04 存储管理/MMCSD/测试报告.md",
+    "source/内核驱动/04 存储管理/MMCSD/DFT.md",
+    "source/内核驱动/11 多媒体/摄像头/测试报告.md",
+    "source/内核驱动/11 多媒体/摄像头/DFT.md",
+    "source/内核驱动/11 多媒体/音频/测试报告.md",
+    "source/内核驱动/10 高速接口/USB/命令集.md",
+    "source/内核驱动/11 多媒体/音频",
+    "source/内核驱动/08 通信接口/wifi/DFT.md",
+    "source/内核驱动/08 通信接口/wifi/命令集.md",
+    "source/内核驱动/10 高速接口/USB/测试报告.md",
+    "source/内核驱动/10 高速接口/USB",
+    "source/内核驱动/10 高速接口",
+    "source/开发环境搭建/开发环境搭建.md",
+    "source/开发环境搭建/Git.md",
+    "source/文件系统/03 System V.md",
     "source/内核驱动/04 存储管理/MMCSD",
     "source/开发环境搭建/Markdown.md",
     "source/内核驱动/04 存储管理",
-    "source/内核驱动/08 通信接口/蓝牙/命令集.md",
-    "source/内核驱动/08 通信接口/蓝牙/DFT.md",
     "source/内核驱动/08 通信接口/wifi/测试报告.md",
-    "source/文件系统/03 System V.md",
-    "source/开发环境搭建/开发环境搭建.md",
     "source/内核驱动/08 通信接口/蓝牙/测试报告.md",
-    "source/内核驱动/11 多媒体/摄像头/DFT.md",
-    "source/内核驱动/11 多媒体/摄像头/命令集.md",
-    "source/内核驱动/11 多媒体/摄像头/测试报告.md",
     "source/文件系统/02 Yocto.md",
-    "source/文件系统/04 Systemd.md",
-    "source/文件系统/01 Buildroot.md",
-    "source/开发环境搭建/知识库.md",
-    "source/开发环境搭建/Git.md",
-    "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/windows.md",
-    "source/开发环境搭建/vim.md",
-    "source/开发环境搭建/Docker.md",
     "testtt",
     "0001-add-file.patch",
     "pic/516fd9f7-140f-422f-ba54-61a37277f562.png",
@@ -230,17 +237,11 @@
     "pic/d1ced305-da74-471c-9ebe-0d23eef30c57.png",
     "pic/d1ced305-da74-471c-9ebe-0d23eef30c57.png.crdownload",
     "pic/6b97e218-5931-4ff2-af4f-60181bcd1e5e.png",
-    "pic/6b97e218-5931-4ff2-af4f-60181bcd1e5e.png.crdownload",
     "pic/f712a4f0-3b69-4742-bb7d-60e3fef0a235.png",
-    "pic/f712a4f0-3b69-4742-bb7d-60e3fef0a235.png.crdownload",
-    "pic/d41346a3-3fb6-4a00-ac46-4ff106e900ce.png.crdownload",
-    "pic/516fd9f7-140f-422f-ba54-61a37277f562.png.crdownload",
     "pic/48a1b9c5-082f-4da3-9674-42c9ded10a9e.png",
     "pic/b406bc6e-91cf-4396-b5b5-566ed2508954.png",
     "pic/9c6ce57f-c150-4145-a227-52c9d9ee4f97.png",
     "pic/83c11940-21c1-41e3-a661-294bf7a47ee7.png",
-    "pic/c38f209b-8934-4618-a93d-217381326957.png.crdownload",
-    "README.md",
     "未命名.canvas"
   ]
 }

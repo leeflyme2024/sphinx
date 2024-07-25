@@ -1,32 +1,24 @@
 {
   "recentFiles": [
     {
-      "basename": "03 System V",
-      "path": "source/文件系统/03 System V.md"
+      "basename": "04 Systemd",
+      "path": "source/文件系统/04 Systemd.md"
     },
     {
       "basename": "命令集",
-      "path": "source/内核驱动/04 存储管理/MMCSD/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/08 通信接口/wifi/命令集.md"
+      "path": "source/内核驱动/09 工控接口/CAN/命令集.md"
     },
     {
       "basename": "DFT",
-      "path": "source/内核驱动/04 存储管理/MMCSD/DFT.md"
+      "path": "source/内核驱动/09 工控接口/CAN/DFT.md"
     },
     {
       "basename": "DFT",
-      "path": "source/内核驱动/08 通信接口/wifi/DFT.md"
+      "path": "source/内核驱动/10 高速接口/USB/DFT.md"
     },
     {
       "basename": "测试报告",
-      "path": "source/内核驱动/04 存储管理/MMCSD/测试报告.md"
-    },
-    {
-      "basename": "Markdown",
-      "path": "source/开发环境搭建/Markdown.md"
+      "path": "source/内核驱动/09 工控接口/CAN/测试报告.md"
     },
     {
       "basename": "命令集",
@@ -37,36 +29,84 @@
       "path": "source/内核驱动/08 通信接口/蓝牙/DFT.md"
     },
     {
-      "basename": "测试报告",
-      "path": "source/内核驱动/08 通信接口/wifi/测试报告.md"
-    },
-    {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/08 通信接口/蓝牙/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
+      "basename": "命令集",
+      "path": "source/内核驱动/11 多媒体/摄像头/命令集.md"
     },
     {
       "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/摄像头/命令集.md"
+      "path": "source/内核驱动/11 多媒体/音频/命令集.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/音频/DFT.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/04 存储管理/MMCSD/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/04 存储管理/MMCSD/测试报告.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/04 存储管理/MMCSD/DFT.md"
     },
     {
       "basename": "测试报告",
       "path": "source/内核驱动/11 多媒体/摄像头/测试报告.md"
     },
     {
-      "basename": "02 Yocto",
-      "path": "source/文件系统/02 Yocto.md"
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
     },
     {
-      "basename": "04 Systemd",
-      "path": "source/文件系统/04 Systemd.md"
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/音频/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/10 高速接口/USB/命令集.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/wifi/DFT.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/08 通信接口/wifi/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/10 高速接口/USB/测试报告.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "03 System V",
+      "path": "source/文件系统/03 System V.md"
+    },
+    {
+      "basename": "Markdown",
+      "path": "source/开发环境搭建/Markdown.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/08 通信接口/wifi/测试报告.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/08 通信接口/蓝牙/测试报告.md"
+    },
+    {
+      "basename": "02 Yocto",
+      "path": "source/文件系统/02 Yocto.md"
     },
     {
       "basename": "01 Buildroot",
@@ -75,10 +115,6 @@
     {
       "basename": "知识库",
       "path": "source/开发环境搭建/知识库.md"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
     },
     {
       "basename": "Repo",
@@ -163,42 +199,6 @@
     {
       "basename": "Pasted image 20240723152754",
       "path": "pic/Pasted image 20240723152754.png"
-    },
-    {
-      "basename": "Pasted image 20240723152613",
-      "path": "pic/Pasted image 20240723152613.png"
-    },
-    {
-      "basename": "Pasted image 20240723152539",
-      "path": "pic/Pasted image 20240723152539.png"
-    },
-    {
-      "basename": "Pasted image 20240723145326",
-      "path": "pic/Pasted image 20240723145326.png"
-    },
-    {
-      "basename": "知识库",
-      "path": "开发环境搭建/知识库.md"
-    },
-    {
-      "basename": "SSH登录",
-      "path": "开发环境搭建/SSH登录.md"
-    },
-    {
-      "basename": "Docker",
-      "path": "开发环境搭建/Docker.md"
-    },
-    {
-      "basename": "Pasted image 20240723103945",
-      "path": "开发环境搭建/pic/Pasted image 20240723103945.png"
-    },
-    {
-      "basename": "Pasted image 20240723132425",
-      "path": "开发环境搭建/pic/Pasted image 20240723132425.png"
-    },
-    {
-      "basename": "Pasted image 20240723132621",
-      "path": "开发环境搭建/pic/Pasted image 20240723132621.png"
     }
   ],
   "omittedPaths": []

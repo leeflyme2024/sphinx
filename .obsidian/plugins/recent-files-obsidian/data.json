@@ -1,52 +1,100 @@
 {
   "recentFiles": [
     {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
+      "basename": "03 System V",
+      "path": "source/文件系统/03 System V.md"
     },
     {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
+      "basename": "命令集",
+      "path": "source/内核驱动/04 存储管理/MMCSD/命令集.md"
     },
     {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
+      "basename": "命令集",
+      "path": "source/内核驱动/08 通信接口/wifi/命令集.md"
     },
     {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
+      "basename": "DFT",
+      "path": "source/内核驱动/04 存储管理/MMCSD/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/wifi/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/04 存储管理/MMCSD/测试报告.md"
     },
     {
       "basename": "Markdown",
       "path": "source/开发环境搭建/Markdown.md"
     },
     {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
+      "basename": "命令集",
+      "path": "source/内核驱动/08 通信接口/蓝牙/命令集.md"
     },
     {
-      "basename": "02 Yocto",
-      "path": "source/文件系统/02 Yocto.md"
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/蓝牙/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/08 通信接口/wifi/测试报告.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/08 通信接口/蓝牙/测试报告.md"
     },
     {
       "basename": "DFT",
       "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
     },
     {
-      "basename": "wifi",
-      "path": "source/内核驱动/08 通信接口/wifi/wifi.md"
-    },
-    {
-      "basename": "蓝牙",
-      "path": "source/内核驱动/08 通信接口/蓝牙/蓝牙.md"
-    },
-    {
-      "basename": "03 System V",
-      "path": "source/文件系统/03 System V.md"
+      "basename": "命令集",
+      "path": "source/内核驱动/11 多媒体/摄像头/命令集.md"
     },
     {
       "basename": "测试报告",
       "path": "source/内核驱动/11 多媒体/摄像头/测试报告.md"
+    },
+    {
+      "basename": "02 Yocto",
+      "path": "source/文件系统/02 Yocto.md"
+    },
+    {
+      "basename": "04 Systemd",
+      "path": "source/文件系统/04 Systemd.md"
+    },
+    {
+      "basename": "01 Buildroot",
+      "path": "source/文件系统/01 Buildroot.md"
+    },
+    {
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "windows",
+      "path": "source/开发环境搭建/windows.md"
+    },
+    {
+      "basename": "vim",
+      "path": "source/开发环境搭建/vim.md"
+    },
+    {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
     },
     {
       "basename": "516fd9f7-140f-422f-ba54-61a37277f562",
@@ -101,14 +149,6 @@
       "path": "pic/Pasted image 20240723103945.png"
     },
     {
-      "basename": "04 Systemd",
-      "path": "source/文件系统/04 Systemd.md"
-    },
-    {
-      "basename": "01 Buildroot",
-      "path": "source/文件系统/01 Buildroot.md"
-    },
-    {
       "basename": "README",
       "path": "README.md"
     },
@@ -159,34 +199,6 @@
     {
       "basename": "Pasted image 20240723132621",
       "path": "开发环境搭建/pic/Pasted image 20240723132621.png"
-    },
-    {
-      "basename": "Pasted image 20240723132650",
-      "path": "开发环境搭建/pic/Pasted image 20240723132650.png"
-    },
-    {
-      "basename": "Pasted image 20240723152502",
-      "path": "开发环境搭建/pic/Pasted image 20240723152502.png"
-    },
-    {
-      "basename": "Pasted image 20240723163357",
-      "path": "开发环境搭建/pic/Pasted image 20240723163357.png"
-    },
-    {
-      "basename": "Pasted image 20240723152754",
-      "path": "开发环境搭建/pic/Pasted image 20240723152754.png"
-    },
-    {
-      "basename": "Pasted image 20240723152613",
-      "path": "开发环境搭建/pic/Pasted image 20240723152613.png"
-    },
-    {
-      "basename": "Pasted image 20240723152337",
-      "path": "开发环境搭建/pic/Pasted image 20240723152337.png"
-    },
-    {
-      "basename": "Pasted image 20240723145326",
-      "path": "开发环境搭建/pic/Pasted image 20240723145326.png"
     }
   ],
   "omittedPaths": []

@@ -1,4 +1,973 @@
 
+
+# 命令集
+
+## find 
+
+### 查找所有 .txt 文件
+
+```bash
+find /path/to/search -name "*.txt"
+```
+
+例如，查找当前目录及其子目录下所有的 `.txt` 文件：
+
+```bash
+find . -name "*.txt"
+```
+
+### 查找最近修改的文件
+
+```bash
+find /path/to/search -mtime -n
+```
+
+例如，查找过去一天内被修改过的所有文件：
+
+```bash
+find . -mtime -1
+```
+
+这里的 `-mtime -1` 表示查找在过去 24 小时内被修改的文件。
+
+### 查找特定大小的文件
+
+```bash
+find /path/to/search -size +nK
+```
+
+例如，查找大于 100KB 的所有文件：
+
+```bash
+find . -size +100K
+```
+
+### 查找特定类型的文件
+
+```bash
+find /path/to/search -type f|d|l|b|c
+```
+
+例如，查找所有的目录：
+
+```bash
+find . -type d
+```
+
+### 查找空文件
+
+```bash
+find /path/to/search -empty
+```
+
+例如，查找当前目录及其子目录下所有空的文件或目录：
+
+```bash
+find . -empty
+```
+
+### 查找具有特定权限的文件
+
+```bash
+find /path/to/search -perm -mode
+```
+
+例如，查找具有可执行权限的文件：
+
+```bash
+find . -perm -u+x
+```
+
+### 查找属于特定用户的文件
+
+```bash
+find /path/to/search -user username
+```
+
+例如，查找属于用户 `john` 的所有文件：
+
+```bash
+find . -user john
+```
+
+### 查找文件并执行命令
+
+```bash
+find /path/to/search -name "pattern" -exec command {} \;
+```
+
+例如，查找所有 `.txt` 文件并删除它们：
+
+```bash
+find . -name "*.txt" -exec rm {} \;
+```
+
+### 查找文件并使用 xargs 执行命令
+
+```bash
+find /path/to/search -name "pattern" -print0 | xargs -0 command
+```
+
+例如，查找所有 `.txt` 文件并压缩它们：
+
+```bash
+find . -name "*.txt" -print0 | xargs -0 zip -j archive.zip
+```
+
+## grep 
+
+### 搜索文件中包含特定字符串的行
+
+```bash
+grep "pattern" filename
+```
+
+例如，搜索文件 `example.txt` 中包含单词 "Linux" 的行：
+
+```bash
+grep "Linux" example.txt
+```
+
+### 搜索多个文件中包含特定字符串的行
+
+```bash
+grep "pattern" file1 file2 ...
+```
+
+例如，搜索多个文件 `file1.txt`, `file2.txt` 中包含单词 "Linux" 的行：
+
+```bash
+grep "Linux" file1.txt file2.txt
+```
+
+### 搜索文件中不包含特定字符串的行
+
+```bash
+grep -v "pattern" filename
+```
+
+例如，搜索文件 `example.txt` 中不包含单词 "Linux" 的行：
+
+```bash
+grep -v "Linux" example.txt
+```
+
+### 忽略大小写搜索
+
+```bash
+grep -i "pattern" filename
+```
+
+例如，忽略大小写搜索文件 `example.txt` 中包含单词 "Linux" 的行：
+
+```bash
+grep -i "Linux" example.txt
+```
+
+### 搜索整个目录及其子目录中的文件
+
+```bash
+grep -r "pattern" directory/
+```
+
+例如，搜索目录 `docs/` 及其所有子目录中的文件，查找包含单词 "Linux" 的行：
+
+```bash
+grep -r "Linux" docs/
+```
+
+### 输出匹配的行的行号
+
+```bash
+grep -n "pattern" filename
+```
+
+例如，输出文件 `example.txt` 中包含单词 "Linux" 的行及其行号：
+
+```bash
+grep -n "Linux" example.txt
+```
+
+### 使用正则表达式搜索
+
+```bash
+grep "regex_pattern" filename
+```
+
+例如，搜索文件 `example.txt` 中所有以 "www." 开头的 URL：
+
+```bash
+grep "www\.[^ ]*" example.txt
+```
+
+### 将搜索结果输出到文件
+
+```bash
+grep "pattern" filename > output.txt
+```
+
+例如，将搜索文件 `example.txt` 中包含单词 "Linux" 的行的结果保存到 `output.txt`：
+
+```bash
+grep "Linux" example.txt > output.txt
+```
+
+### 统计匹配行的数量
+
+```bash
+grep -c "pattern" filename
+```
+
+例如，统计文件 `example.txt` 中包含单词 "Linux" 的行的数量：
+
+```bash
+grep -c "Linux" example.txt
+```
+
+
+## sed 
+
+### 替换单词或短语
+
+```bash
+sed 's/pattern/replacement/g' filename
+```
+
+例如，将文件 `example.txt` 中所有的 "Linux" 替换为 "Ubuntu"：
+
+```bash
+sed 's/Linux/Ubuntu/g' example.txt
+```
+
+### 替换某一行的内容
+
+```bash
+sed 'n s/pattern/replacement/' filename
+```
+
+例如，将文件 `example.txt` 中的第 3 行的 "Linux" 替换为 "Ubuntu"：
+
+```bash
+sed '3 s/Linux/Ubuntu/' example.txt
+```
+
+### 替换所有行的开头
+
+```bash
+sed 's/^/prefix /' filename
+```
+
+例如，给文件 `example.txt` 中的每一行添加前缀 "Prefix: "：
+
+```bash
+sed 's/^/Prefix: /' example.txt
+```
+
+### 删除包含特定模式的行
+
+```bash
+sed '/pattern/d' filename
+```
+
+例如，删除文件 `example.txt` 中包含 "delete" 的所有行：
+
+```bash
+sed '/delete/d' example.txt
+```
+
+### 插入一行文本
+
+```bash
+sed 'n i\inserted line' filename
+```
+
+例如，在文件 `example.txt` 的第 3 行前插入一行 "Inserted line":
+
+```bash
+sed '3 i\Inserted line' example.txt
+```
+
+### 在文件末尾追加一行
+
+```bash
+sed '$ a\appended line' filename
+```
+
+例如，在文件 `example.txt` 的末尾追加一行 "Appended line":
+
+```bash
+sed '$ a\Appended line' example.txt
+```
+
+### 将结果重定向到新文件
+
+```bash
+sed 's/pattern/replacement/g' filename > newfile
+```
+
+例如，将文件 `example.txt` 中所有的 "Linux" 替换为 "Ubuntu"，并将结果保存到 `newfile.txt`：
+
+```bash
+sed 's/Linux/Ubuntu/g' example.txt > newfile.txt
+```
+
+### 使用正则表达式替换
+
+```bash
+sed 's/regex/pattern/' filename
+```
+
+例如，将文件 `example.txt` 中所有数字替换为 "Number":
+
+```bash
+sed 's/[0-9]*/Number/g' example.txt
+```
+
+### 替换并保存原始文件
+
+```bash
+sed -i 's/pattern/replacement/g' filename
+```
+
+例如，将文件 `example.txt` 中所有的 "Linux" 替换为 "Ubuntu"，并直接修改原文件：
+
+```bash
+sed -i 's/Linux/Ubuntu/g' example.txt
+```
+
+## awk
+
+### 打印文件中的所有行
+
+```bash
+awk '{ print }' filename
+```
+
+例如，打印文件 `data.txt` 中的所有行：
+
+```bash
+awk '{ print }' data.txt
+```
+
+### 打印文件中的第二列
+
+```bash
+awk '{ print $2 }' filename
+```
+
+例如，打印文件 `data.txt` 中的第二列：
+
+```bash
+awk '{ print $2 }' data.txt
+```
+
+### 计算列的总和
+
+```bash
+awk '{ sum += $1 } END { print sum }' filename
+```
+
+例如，计算文件 `data.txt` 第一列的总和：
+
+```bash
+awk '{ sum += $1 } END { print sum }' data.txt
+```
+
+### 根据字段分组并计数
+
+```bash
+awk '{ count[$1]++ } END { for (i in count) print i, count[i] }' filename
+```
+
+例如，计算文件 `data.txt` 第一列中每个唯一值的出现次数：
+
+```bash
+awk '{ count[$1]++ } END { for (i in count) print i, count[i] }' data.txt
+```
+
+### 打印满足条件的行
+
+```bash
+awk '$1 > limit { print }' filename
+```
+
+例如，打印文件 `data.txt` 中第一列大于 10 的所有行：
+
+```bash
+awk '$1 > 10 { print }' data.txt
+```
+
+### 计算两列的平均值
+
+```bash
+awk '{ sum1 += $1; sum2 += $2 } END { print "Average1=" sum1/NR " Average2=" sum2/NR }' filename
+```
+
+例如，计算文件 `data.txt` 第一列和第二列的平均值：
+
+```bash
+awk '{ sum1 += $1; sum2 += $2 } END { print "Average1=" sum1/NR " Average2=" sum2/NR }' data.txt
+```
+
+### 格式化输出
+
+```bash
+awk '{ printf "%-10s %-10s\n", $1, $2 }' filename
+```
+
+例如，格式化打印文件 `data.txt` 的第一列和第二列：
+
+```bash
+awk '{ printf "%-10s %-10s\n", $1, $2 }' data.txt
+```
+
+### 使用自定义分隔符
+
+```bash
+awk -F':' '{ print $1 }' filename
+```
+
+例如，使用冒号作为分隔符，打印文件 `data.txt` 的第一列：
+
+```bash
+awk -F':' '{ print $1 }' data.txt
+```
+
+### 删除空行
+
+```bash
+awk 'NF' filename
+```
+
+例如，删除文件 `data.txt` 中的所有空行：
+
+```bash
+awk 'NF' data.txt
+```
+
+### 打印列的最大值
+
+```bash
+awk '{ if ($1 > max) max = $1 } END { print max }' filename
+```
+
+例如，打印文件 `data.txt` 第一列的最大值：
+
+```bash
+awk '{ if ($1 > max) max = $1 } END { print max }' data.txt
+```
+
+
+
+## cp
+
+### 复制单个文件
+
+```bash
+cp source_file destination
+```
+
+例如，复制 `example.txt` 到 `backup.txt`：
+
+```bash
+cp example.txt backup.txt
+```
+
+### 复制文件到目录
+
+```bash
+cp source_file directory/
+```
+
+例如，将 `example.txt` 复制到目录 `myfolder`：
+
+```bash
+cp example.txt myfolder/
+```
+
+### 复制目录及其内容
+
+```bash
+cp -r source_directory destination_directory
+```
+
+例如，复制目录 `mydir` 到 `newdir`：
+
+```bash
+cp -r mydir newdir
+```
+
+### 复制多个文件到同一目录
+
+```bash
+cp file1 file2 ... directory/
+```
+
+例如，将 `file1.txt` 和 `file2.txt` 复制到 `myfolder`：
+
+```bash
+cp file1.txt file2.txt myfolder/
+```
+
+### 复制文件并保留所有属性
+
+```bash
+cp -p source_file destination
+```
+
+例如，复制 `example.txt` 到 `backup.txt` 并保留文件属性：
+
+```bash
+cp -p example.txt backup.txt
+```
+
+### 更新目标文件，如果源文件更新过
+
+```bash
+cp -u source_file destination
+```
+
+例如，只有当 `example.txt` 更新后，才复制到 `backup.txt`：
+
+```bash
+cp -u example.txt backup.txt
+```
+
+### 交互式复制，询问是否覆盖
+
+```bash
+cp -i source_file destination
+```
+
+例如，复制 `example.txt` 到 `existing.txt`，并询问是否覆盖：
+
+```bash
+cp -i example.txt existing.txt
+```
+
+### 复制文件并显示进度条
+
+```bash
+cp -v source_file destination
+```
+
+例如，复制 `example.txt` 到 `backup.txt` 并显示详细信息：
+
+```bash
+cp -v example.txt backup.txt
+```
+
+### 使用符号链接而不是复制文件
+
+```bash
+cp -s source_file link_name
+```
+
+例如，创建 `example.txt` 的符号链接 `link_example`：
+
+```bash
+cp -s example.txt link_example
+```
+
+### 复制文件并更改权限
+
+```bash
+cp --chmod=mode source_file destination
+```
+
+例如，复制 `example.txt` 到 `backup.txt` 并设置权限为 `644`：
+
+```bash
+cp --chmod=644 example.txt backup.txt
+```
+
+
+## rm
+
+### 删除单个文件
+
+```bash
+rm filename
+```
+
+例如，删除名为 `example.txt` 的文件：
+
+```bash
+rm example.txt
+```
+
+### 强制删除文件（不询问确认）
+
+```bash
+rm -f filename
+```
+
+例如，强制删除名为 `example.txt` 的文件，不显示任何警告：
+
+```bash
+rm -f example.txt
+```
+
+### 删除多个文件
+
+```bash
+rm file1 file2 ...
+```
+
+例如，删除多个文件 `file1.txt`, `file2.txt`：
+
+```bash
+rm file1.txt file2.txt
+```
+
+### 删除目录及其内容
+
+```bash
+rm -r directory
+```
+
+例如，删除目录 `mydir` 及其所有内容：
+
+```bash
+rm -r mydir
+```
+
+### 强制删除目录及其内容
+
+```bash
+rm -rf directory
+```
+
+例如，强制删除目录 `mydir` 及其所有内容，不显示任何警告：
+
+```bash
+rm -rf mydir
+```
+
+### 删除符合模式的所有文件
+
+```bash
+rm pattern
+```
+
+例如，删除所有以 `.bak` 结尾的备份文件：
+
+```bash
+rm *.bak
+```
+
+### 删除隐藏文件
+
+```bash
+rm .filename
+```
+
+例如，删除隐藏文件 `.hiddenfile`：
+
+```bash
+rm .hiddenfile
+```
+
+### 删除所有隐藏文件
+
+```bash
+rm .*  # 注意使用通配符时，可能需要在前面加上引号避免shell提前展开
+```
+
+例如，删除当前目录下的所有隐藏文件：
+
+```bash
+rm .*
+```
+
+### 删除文件并要求确认
+
+```bash
+rm -i filename
+```
+
+例如，删除文件 `example.txt` 但先询问确认：
+
+```bash
+rm -i example.txt
+```
+
+### 删除文件前显示文件名
+
+```bash
+rm -v filename
+```
+
+例如，删除文件 `example.txt` 并显示操作信息：
+
+```bash
+rm -v example.txt
+```
+
+
+## dmesg 
+
+`dmesg` 命令用于显示内核的环形缓冲区（通常称为 dmesg 缓冲区），其中包含系统引导时和运行时的内核消息
+
+### 显示所有内核消息
+```bash
+dmesg
+```
+
+### 显示最后 N 条内核消息
+```bash
+dmesg -n <N>
+```
+
+例如，显示最后 10 条内核消息：
+
+```bash
+dmesg -n 10
+```
+
+### 清除内核消息缓冲区
+```bash
+dmesg -c
+```
+
+### 显示特定优先级的内核消息
+```bash
+dmesg -l <level>
+```
+
+例如，显示紧急级别（emerg）的内核消息：
+
+```bash
+dmesg -l emerg
+```
+
+### 将内核消息输出到文件
+```bash
+dmesg > kernel_messages.txt
+```
+
+### 过滤内核消息中的关键词
+```bash
+dmesg | grep <keyword>
+```
+
+例如，过滤含有 "ide" 的内核消息：
+
+```bash
+dmesg | grep ide
+```
+
+### 实时显示内核消息
+```bash
+dmesg -w
+```
+
+这将使 `dmesg` 命令持续运行，并显示内核在运行时产生的新消息。
+
+## chroot
+
+`chroot` 命令允许你更改一个进程的根目录，即进程将看到的文件系统的根。这在容器技术、系统修复、软件包构建和安全沙箱环境中非常有用。
+
+### 更改根目录并运行命令
+
+```bash
+chroot /path/to/new/root command args...
+```
+
+例如，更改根目录到 `/mnt/newroot` 并运行 `bash` shell：
+
+```bash
+chroot /mnt/newroot bash
+```
+
+一旦在 `chroot` 环境中，你的 `/` 将指向 `/mnt/newroot`，并且所有路径都将相对于这个新的根目录。
+
+### 构建软件包
+
+假设你有一个准备好的软件包构建环境在 `/mnt/buildenv`，你可以使用 `chroot` 来运行构建过程：
+
+```bash
+chroot /mnt/buildenv make package
+```
+
+这将让你在隔离的环境中构建软件包，不会影响主机系统的文件。
+
+### 系统修复
+
+如果需要修复一个受损的系统，你可以从一个救援环境（如 Live CD 或 Live USB）启动，并使用 `chroot` 进入受损系统的根目录进行修复：
+
+```bash
+mount /dev/sda1 /mnt/systemroot
+chroot /mnt/systemroot /bin/bash
+```
+
+在上面的例子中，`/dev/sda1` 是受损系统的根分区，`/mnt/systemroot` 是挂载点。一旦运行 `chroot`，你将能够像在正常系统中一样使用受损系统的命令和工具。
+
+### 检查新系统
+
+在安装或升级系统之后，你可以使用 `chroot` 来检查新系统的环境是否正常工作，而无需完全重启计算机：
+
+```bash
+chroot /mnt/newsystem /bin/bash
+```
+
+这里，`/mnt/newsystem` 是新系统所在的目录。
+
+### 创建沙箱环境
+
+`chroot` 可以用来创建一个安全的沙箱环境，限制进程的访问权限：
+
+```bash
+chroot /mnt/sandbox /bin/bash
+```
+
+在这个例子中，`/mnt/sandbox` 是一个严格限制的环境，可以用来运行不受信任的应用程序。
+
+
+# 日志
+
+## 查看最新的日志条目
+
+```bash
+tail -f /var/log/messages
+```
+
+这将实时显示日志文件的最新内容，直到你中断该命令。
+
+## 查看最后 10 行日志
+
+```bash
+tail -n 10 /var/log/messages
+```
+
+这将显示日志文件的最后 10 行。
+
+## 搜索特定的错误信息
+
+```bash
+grep "error" /var/log/messages
+```
+
+这将搜索日志文件中包含 "error" 的所有行。
+
+## 搜索特定日期的日志
+
+```bash
+grep "Jul 24" /var/log/messages
+```
+
+这将搜索日志文件中包含特定日期（例如 2024 年 7 月 24 日）的所有行。
+
+## 搜索特定服务的日志
+
+```bash
+grep "sshd" /var/log/messages
+```
+
+这将搜索与 SSH 服务相关的所有日志条目。
+
+## 按照时间戳排序显示日志
+
+```bash
+sort -k 4 /var/log/messages
+```
+
+这将按照第四列（通常为时间戳）对日志条目进行排序。
+
+## 查看特定时间段的日志
+
+```bash
+grep -A 100 "Jul 24 12:00" /var/log/messages
+```
+
+这将显示从特定时间点（例如 2024 年 7 月 24 日中午 12 点）开始的接下来大约 100 行日志。
+
+
+# Service
+
+在 SysVinit 系统中，`service` 命令是用来控制系统服务的启动、停止、重启、状态查询等操作的标准方式。以下是 `service` 命令的一些常见用法及示例：
+
+## 查看所有可识别的服务
+```bash
+service --status-all
+```
+这将列出所有已知服务的状态，运行中的服务会标示为绿色的 `[ + ]`，未运行的则标示为红色的 `[ - ]`。
+
+## 启动服务
+```bash
+service <service_name> start
+```
+例如，启动 Apache HTTP 服务器：
+```bash
+service httpd start
+```
+
+## 停止服务
+```bash
+service <service_name> stop
+```
+例如，停止 Apache HTTP 服务器：
+```bash
+service httpd stop
+```
+
+## 重启服务
+```bash
+service <service_name> restart
+```
+例如，重启 Apache HTTP 服务器：
+```bash
+service httpd restart
+```
+
+## 检查服务状态
+```bash
+service <service_name> status
+```
+例如，检查 Apache HTTP 服务器的状态：
+```bash
+service httpd status
+```
+
+## 重读配置文件并应用更改
+```bash
+service <service_name> reload
+```
+这通常用于那些支持热更新配置的服务，如 Apache HTTP 服务器：
+```bash
+service httpd reload
+```
+
+## 将服务设置为开机启动
+```bash
+chkconfig <service_name> on
+```
+例如，设置 Apache HTTP 服务器在系统启动时自动启动：
+```bash
+chkconfig httpd on
+```
+
+## 将服务设置为开机不启动
+```bash
+chkconfig <service_name> off
+```
+例如，设置 Apache HTTP 服务器不在系统启动时自动启动：
+```bash
+chkconfig httpd off
+```
+
+## 检查服务是否设置为开机启动
+```bash
+chkconfig --list <service_name>
+```
+例如，检查 Apache HTTP 服务器是否设置为开机启动：
+```bash
+chkconfig --list httpd
+```
+
+请注意，`chkconfig` 命令用于管理服务的启动脚本在系统启动时的自动启动行为，而 `service` 命令则用于在运行时控制服务的状态。在 Systemd 系统中，这些功能被整合到了 `systemctl` 命令中。
+
+
 # 启动顺序
 
 ````Bash

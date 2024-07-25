@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/Docker.md",
+                "file": "source/文件系统/03 System V.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/Docker.md",
+                "file": "source/文件系统/03 System V.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/Docker.md",
+                "file": "source/文件系统/03 System V.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/Docker.md"
+                "file": "source/文件系统/03 System V.md"
               }
             }
           },
@@ -171,7 +171,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 509.5
+    "width": 331.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -196,19 +196,34 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
-    "source/开发环境搭建/Git.md",
-    "source/开发环境搭建/开发环境搭建.md",
-    "source/开发环境搭建/Docker.md",
-    "source/开发环境搭建/知识库.md",
+    "source/内核驱动/04 存储管理/MMCSD/命令集.md",
+    "source/内核驱动/08 通信接口/wifi/命令集.md",
+    "source/内核驱动/04 存储管理/MMCSD/DFT.md",
+    "source/内核驱动/08 通信接口/wifi/DFT.md",
+    "source/内核驱动/04 存储管理/MMCSD/测试报告.md",
+    "source/内核驱动/04 存储管理/MMCSD",
     "source/开发环境搭建/Markdown.md",
-    "source/开发环境搭建/Repo.md",
-    "0001-add-file.patch",
-    "source/文件系统/02 Yocto.md",
-    "source/内核驱动/11 多媒体/摄像头/DFT.md",
-    "source/内核驱动/08 通信接口/wifi/wifi.md",
-    "source/内核驱动/08 通信接口/蓝牙/蓝牙.md",
+    "source/内核驱动/04 存储管理",
+    "source/内核驱动/08 通信接口/蓝牙/命令集.md",
+    "source/内核驱动/08 通信接口/蓝牙/DFT.md",
+    "source/内核驱动/08 通信接口/wifi/测试报告.md",
     "source/文件系统/03 System V.md",
+    "source/开发环境搭建/开发环境搭建.md",
+    "source/内核驱动/08 通信接口/蓝牙/测试报告.md",
+    "source/内核驱动/11 多媒体/摄像头/DFT.md",
+    "source/内核驱动/11 多媒体/摄像头/命令集.md",
     "source/内核驱动/11 多媒体/摄像头/测试报告.md",
+    "source/文件系统/02 Yocto.md",
+    "source/文件系统/04 Systemd.md",
+    "source/文件系统/01 Buildroot.md",
+    "source/开发环境搭建/知识库.md",
+    "source/开发环境搭建/Git.md",
+    "source/开发环境搭建/Repo.md",
+    "source/开发环境搭建/windows.md",
+    "source/开发环境搭建/vim.md",
+    "source/开发环境搭建/Docker.md",
+    "testtt",
+    "0001-add-file.patch",
     "pic/516fd9f7-140f-422f-ba54-61a37277f562.png",
     "pic/c38f209b-8934-4618-a93d-217381326957.png",
     "pic/d41346a3-3fb6-4a00-ac46-4ff106e900ce.png",
@@ -225,22 +240,7 @@
     "pic/9c6ce57f-c150-4145-a227-52c9d9ee4f97.png",
     "pic/83c11940-21c1-41e3-a661-294bf7a47ee7.png",
     "pic/c38f209b-8934-4618-a93d-217381326957.png.crdownload",
-    "pic/b406bc6e-91cf-4396-b5b5-566ed2508954.png.crdownload",
-    "pic/9c6ce57f-c150-4145-a227-52c9d9ee4f97.png.crdownload",
-    "pic/83c11940-21c1-41e3-a661-294bf7a47ee7.png.crdownload",
-    "source/文件系统/04 Systemd.md",
-    "source/文件系统/01 Buildroot.md",
     "README.md",
-    "source/Cpp/03多线程/02条件变量.md",
-    "source/Cpp/03多线程/01互斥锁.md",
-    "source/Cpp/02数据结构/02链表.md",
-    "source/Cpp/02数据结构/01队列.md",
-    "source/Cpp/01设计模式/03知识库构建.md",
-    "source/Cpp/01设计模式/02工厂方法模式.md",
-    "source/Cpp/01设计模式/01单例模式.md",
-    "开发环境搭建/SSH登录.md",
-    "开发环境搭建/Docker.md",
-    "开发环境搭建/知识库.md",
     "未命名.canvas"
   ]
 }

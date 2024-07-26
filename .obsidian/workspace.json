@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/内核驱动/10 高速接口/以太网/命令集.md",
-                "mode": "preview",
+                "file": "source/内核驱动/10 高速接口/USB/命令集.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/内核驱动/10 高速接口/以太网/命令集.md",
+                "file": "source/内核驱动/10 高速接口/USB/命令集.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/内核驱动/10 高速接口/以太网/命令集.md",
+                "file": "source/内核驱动/10 高速接口/USB/命令集.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/内核驱动/10 高速接口/以太网/命令集.md"
+                "file": "source/内核驱动/10 高速接口/USB/命令集.md"
               }
             }
           },
@@ -196,6 +196,7 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
+    "source/内核驱动/04 存储管理/FLASH/命令集.md",
     "source/文件系统/03 System V.md",
     "source/内核驱动/10 高速接口/以太网/命令集.md",
     "source/内核驱动/11 多媒体/LCD/命令集.md",
@@ -203,7 +204,6 @@
     "source/内核驱动/11 多媒体/LCD/DFT.md",
     "source/内核驱动/08 通信接口/UART/命令集.md",
     "source/内核驱动/11 多媒体/LCD",
-    "source/内核驱动/04 存储管理/FLASH/命令集.md",
     "source/内核驱动/08 通信接口/SPI/命令集.md",
     "source/内核驱动/04 存储管理/FLASH",
     "source/内核驱动/08 通信接口/SPI/测试报告.md",

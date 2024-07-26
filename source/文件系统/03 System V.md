@@ -1981,6 +1981,18 @@ Usage: mkfs.ext4 [-c|-l filename] [-b block-size] [-C cluster-size]
         [-jnqvDFSV] device [blocks-count]
 ```
 
+### mkfs.ubifs
+```bash
+
+```
+
+
+### mkfs.jffs2
+```bash
+
+```
+
+
 #### 参数解析
 
 ##### 检查坏块或指定坏块列表文件

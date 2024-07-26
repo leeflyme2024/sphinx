@@ -2,11 +2,19 @@
   "recentFiles": [
     {
       "basename": "命令集",
-      "path": "source/内核驱动/10 高速接口/以太网/命令集.md"
+      "path": "source/内核驱动/10 高速接口/USB/命令集.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/04 存储管理/FLASH/命令集.md"
     },
     {
       "basename": "03 System V",
       "path": "source/文件系统/03 System V.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/10 高速接口/以太网/命令集.md"
     },
     {
       "basename": "命令集",
@@ -23,10 +31,6 @@
     {
       "basename": "命令集",
       "path": "source/内核驱动/08 通信接口/UART/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/04 存储管理/FLASH/命令集.md"
     },
     {
       "basename": "命令集",
@@ -83,10 +87,6 @@
     {
       "basename": "测试报告",
       "path": "source/内核驱动/01 时钟/RTC/测试报告.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/10 高速接口/USB/命令集.md"
     },
     {
       "basename": "DFT",

@@ -1,6 +1,106 @@
 {
   "recentFiles": [
     {
+      "basename": "命令集",
+      "path": "source/内核驱动/10 高速接口/以太网/命令集.md"
+    },
+    {
+      "basename": "03 System V",
+      "path": "source/文件系统/03 System V.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/11 多媒体/LCD/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/LCD/测试报告.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/LCD/DFT.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/08 通信接口/UART/命令集.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/04 存储管理/FLASH/命令集.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/08 通信接口/SPI/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/08 通信接口/SPI/测试报告.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/SPI/DFT.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/08 通信接口/I2C/命令集.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/I2C/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/08 通信接口/I2C/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/11 多媒体/GPU/命令集.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/10 高速接口/以太网/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/10 高速接口/USB/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/10 高速接口/以太网/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/01 时钟/RTC/命令集.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/01 时钟/RTC/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/04 存储管理/MMCSD/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/01 时钟/RTC/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/10 高速接口/USB/命令集.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/GPU/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/音频/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/GPU/测试报告.md"
+    },
+    {
       "basename": "04 Systemd",
       "path": "source/文件系统/04 Systemd.md"
     },
@@ -11,10 +111,6 @@
     {
       "basename": "DFT",
       "path": "source/内核驱动/09 工控接口/CAN/DFT.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/10 高速接口/USB/DFT.md"
     },
     {
       "basename": "测试报告",
@@ -37,20 +133,12 @@
       "path": "source/内核驱动/11 多媒体/音频/命令集.md"
     },
     {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/音频/DFT.md"
-    },
-    {
       "basename": "命令集",
       "path": "source/内核驱动/04 存储管理/MMCSD/命令集.md"
     },
     {
       "basename": "测试报告",
       "path": "source/内核驱动/04 存储管理/MMCSD/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/04 存储管理/MMCSD/DFT.md"
     },
     {
       "basename": "测试报告",
@@ -63,10 +151,6 @@
     {
       "basename": "测试报告",
       "path": "source/内核驱动/11 多媒体/音频/测试报告.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/10 高速接口/USB/命令集.md"
     },
     {
       "basename": "DFT",
@@ -87,10 +171,6 @@
     {
       "basename": "Git",
       "path": "source/开发环境搭建/Git.md"
-    },
-    {
-      "basename": "03 System V",
-      "path": "source/文件系统/03 System V.md"
     },
     {
       "basename": "Markdown",
@@ -119,86 +199,6 @@
     {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
-    },
-    {
-      "basename": "windows",
-      "path": "source/开发环境搭建/windows.md"
-    },
-    {
-      "basename": "vim",
-      "path": "source/开发环境搭建/vim.md"
-    },
-    {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
-    },
-    {
-      "basename": "516fd9f7-140f-422f-ba54-61a37277f562",
-      "path": "pic/516fd9f7-140f-422f-ba54-61a37277f562.png"
-    },
-    {
-      "basename": "c38f209b-8934-4618-a93d-217381326957",
-      "path": "pic/c38f209b-8934-4618-a93d-217381326957.png"
-    },
-    {
-      "basename": "d41346a3-3fb6-4a00-ac46-4ff106e900ce",
-      "path": "pic/d41346a3-3fb6-4a00-ac46-4ff106e900ce.png"
-    },
-    {
-      "basename": "d1ced305-da74-471c-9ebe-0d23eef30c57",
-      "path": "pic/d1ced305-da74-471c-9ebe-0d23eef30c57.png"
-    },
-    {
-      "basename": "48a1b9c5-082f-4da3-9674-42c9ded10a9e",
-      "path": "pic/48a1b9c5-082f-4da3-9674-42c9ded10a9e.png"
-    },
-    {
-      "basename": "b406bc6e-91cf-4396-b5b5-566ed2508954",
-      "path": "pic/b406bc6e-91cf-4396-b5b5-566ed2508954.png"
-    },
-    {
-      "basename": "9c6ce57f-c150-4145-a227-52c9d9ee4f97",
-      "path": "pic/9c6ce57f-c150-4145-a227-52c9d9ee4f97.png"
-    },
-    {
-      "basename": "83c11940-21c1-41e3-a661-294bf7a47ee7",
-      "path": "pic/83c11940-21c1-41e3-a661-294bf7a47ee7.png"
-    },
-    {
-      "basename": "9d6991bd-7cf5-47b7-bf41-2f1b571b5c7c",
-      "path": "pic/9d6991bd-7cf5-47b7-bf41-2f1b571b5c7c.png"
-    },
-    {
-      "basename": "f61fde11-0b0b-460e-b87f-24079530a238",
-      "path": "pic/f61fde11-0b0b-460e-b87f-24079530a238.png"
-    },
-    {
-      "basename": "1280X1280 (4)",
-      "path": "pic/1280X1280 (4).PNG"
-    },
-    {
-      "basename": "Pasted image 20240724140243",
-      "path": "pic/Pasted image 20240724140243.png"
-    },
-    {
-      "basename": "Pasted image 20240723103945",
-      "path": "pic/Pasted image 20240723103945.png"
-    },
-    {
-      "basename": "README",
-      "path": "README.md"
-    },
-    {
-      "basename": "Pasted image 20240723132621",
-      "path": "pic/Pasted image 20240723132621.png"
-    },
-    {
-      "basename": "Pasted image 20240723163357",
-      "path": "pic/Pasted image 20240723163357.png"
-    },
-    {
-      "basename": "Pasted image 20240723152754",
-      "path": "pic/Pasted image 20240723152754.png"
     }
   ],
   "omittedPaths": []

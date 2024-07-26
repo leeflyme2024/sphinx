@@ -706,63 +706,60 @@ rm -v example.txt
 
 
 ## dmesg 
-
-`dmesg` 命令用于显示内核的环形缓冲区（通常称为 dmesg 缓冲区），其中包含系统引导时和运行时的内核消息
-
-### 显示所有内核消息
 ```bash
-dmesg
+bash-5.1# dmesg --help
+BusyBox v1.35.0 (2024-07-20 11:38:35 CST) multi-call binary.
+
+Usage: dmesg [-cr] [-n LEVEL] [-s SIZE]
+
+Print or control the kernel ring buffer
+
+        -c              Clear ring buffer after printing
+        -n LEVEL        Set console logging level
+        -s SIZE         Buffer size
+        -r              Print raw message buffer
 ```
 
-### 显示最后 N 条内核消息
-```bash
-dmesg -n <N>
-```
+### 参数解析
 
-例如，显示最后 10 条内核消息：
+#### 打印并清除内核环形缓冲区
 
-```bash
-dmesg -n 10
-```
-
-### 清除内核消息缓冲区
 ```bash
 dmesg -c
 ```
 
-### 显示特定优先级的内核消息
-```bash
-dmesg -l <level>
-```
-
-例如，显示紧急级别（emerg）的内核消息：
+#### 设置控制台日志记录级别
 
 ```bash
-dmesg -l emerg
+dmesg -n 3
 ```
 
-### 将内核消息输出到文件
-```bash
-dmesg > kernel_messages.txt
-```
-
-### 过滤内核消息中的关键词
-```bash
-dmesg | grep <keyword>
-```
-
-例如，过滤含有 "ide" 的内核消息：
+#### 设置缓冲区大小
 
 ```bash
-dmesg | grep ide
+dmesg -s 1024
 ```
 
-### 实时显示内核消息
+#### 打印原始消息缓冲区
+
 ```bash
-dmesg -w
+dmesg -r
 ```
 
-这将使 `dmesg` 命令持续运行，并显示内核在运行时产生的新消息。
+### 综合应用
+
+#### 打印内核消息并设置日志记录级别
+
+```bash
+dmesg -c -n 5
+```
+
+#### 打印原始消息并设置缓冲区大小
+
+```bash
+dmesg -r -s 2048
+```
+
 
 ## chroot
 
@@ -822,6 +819,1662 @@ chroot /mnt/sandbox /bin/bash
 ```
 
 在这个例子中，`/mnt/sandbox` 是一个严格限制的环境，可以用来运行不受信任的应用程序。
+
+## dosfstools
+
+### mkfs.fat
+```bash
+bash-5.1# mkfs.fat --help
+mkfs.fat 4.2 (2021-01-31)
+Usage: /usr/sbin/mkfs.fat [OPTIONS] TARGET [BLOCKS]
+Create FAT filesystem in TARGET, which can be a block device or file. Use only
+up to BLOCKS 1024 byte blocks if specified. With the -C option, file TARGET will be
+created with a size of 1024 bytes times BLOCKS, which must be specified.
+
+Options:
+  -a              Disable alignment of data structures
+  -A              Toggle Atari variant of the filesystem
+  -b SECTOR       Select SECTOR as location of the FAT32 backup boot sector
+  -c              Check device for bad blocks before creating the filesystem
+  -C              Create file TARGET then create filesystem in it
+  -D NUMBER       Write BIOS drive number NUMBER to boot sector
+  -f COUNT        Create COUNT file allocation tables
+  -F SIZE         Select FAT size SIZE (12, 16 or 32)
+  -g GEOM         Select disk geometry: heads/sectors_per_track
+  -h NUMBER       Write hidden sectors NUMBER to boot sector
+  -i VOLID        Set volume ID to VOLID (a 32 bit hexadecimal number)
+  -I              Ignore and disable safety checks
+  -l FILENAME     Read bad blocks list from FILENAME
+  -m FILENAME     Replace default error message in boot block with contents of FILENAME
+  -M TYPE         Set media type in boot sector to TYPE
+  --mbr[=y|n|a]   Fill (fake) MBR table with one partition which spans whole disk
+  -n LABEL        Set volume name to LABEL (up to 11 characters long)
+  --codepage=N    use DOS codepage N to encode label (default: 850)
+  -r COUNT        Make room for at least COUNT entries in the root directory
+  -R COUNT        Set minimal number of reserved sectors to COUNT
+  -s COUNT        Set number of sectors per cluster to COUNT
+  -S SIZE         Select a sector size of SIZE (a power of two, at least 512)
+  -v              Verbose execution
+  --variant=TYPE  Select variant TYPE of filesystem (standard or Atari)
+
+  --invariant     Use constants for randomly generated or time based values
+  --offset=SECTOR Write the filesystem at a specific sector into the device file.
+  --help          Show this help message and exit
+```
+
+#### 参数解析
+
+##### 创建 FAT 文件系统
+
+```bash
+mkfs.fat -F 32 /dev/sdX
+```
+- `-F SIZE`: 选择 FAT 的大小，`SIZE` 可以是 12, 16 或 32。
+- `/dev/sdX`: 设备文件路径，用于指定要创建文件系统的设备。
+
+##### 在文件中创建 FAT 文件系统
+
+```bash
+mkfs.fat -C image.img 2048
+```
+- `-C`: 创建文件 `TARGET`，然后在其中创建文件系统。
+- `image.img`: 文件名，将创建一个大小为 1024 * BLOCKS 的文件。
+- `2048`: 文件大小，以 1024 字节块为单位。
+
+##### 检查坏块并创建文件系统
+
+```bash
+mkfs.fat -c /dev/sdX
+```
+- `-c`: 在创建文件系统之前检查设备上的坏块。
+
+##### 设置卷标和卷 ID
+
+```bash
+mkfs.fat -n MYVOLUME -i 12345678 /dev/sdX
+```
+- `-n LABEL`: 设置卷标，`LABEL` 为卷的名称，最长为 11 个字符。
+- `-i VOLID`: 设置卷 ID，`VOLID` 为 32 位十六进制数字。
+
+##### 设置每簇扇区数
+
+```bash
+mkfs.fat -s 8 /dev/sdX
+```
+- `-s COUNT`: 设置每个簇的扇区数为 `COUNT`。
+
+##### 选择磁盘几何结构
+
+```bash
+mkfs.fat -g 255/63 /dev/sdX
+```
+- `-g GEOM`: 选择磁盘几何结构，`GEOM` 为磁头数/每轨道扇区数。
+
+##### 设置备份引导扇区位置
+
+```bash
+mkfs.fat -b 16 /dev/sdX
+```
+- `-b SECTOR`: 选择 `SECTOR` 作为 FAT32 备份引导扇区的位置。
+
+##### 设置媒体类型
+
+```bash
+mkfs.fat -M 0xF8 /dev/sdX
+```
+- `-M TYPE`: 设置引导扇区中的媒体类型为 `TYPE`。
+
+##### 创建指定数量的文件分配表
+
+```bash
+mkfs.fat -f 2 /dev/sdX
+```
+- `-f COUNT`: 创建 `COUNT` 个文件分配表。
+
+##### 设置根目录项和保留扇区数
+
+```bash
+mkfs.fat -r 512 -R 32 /dev/sdX
+```
+- `-r COUNT`: 为根目录至少保留 `COUNT` 个条目。
+- `-R COUNT`: 设置保留扇区的最小数量为 `COUNT`。
+
+##### 替换引导块的错误信息
+
+```bash
+mkfs.fat -m error.txt /dev/sdX
+```
+- `-m FILENAME`: 用 `FILENAME` 文件的内容替换引导块中的默认错误信息。
+
+##### 填充 MBR 表
+
+```bash
+mkfs.fat --mbr=y /dev/sdX
+```
+- `--mbr[=y|n|a]`: 填充（伪造）MBR 表，以一个覆盖整个磁盘的分区。
+
+##### 使用 DOS 代码页编码标签
+
+```bash
+mkfs.fat --codepage=437 /dev/sdX
+```
+- `--codepage=N`: 使用 DOS 代码页 `N` 对标签进行编码（默认值为 850）。
+
+##### 设置文件系统在特定扇区位置
+
+```bash
+mkfs.fat --offset=2048 /dev/sdX
+```
+- `--offset=SECTOR`: 在设备文件的特定扇区位置写入文件系统。
+
+#### 综合应用
+
+##### 创建具有指定簇大小和 FAT 大小的 FAT 文件系统
+
+```bash
+mkfs.fat -s 4 -F 32 /dev/sdX
+```
+- `-s 4`: 每簇 4 个扇区。
+- `-F 32`: 使用 FAT32 文件系统。
+- `/dev/sdX`: 目标设备。
+
+##### 在文件中创建 FAT 文件系统并设置卷标
+
+```bash
+mkfs.fat -C mydisk.img 4096 -n MYDISK
+```
+- `-C mydisk.img 4096`: 创建一个名为 `mydisk.img` 的文件，大小为 4096 * 1024 字节。
+- `-n MYDISK`: 设置卷标为 `MYDISK`。
+
+##### 检查坏块并创建 FAT 文件系统，设置引导扇区媒体类型
+
+```bash
+mkfs.fat -c -M 0xF8 /dev/sdX
+```
+- `-c`: 检查坏块。
+- `-M 0xF8`: 设置引导扇区中的媒体类型为 `0xF8`。
+
+
+### mkfs.vfat
+```bash
+bash-5.1# mkfs.vfat --help
+mkfs.fat 4.2 (2021-01-31)
+Usage: /usr/sbin/mkfs.vfat [OPTIONS] TARGET [BLOCKS]
+Create FAT filesystem in TARGET, which can be a block device or file. Use only
+up to BLOCKS 1024 byte blocks if specified. With the -C option, file TARGET will be
+created with a size of 1024 bytes times BLOCKS, which must be specified.
+
+Options:
+  -a              Disable alignment of data structures
+  -A              Toggle Atari variant of the filesystem
+  -b SECTOR       Select SECTOR as location of the FAT32 backup boot sector
+  -c              Check device for bad blocks before creating the filesystem
+  -C              Create file TARGET then create filesystem in it
+  -D NUMBER       Write BIOS drive number NUMBER to boot sector
+  -f COUNT        Create COUNT file allocation tables
+  -F SIZE         Select FAT size SIZE (12, 16 or 32)
+  -g GEOM         Select disk geometry: heads/sectors_per_track
+  -h NUMBER       Write hidden sectors NUMBER to boot sector
+  -i VOLID        Set volume ID to VOLID (a 32 bit hexadecimal number)
+  -I              Ignore and disable safety checks
+  -l FILENAME     Read bad blocks list from FILENAME
+  -m FILENAME     Replace default error message in boot block with contents of FILENAME
+  -M TYPE         Set media type in boot sector to TYPE
+  --mbr[=y|n|a]   Fill (fake) MBR table with one partition which spans whole disk
+  -n LABEL        Set volume name to LABEL (up to 11 characters long)
+  --codepage=N    use DOS codepage N to encode label (default: 850)
+  -r COUNT        Make room for at least COUNT entries in the root directory
+  -R COUNT        Set minimal number of reserved sectors to COUNT
+  -s COUNT        Set number of sectors per cluster to COUNT
+  -S SIZE         Select a sector size of SIZE (a power of two, at least 512)
+  -v              Verbose execution
+  --variant=TYPE  Select variant TYPE of filesystem (standard or Atari)
+
+  --invariant     Use constants for randomly generated or time based values
+  --offset=SECTOR Write the filesystem at a specific sector into the device file.
+  --help          Show this help message and exit
+```
+
+#### 参数解析
+
+##### 禁用数据结构对齐
+
+```bash
+mkfs.vfat -a -F 32 /dev/sdX
+```
+
+- `-a`：禁用数据结构对齐。
+- `-F SIZE`：选择 FAT 文件系统的大小。`SIZE` 可以是 12、16 或 32。例如，`-F 32` 表示创建 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 切换到 Atari 变体的文件系统
+
+```bash
+mkfs.vfat -A -F 32 /dev/sdX
+```
+
+- `-A`：切换到 Atari 变体的文件系统。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 选择备份引导扇区位置
+
+```bash
+mkfs.vfat -b 100 -F 32 /dev/sdX
+```
+
+- `-b SECTOR`：选择 `SECTOR` 作为 FAT32 备份引导扇区的位置。例如，`100` 表示选择第 100 个扇区。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 检查设备坏块并创建文件系统
+
+```bash
+mkfs.vfat -c -F 32 /dev/sdX
+```
+
+- `-c`：检查设备是否有坏块。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建文件并在其上创建文件系统
+
+```bash
+mkfs.vfat -C myfile.img 2048
+```
+
+- `-C`：创建文件 `TARGET`，然后在其上创建文件系统。`BLOCKS` 是指定的块数。例如，`2048` 表示文件大小为 2048 个 1024 字节的块。
+
+##### 设置引导扇区中的 BIOS 驱动器号
+
+```bash
+mkfs.vfat -D 0x80 -F 32 /dev/sdX
+```
+
+- `-D NUMBER`：在引导扇区中写入 BIOS 驱动器号 `NUMBER`。例如，`0x80`。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建指定数量的文件分配表
+
+```bash
+mkfs.vfat -f 2 -F 32 /dev/sdX
+```
+
+- `-f COUNT`：创建 `COUNT` 个文件分配表。例如，`2` 表示创建两个文件分配表。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 设置卷标
+
+```bash
+mkfs.vfat -n MYLABEL -F 32 /dev/sdX
+```
+
+- `-n LABEL`：设置卷标为 `LABEL`（最多 11 个字符）。例如，`MYLABEL`。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 设置媒体类型
+
+```bash
+mkfs.vfat -M 0xF8 -F 16 /dev/sdX
+```
+
+- `-M TYPE`：设置引导扇区中的媒体类型为 `TYPE`。例如，`0xF8` 表示硬盘。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 16` 表示 FAT16 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 忽略安全检查
+
+```bash
+mkfs.vfat -I -F 32 /dev/sdX
+```
+
+- `-I`：忽略并禁用安全检查。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 从文件读取坏块列表
+
+```bash
+mkfs.vfat -l badblocks.txt -F 32 /dev/sdX
+```
+
+- `-l FILENAME`：从指定的文件 `FILENAME` 中读取坏块列表。例如，`badblocks.txt` 是坏块列表文件。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 替换引导块中的默认错误信息
+
+```bash
+mkfs.vfat -m errmsg.txt -F 32 /dev/sdX
+```
+
+- `-m FILENAME`：用指定的文件 `FILENAME` 中的内容替换引导块中的默认错误信息。例如，`errmsg.txt` 是错误信息文件。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 使用常量生成随机值
+
+```bash
+mkfs.vfat --invariant -F 32 /dev/sdX
+```
+
+- `--invariant`：使用常量代替随机生成或基于时间的值。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 在特定扇区写入文件系统
+
+```bash
+mkfs.vfat --offset=2048 -F 32 /dev/sdX
+```
+
+- `--offset=SECTOR`：将文件系统写入设备文件的特定扇区。例如，`2048` 表示从第 2048 个扇区开始。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+#### 综合应用
+
+##### 创建 FAT32 文件系统并指定备份引导扇区
+
+```bash
+mkfs.vfat -b 100 -F 32 /dev/sdX
+```
+
+- `-b SECTOR`：选择 `SECTOR` 作为 FAT32 备份引导扇区的位置。例如，`100` 表示选择第 100 个扇区。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 32` 表示 FAT32 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建 FAT16 文件系统并设置根目录条目数量
+
+```bash
+mkfs.vfat -F 16 -r 512 /dev/sdX
+```
+
+- `-r COUNT`：为根目录至少留出 `COUNT` 个条目。例如，`512` 表示为根目录预留 512 个条目。
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 16` 表示 FAT16 文件系统。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建 FAT12 文件系统并设置扇区大小
+
+```bash
+mkfs.vfat -F 12 -S 4096 /dev/sdX
+```
+
+- `-F SIZE`：选择 FAT 文件系统的大小。例如，`-F 12` 表示 FAT12 文件系统。
+- `-S SIZE`：选择扇区大小为 `SIZE` 字节（必须是 2 的幂，至少为 512）。例如，`4096` 表示扇区大小为 4096 字节。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+### mkfs.exfat
+```bash
+bash-5.1# mkfs.exfat --help
+Usage: mkfs.exfat
+        -L | --volume-label=label                              Set volume label
+        -c | --cluster-size=size(or suffixed by 'K' or 'M')    Specify cluster size
+        -b | --boundary-align=size(or suffixed by 'K' or 'M')  Specify boundary alignment
+             --pack-bitmap                                     Move bitmap into FAT segment
+        -f | --full-format                                     Full format
+        -V | --version                                         Show version
+        -v | --verbose                                         Print debug
+        -h | --help                                            Show help
+```
+
+#### 参数解析
+
+##### 设置卷标
+
+```bash
+mkfs.exfat -L MyVolumeLabel /dev/sdX
+```
+
+- `-L | --volume-label=label`：设置卷标为 `label`。例如，`-L MyVolumeLabel` 设置卷标为 `MyVolumeLabel`。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 指定簇大小
+
+```bash
+mkfs.exfat -c 64K /dev/sdX
+```
+
+- `-c | --cluster-size=size`：指定簇大小为 `size`。`size` 可以带有 `K` 或 `M` 后缀，表示千字节或兆字节。例如，`64K` 表示簇大小为 64KB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 指定边界对齐
+
+```bash
+mkfs.exfat -b 1M /dev/sdX
+```
+
+- `-b | --boundary-align=size`：指定边界对齐为 `size`。`size` 可以带有 `K` 或 `M` 后缀，表示千字节或兆字节。例如，`1M` 表示边界对齐为 1MB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 移动位图到 FAT 段
+
+```bash
+mkfs.exfat --pack-bitmap /dev/sdX
+```
+
+- `--pack-bitmap`：将位图移动到 FAT 段。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 完全格式化
+
+```bash
+mkfs.exfat -f /dev/sdX
+```
+
+- `-f | --full-format`：执行完全格式化。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 显示版本信息
+
+```bash
+mkfs.exfat -V
+```
+
+- `-V | --version`：显示版本信息。
+
+##### 启用调试输出
+
+```bash
+mkfs.exfat -v /dev/sdX
+```
+
+- `-v | --verbose`：启用调试输出，打印详细信息。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 显示帮助信息
+
+```bash
+mkfs.exfat -h
+```
+
+- `-h | --help`：显示帮助信息。
+
+#### 综合应用
+
+##### 创建一个带有自定义卷标和簇大小的 exFAT 文件系统
+
+```bash
+mkfs.exfat -L MyVolume -c 128K /dev/sdX
+```
+
+- `-L MyVolume`：设置卷标为 `MyVolume`。
+- `-c 128K`：设置簇大小为 128KB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建一个 exFAT 文件系统并进行完全格式化
+
+```bash
+mkfs.exfat -f /dev/sdX
+```
+
+- `-f`：执行完全格式化。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建一个 exFAT 文件系统并将位图移动到 FAT 段
+
+```bash
+mkfs.exfat --pack-bitmap /dev/sdX
+```
+
+- `--pack-bitmap`：将位图移动到 FAT 段。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+
+
+### mkfs.msdos
+```bash
+bash-5.1# mkfs.msdos --help
+mkfs.fat 4.2 (2021-01-31)
+Usage: /usr/sbin/mkfs.msdos [OPTIONS] TARGET [BLOCKS]
+Create FAT filesystem in TARGET, which can be a block device or file. Use only
+up to BLOCKS 1024 byte blocks if specified. With the -C option, file TARGET will be
+created with a size of 1024 bytes times BLOCKS, which must be specified.
+
+Options:
+  -a              Disable alignment of data structures
+  -A              Toggle Atari variant of the filesystem
+  -b SECTOR       Select SECTOR as location of the FAT32 backup boot sector
+  -c              Check device for bad blocks before creating the filesystem
+  -C              Create file TARGET then create filesystem in it
+  -D NUMBER       Write BIOS drive number NUMBER to boot sector
+  -f COUNT        Create COUNT file allocation tables
+  -F SIZE         Select FAT size SIZE (12, 16 or 32)
+  -g GEOM         Select disk geometry: heads/sectors_per_track
+  -h NUMBER       Write hidden sectors NUMBER to boot sector
+  -i VOLID        Set volume ID to VOLID (a 32 bit hexadecimal number)
+  -I              Ignore and disable safety checks
+  -l FILENAME     Read bad blocks list from FILENAME
+  -m FILENAME     Replace default error message in boot block with contents of FILENAME
+  -M TYPE         Set media type in boot sector to TYPE
+  --mbr[=y|n|a]   Fill (fake) MBR table with one partition which spans whole disk
+  -n LABEL        Set volume name to LABEL (up to 11 characters long)
+  --codepage=N    use DOS codepage N to encode label (default: 850)
+  -r COUNT        Make room for at least COUNT entries in the root directory
+  -R COUNT        Set minimal number of reserved sectors to COUNT
+  -s COUNT        Set number of sectors per cluster to COUNT
+  -S SIZE         Select a sector size of SIZE (a power of two, at least 512)
+  -v              Verbose execution
+  --variant=TYPE  Select variant TYPE of filesystem (standard or Atari)
+
+  --invariant     Use constants for randomly generated or time based values
+  --offset=SECTOR Write the filesystem at a specific sector into the device file.
+  --help          Show this help message and exit
+```
+
+
+#### 参数解析
+
+##### 创建带有 FAT32 备份引导扇区的文件系统
+
+```bash
+mkfs.msdos -b 6 /dev/sdX
+```
+
+- `-b SECTOR`：选择 `SECTOR` 作为 FAT32 备份引导扇区的位置（例如 `6`）。
+
+##### 在设备上创建 FAT 文件系统
+
+```bash
+mkfs.msdos -C myfile.img 1024
+```
+
+- `-C`：在文件 `myfile.img` 中创建文件系统，其大小为 `1024` 1024 字节块（即 1MB）。
+
+##### 设置 FAT 大小为 16
+
+```bash
+mkfs.msdos -F 16 /dev/sdX
+```
+
+- `-F SIZE`：选择 FAT 大小为 `SIZE`（可以是 `12`、`16` 或 `32`，例如 `16`）。
+
+##### 设置每簇的扇区数量
+
+```bash
+mkfs.msdos -s 8 /dev/sdX
+```
+
+- `-s COUNT`：设置每簇的扇区数量为 `COUNT`（例如 `8`）。
+
+##### 设置卷标
+
+```bash
+mkfs.msdos -n MYVOL /dev/sdX
+```
+
+- `-n LABEL`：设置卷标为 `LABEL`（例如 `MYVOL`），最大长度为 11 个字符。
+
+##### 设置扇区大小为 4096 字节
+
+```bash
+mkfs.msdos -S 4096 /dev/sdX
+```
+
+- `-S SIZE`：选择扇区大小为 `SIZE`（例如 `4096` 字节）。
+
+##### 创建文件系统并检查坏块
+
+```bash
+mkfs.msdos -c /dev/sdX
+```
+
+- `-c`：在创建文件系统之前检查坏块。
+
+##### 设置文件系统变体为 Atari
+
+```bash
+mkfs.msdos --variant=Atari /dev/sdX
+```
+
+- `--variant=TYPE`：选择文件系统变体 `TYPE`（例如 `Atari`）。
+
+##### 忽略安全检查
+
+```bash
+mkfs.msdos -I /dev/sdX
+```
+
+- `-I`：忽略并禁用安全检查。
+
+##### 选择媒体类型
+
+```bash
+mkfs.msdos -M 0xF8 /dev/sdX
+```
+
+- `-M TYPE`：设置媒体类型 `TYPE`（例如 `0xF8`）。
+
+##### 设置隐藏扇区数量
+
+```bash
+mkfs.msdos -h 32 /dev/sdX
+```
+
+- `-h NUMBER`：设置隐藏扇区数量为 `NUMBER`（例如 `32`）。
+
+#### 综合应用
+
+##### 创建一个具有自定义扇区大小和簇大小的 FAT 文件系统
+
+```bash
+mkfs.msdos -S 4096 -s 16 /dev/sdX
+```
+
+- `-S 4096`：设置扇区大小为 4096 字节。
+- `-s 16`：设置每簇的扇区数量为 16。
+
+##### 在文件中创建带有 FAT16 的文件系统
+
+```bash
+mkfs.msdos -F 16 -C mydisk.img 2048
+```
+
+- `-F 16`：选择 FAT16 文件系统。
+- `-C mydisk.img 2048`：在文件 `mydisk.img` 中创建文件系统，大小为 `2048` 1024 字节块（即 2MB）。
+
+##### 创建带有特定卷标并检查坏块的 FAT 文件系统
+
+```bash
+mkfs.msdos -n MYLABEL -c /dev/sdX
+```
+
+- `-n MYLABEL`：设置卷标为 `MYLABEL`。
+- `-c`：在创建文件系统之前检查坏块。
+
+##### 创建具有特定 FAT 大小并设置卷标的 FAT 文件系统
+
+```bash
+mkfs.msdos -F 32 -n NEWVOL /dev/sdX
+```
+
+- `-F 32`：选择 FAT32 文件系统。
+- `-n NEWVOL`：设置卷标为 `NEWVOL`。
+
+
+
+## e2fsprogs
+### mkfs.ext2
+```bash
+bash-5.1# mkfs.ext2 --help
+Usage: mkfs.ext2 [-c|-l filename] [-b block-size] [-C cluster-size]
+        [-i bytes-per-inode] [-I inode-size] [-J journal-options]
+        [-G flex-group-size] [-N number-of-inodes] [-d root-directory]
+        [-m reserved-blocks-percentage] [-o creator-os]
+        [-g blocks-per-group] [-L volume-label] [-M last-mounted-directory]
+        [-O feature[,...]] [-r fs-revision] [-E extended-option[,...]]
+        [-t fs-type] [-T usage-type ] [-U UUID] [-e errors_behavior][-z undo_file]
+        [-jnqvDFSV] device [blocks-count]
+```
+
+#### 参数解析
+
+##### 检查坏块或指定坏块列表文件
+
+```bash
+mkfs.ext2 -c /dev/sdX
+```
+
+- `-c`：在创建文件系统前检查坏块。
+- `-l filename`：从 `filename` 文件中读取坏块列表。
+
+##### 设置块大小
+
+```bash
+mkfs.ext2 -b 4096 /dev/sdX
+```
+
+- `-b block-size`：设置块大小为 `block-size` 字节（例如 `4096` 表示 4KB）。
+
+##### 设置簇大小
+
+```bash
+mkfs.ext2 -C 16K /dev/sdX
+```
+
+- `-C cluster-size`：设置簇大小为 `cluster-size`（可以带有 `K` 或 `M` 后缀）。
+
+##### 设置每个 inode 的字节数
+
+```bash
+mkfs.ext2 -i 1024 /dev/sdX
+```
+
+- `-i bytes-per-inode`：设置每个 inode 的字节数为 `bytes-per-inode`（例如 `1024` 表示 1KB）。
+
+##### 设置 inode 大小
+
+```bash
+mkfs.ext2 -I 128 /dev/sdX
+```
+
+- `-I inode-size`：设置 inode 大小为 `inode-size` 字节（例如 `128` 表示 128 字节）。
+
+##### 设置日志选项
+
+```bash
+mkfs.ext2 -J size=256M /dev/sdX
+```
+
+- `-J journal-options`：设置日志选项。选项可以包括日志大小、日志位置等。
+
+##### 设置弹性组大小
+
+```bash
+mkfs.ext2 -G 64 /dev/sdX
+```
+
+- `-G flex-group-size`：设置弹性组大小为 `flex-group-size` 块（例如 `64` 块）。
+
+##### 设置 inode 数量
+
+```bash
+mkfs.ext2 -N 100000 /dev/sdX
+```
+
+- `-N number-of-inodes`：设置 inode 数量为 `number-of-inodes`（例如 `100000`）。
+
+##### 设置根目录
+
+```bash
+mkfs.ext2 -d /path/to/dir /dev/sdX
+```
+
+- `-d root-directory`：设置根目录为 `root-directory`（例如 `/path/to/dir`）。
+
+##### 设置保留块百分比
+
+```bash
+mkfs.ext2 -m 5 /dev/sdX
+```
+
+- `-m reserved-blocks-percentage`：设置保留块的百分比（例如 `5` 表示 5%）。
+
+##### 设置创建操作系统
+
+```bash
+mkfs.ext2 -o Linux /dev/sdX
+```
+
+- `-o creator-os`：设置创建操作系统为 `creator-os`（例如 `Linux`）。
+
+##### 设置每组块数量
+
+```bash
+mkfs.ext2 -g 8192 /dev/sdX
+```
+
+- `-g blocks-per-group`：设置每组块的数量为 `blocks-per-group`（例如 `8192`）。
+
+##### 设置卷标
+
+```bash
+mkfs.ext2 -L MyVolumeLabel /dev/sdX
+```
+
+- `-L volume-label`：设置卷标为 `volume-label`（例如 `MyVolumeLabel`）。
+
+##### 设置最后挂载目录
+
+```bash
+mkfs.ext2 -M /mnt /dev/sdX
+```
+
+- `-M last-mounted-directory`：设置最后挂载目录为 `last-mounted-directory`（例如 `/mnt`）。
+
+##### 启用文件系统特性
+
+```bash
+mkfs.ext2 -O 64bit /dev/sdX
+```
+
+- `-O feature[,...]`：启用文件系统特性，如 `64bit`。
+
+##### 设置文件系统修订版
+
+```bash
+mkfs.ext2 -r 1.0 /dev/sdX
+```
+
+- `-r fs-revision`：设置文件系统修订版为 `fs-revision`（例如 `1.0`）。
+
+##### 设置扩展选项
+
+```bash
+mkfs.ext2 -E test_option=value /dev/sdX
+```
+
+- `-E extended-option[,...]`：设置扩展选项，如 `test_option=value`。
+
+##### 设置文件系统类型
+
+```bash
+mkfs.ext2 -t ext2 /dev/sdX
+```
+
+- `-t fs-type`：设置文件系统类型为 `fs-type`（例如 `ext2`）。
+
+##### 设置使用类型
+
+```bash
+mkfs.ext2 -T largefile /dev/sdX
+```
+
+- `-T usage-type`：设置文件系统的使用类型，如 `largefile`。
+
+##### 设置 UUID
+
+```bash
+mkfs.ext2 -U 12345678-1234-1234-1234-1234567890ab /dev/sdX
+```
+
+- `-U UUID`：设置文件系统的 UUID 为 `UUID`（例如 `12345678-1234-1234-1234-1234567890ab`）。
+
+##### 设置错误行为
+
+```bash
+mkfs.ext2 -e remount-ro /dev/sdX
+```
+
+- `-e errors_behavior`：设置错误行为，如 `remount-ro`。
+
+##### 设置撤销文件
+
+```bash
+mkfs.ext2 -z /path/to/undo_file /dev/sdX
+```
+
+- `-z undo_file`：设置撤销文件为 `undo_file`（例如 `/path/to/undo_file`）。
+
+##### 其他选项
+
+```bash
+mkfs.ext2 -j -n -q -v /dev/sdX
+```
+
+- `-j`：启用日志。
+- `-n`：不实际写入文件系统。
+- `-q`：静默模式。
+- `-v`：详细模式。
+
+#### 综合应用
+
+##### 创建具有指定块大小和簇大小的 ext2 文件系统
+
+```bash
+mkfs.ext2 -b 4096 -C 8K /dev/sdX
+```
+
+- `-b 4096`：设置块大小为 4KB。
+- `-C 8K`：设置簇大小为 8KB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建具有自定义卷标和日志的 ext2 文件系统
+
+```bash
+mkfs.ext2 -L MyVolumeLabel -J size=128M /dev/sdX
+```
+
+- `-L MyVolumeLabel`：设置卷标为 `MyVolumeLabel`。
+- `-J size=128M`：设置日志大小为 128MB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建具有特定 UUID 和保留块百分比的 ext2 文件系统
+
+```bash
+mkfs.ext2 -U 12345678-1234-1234-1234-1234567890ab -m 10 /dev/sdX
+```
+
+- `-U 12345678-1234-1234-1234-1234567890ab`：设置 UUID 为 `12345678-1234-1234-1234-1234567890ab`。
+- `-m 10`：设置保留块的百分比为 10%。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+
+
+### mkfs.ext3
+```bash
+Usage: mkfs.ext3 [-c|-l filename] [-b block-size] [-C cluster-size]
+        [-i bytes-per-inode] [-I inode-size] [-J journal-options]
+        [-G flex-group-size] [-N number-of-inodes] [-d root-directory]
+        [-m reserved-blocks-percentage] [-o creator-os]
+        [-g blocks-per-group] [-L volume-label] [-M last-mounted-directory]
+        [-O feature[,...]] [-r fs-revision] [-E extended-option[,...]]
+        [-t fs-type] [-T usage-type ] [-U UUID] [-e errors_behavior][-z undo_file]
+        [-jnqvDFSV] device [blocks-count]
+```
+
+#### 参数解析
+
+##### 检查坏块或指定坏块列表文件
+
+```bash
+mkfs.ext3 -c /dev/sdX
+```
+
+- `-c`：在创建文件系统前检查坏块。
+- `-l filename`：从 `filename` 文件中读取坏块列表。
+
+##### 设置块大小
+
+```bash
+mkfs.ext3 -b 4096 /dev/sdX
+```
+
+- `-b block-size`：设置块大小为 `block-size` 字节（例如 `4096` 表示 4KB）。
+
+##### 设置簇大小
+
+```bash
+mkfs.ext3 -C 16K /dev/sdX
+```
+
+- `-C cluster-size`：设置簇大小为 `cluster-size`（可以带有 `K` 或 `M` 后缀）。
+
+##### 设置每个 inode 的字节数
+
+```bash
+mkfs.ext3 -i 1024 /dev/sdX
+```
+
+- `-i bytes-per-inode`：设置每个 inode 的字节数为 `bytes-per-inode`（例如 `1024` 表示 1KB）。
+
+##### 设置 inode 大小
+
+```bash
+mkfs.ext3 -I 128 /dev/sdX
+```
+
+- `-I inode-size`：设置 inode 大小为 `inode-size` 字节（例如 `128` 表示 128 字节）。
+
+##### 设置日志选项
+
+```bash
+mkfs.ext3 -J size=256M /dev/sdX
+```
+
+- `-J journal-options`：设置日志选项。选项可以包括日志大小、日志位置等。
+
+##### 设置弹性组大小
+
+```bash
+mkfs.ext3 -G 64 /dev/sdX
+```
+
+- `-G flex-group-size`：设置弹性组大小为 `flex-group-size` 块（例如 `64` 块）。
+
+##### 设置 inode 数量
+
+```bash
+mkfs.ext3 -N 100000 /dev/sdX
+```
+
+- `-N number-of-inodes`：设置 inode 数量为 `number-of-inodes`（例如 `100000`）。
+
+##### 设置根目录
+
+```bash
+mkfs.ext3 -d /path/to/dir /dev/sdX
+```
+
+- `-d root-directory`：设置根目录为 `root-directory`（例如 `/path/to/dir`）。
+
+##### 设置保留块百分比
+
+```bash
+mkfs.ext3 -m 5 /dev/sdX
+```
+
+- `-m reserved-blocks-percentage`：设置保留块的百分比（例如 `5` 表示 5%）。
+
+##### 设置创建操作系统
+
+```bash
+mkfs.ext3 -o Linux /dev/sdX
+```
+
+- `-o creator-os`：设置创建操作系统为 `creator-os`（例如 `Linux`）。
+
+##### 设置每组块数量
+
+```bash
+mkfs.ext3 -g 8192 /dev/sdX
+```
+
+- `-g blocks-per-group`：设置每组块的数量为 `blocks-per-group`（例如 `8192`）。
+
+##### 设置卷标
+
+```bash
+mkfs.ext3 -L MyVolumeLabel /dev/sdX
+```
+
+- `-L volume-label`：设置卷标为 `volume-label`（例如 `MyVolumeLabel`）。
+
+##### 设置最后挂载目录
+
+```bash
+mkfs.ext3 -M /mnt /dev/sdX
+```
+
+- `-M last-mounted-directory`：设置最后挂载目录为 `last-mounted-directory`（例如 `/mnt`）。
+
+##### 启用文件系统特性
+
+```bash
+mkfs.ext3 -O 64bit /dev/sdX
+```
+
+- `-O feature[,...]`：启用文件系统特性，如 `64bit`。
+
+##### 设置文件系统修订版
+
+```bash
+mkfs.ext3 -r 1.0 /dev/sdX
+```
+
+- `-r fs-revision`：设置文件系统修订版为 `fs-revision`（例如 `1.0`）。
+
+##### 设置扩展选项
+
+```bash
+mkfs.ext3 -E test_option=value /dev/sdX
+```
+
+- `-E extended-option[,...]`：设置扩展选项，如 `test_option=value`。
+
+##### 设置文件系统类型
+
+```bash
+mkfs.ext3 -t ext3 /dev/sdX
+```
+
+- `-t fs-type`：设置文件系统类型为 `fs-type`（例如 `ext3`）。
+
+##### 设置使用类型
+
+```bash
+mkfs.ext3 -T largefile /dev/sdX
+```
+
+- `-T usage-type`：设置文件系统的使用类型，如 `largefile`。
+
+##### 设置 UUID
+
+```bash
+mkfs.ext3 -U 12345678-1234-1234-1234-1234567890ab /dev/sdX
+```
+
+- `-U UUID`：设置文件系统的 UUID 为 `UUID`（例如 `12345678-1234-1234-1234-1234567890ab`）。
+
+##### 设置错误行为
+
+```bash
+mkfs.ext3 -e remount-ro /dev/sdX
+```
+
+- `-e errors_behavior`：设置错误行为，如 `remount-ro`。
+
+##### 设置撤销文件
+
+```bash
+mkfs.ext3 -z /path/to/undo_file /dev/sdX
+```
+
+- `-z undo_file`：设置撤销文件为 `undo_file`（例如 `/path/to/undo_file`）。
+
+##### 其他选项
+
+```bash
+mkfs.ext3 -j -n -q -v /dev/sdX
+```
+
+- `-j`：启用日志。
+- `-n`：不实际写入文件系统。
+- `-q`：静默模式。
+- `-v`：详细模式。
+
+#### 综合应用
+
+##### 创建具有指定块大小和簇大小的 ext3 文件系统
+
+```bash
+mkfs.ext3 -b 4096 -C 8K /dev/sdX
+```
+
+- `-b 4096`：设置块大小为 4KB。
+- `-C 8K`：设置簇大小为 8KB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建具有自定义卷标和日志的 ext3 文件系统
+
+```bash
+mkfs.ext3 -L MyVolumeLabel -J size=128M /dev/sdX
+```
+
+- `-L MyVolumeLabel`：设置卷标为 `MyVolumeLabel`。
+- `-J size=128M`：设置日志大小为 128MB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建具有特定 UUID 和保留块百分比的 ext3 文件系统
+
+```bash
+mkfs.ext3 -U 12345678-1234-1234-1234-1234567890ab -m 10 /dev/sdX
+```
+
+- `-U 12345678-1234-1234-1234-1234567890ab`：设置 UUID 为 `12345678-1234-1234-1234-1234567890ab`。
+- `-m 10`：设置保留块的百分比为 10%。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+### mkfs.ext4
+```bash
+bash-5.1# mkfs.ext4 --help
+Usage: mkfs.ext4 [-c|-l filename] [-b block-size] [-C cluster-size]
+        [-i bytes-per-inode] [-I inode-size] [-J journal-options]
+        [-G flex-group-size] [-N number-of-inodes] [-d root-directory]
+        [-m reserved-blocks-percentage] [-o creator-os]
+        [-g blocks-per-group] [-L volume-label] [-M last-mounted-directory]
+        [-O feature[,...]] [-r fs-revision] [-E extended-option[,...]]
+        [-t fs-type] [-T usage-type ] [-U UUID] [-e errors_behavior][-z undo_file]
+        [-jnqvDFSV] device [blocks-count]
+```
+
+#### 参数解析
+
+##### 检查坏块或指定坏块列表文件
+
+```bash
+mkfs.ext4 -c /dev/sdX
+```
+
+- `-c`：在创建文件系统前检查坏块。
+- `-l filename`：从 `filename` 文件中读取坏块列表。
+
+##### 设置块大小
+
+```bash
+mkfs.ext4 -b 4096 /dev/sdX
+```
+
+- `-b block-size`：设置块大小为 `block-size` 字节（例如 `4096` 表示 4KB）。
+
+##### 设置簇大小
+
+```bash
+mkfs.ext4 -C 16K /dev/sdX
+```
+
+- `-C cluster-size`：设置簇大小为 `cluster-size`（可以带有 `K` 或 `M` 后缀）。
+
+##### 设置每个 inode 的字节数
+
+```bash
+mkfs.ext4 -i 1024 /dev/sdX
+```
+
+- `-i bytes-per-inode`：设置每个 inode 的字节数为 `bytes-per-inode`（例如 `1024` 表示 1KB）。
+
+##### 设置 inode 大小
+
+```bash
+mkfs.ext4 -I 128 /dev/sdX
+```
+
+- `-I inode-size`：设置 inode 大小为 `inode-size` 字节（例如 `128` 表示 128 字节）。
+
+##### 设置日志选项
+
+```bash
+mkfs.ext4 -J size=256M /dev/sdX
+```
+
+- `-J journal-options`：设置日志选项。选项可以包括日志大小、日志位置等。
+
+##### 设置弹性组大小
+
+```bash
+mkfs.ext4 -G 64 /dev/sdX
+```
+
+- `-G flex-group-size`：设置弹性组大小为 `flex-group-size` 块（例如 `64` 块）。
+
+##### 设置 inode 数量
+
+```bash
+mkfs.ext4 -N 100000 /dev/sdX
+```
+
+- `-N number-of-inodes`：设置 inode 数量为 `number-of-inodes`（例如 `100000`）。
+
+##### 设置根目录
+
+```bash
+mkfs.ext4 -d /path/to/dir /dev/sdX
+```
+
+- `-d root-directory`：设置根目录为 `root-directory`（例如 `/path/to/dir`）。
+
+##### 设置保留块百分比
+
+```bash
+mkfs.ext4 -m 5 /dev/sdX
+```
+
+- `-m reserved-blocks-percentage`：设置保留块的百分比（例如 `5` 表示 5%）。
+
+##### 设置创建操作系统
+
+```bash
+mkfs.ext4 -o Linux /dev/sdX
+```
+
+- `-o creator-os`：设置创建操作系统为 `creator-os`（例如 `Linux`）。
+
+##### 设置每组块数量
+
+```bash
+mkfs.ext4 -g 8192 /dev/sdX
+```
+
+- `-g blocks-per-group`：设置每组块的数量为 `blocks-per-group`（例如 `8192`）。
+
+##### 设置卷标
+
+```bash
+mkfs.ext4 -L MyVolumeLabel /dev/sdX
+```
+
+- `-L volume-label`：设置卷标为 `volume-label`（例如 `MyVolumeLabel`）。
+
+##### 设置最后挂载目录
+
+```bash
+mkfs.ext4 -M /mnt /dev/sdX
+```
+
+- `-M last-mounted-directory`：设置最后挂载目录为 `last-mounted-directory`（例如 `/mnt`）。
+
+##### 启用文件系统特性
+
+```bash
+mkfs.ext4 -O 64bit /dev/sdX
+```
+
+- `-O feature[,...]`：启用文件系统特性，如 `64bit`。
+
+##### 设置文件系统修订版
+
+```bash
+mkfs.ext4 -r 1.0 /dev/sdX
+```
+
+- `-r fs-revision`：设置文件系统修订版为 `fs-revision`（例如 `1.0`）。
+
+##### 设置扩展选项
+
+```bash
+mkfs.ext4 -E test_option=value /dev/sdX
+```
+
+- `-E extended-option[,...]`：设置扩展选项，如 `test_option=value`。
+
+##### 设置文件系统类型
+
+```bash
+mkfs.ext4 -t ext4 /dev/sdX
+```
+
+- `-t fs-type`：设置文件系统类型为 `fs-type`（例如 `ext4`）。
+
+##### 设置使用类型
+
+```bash
+mkfs.ext4 -T largefile /dev/sdX
+```
+
+- `-T usage-type`：设置文件系统的使用类型，如 `largefile`。
+
+##### 设置 UUID
+
+```bash
+mkfs.ext4 -U 12345678-1234-1234-1234-1234567890ab /dev/sdX
+```
+
+- `-U UUID`：设置文件系统的 UUID 为 `UUID`（例如 `12345678-1234-1234-1234-1234567890ab`）。
+
+##### 设置错误行为
+
+```bash
+mkfs.ext4 -e remount-ro /dev/sdX
+```
+
+- `-e errors_behavior`：设置错误行为，如 `remount-ro`。
+
+##### 设置撤销文件
+
+```bash
+mkfs.ext4 -z /path/to/undo_file /dev/sdX
+```
+
+- `-z undo_file`：设置撤销文件为 `undo_file`（例如 `/path/to/undo_file`）。
+
+##### 其他选项
+
+```bash
+mkfs.ext4 -j -n -q -v /dev/sdX
+```
+
+- `-j`：启用日志。
+- `-n`：不实际写入文件系统。
+- `-q`：静默模式。
+- `-v`：详细模式。
+
+#### 综合应用
+
+##### 创建具有指定块大小和簇大小的 ext4 文件系统
+
+```bash
+mkfs.ext4 -b 4096 -C 8K /dev/sdX
+```
+
+- `-b 4096`：设置块大小为 4KB。
+- `-C 8K`：设置簇大小为 8KB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建具有自定义卷标和日志的 ext4 文件系统
+
+```bash
+mkfs.ext4 -L MyVolumeLabel -J size=128M /dev/sdX
+```
+
+- `-L MyVolumeLabel`：设置卷标为 `MyVolumeLabel`。
+- `-J size=128M`：设置日志大小为 128MB。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+##### 创建具有特定 UUID 和保留块百分比的 ext4 文件系统
+
+```bash
+mkfs.ext4 -U 12345678-1234-1234-1234-1234567890ab -m 10 /dev/sdX
+```
+
+- `-U 12345678-1234-1234-1234-1234567890ab`：设置 UUID 为 `12345678-1234-1234-1234-1234567890ab`。
+- `-m 10`：设置保留块的百分比为 10%。
+- `TARGET`：指定目标设备或文件。例如，`/dev/sdX` 是目标设备。
+
+## fdisk
+```bash
+bash-5.1# fdisk --help
+BusyBox v1.35.0 (2024-07-20 11:38:35 CST) multi-call binary.
+
+Usage: fdisk [-ul] [-C CYLINDERS] [-H HEADS] [-S SECTORS] [-b SSZ] DISK
+
+Change partition table
+
+        -u              Start and End are in sectors (instead of cylinders)
+        -l              Show partition table for each DISK, then exit
+        -b 2048         (for certain MO disks) use 2048-byte sectors
+        -C CYLINDERS    Set number of cylinders/heads/sectors
+        -H HEADS        Typically 255
+        -S SECTORS      Typically 63
+```
+
+#### 参数解析
+
+##### 显示指定磁盘的分区表
+
+```bash
+fdisk -l /dev/sdX
+```
+
+- `-l`：显示每个磁盘的分区表，然后退出。
+
+##### 使用特定的扇区大小处理磁盘
+
+```bash
+fdisk -b 2048 /dev/sdX
+```
+
+- `-b SSZ`：为特定的 MO 磁盘使用 `SSZ` 字节的扇区（例如 `2048` 字节）。
+
+##### 设置磁盘的柱面、磁头和扇区参数
+
+```bash
+fdisk -C 1024 -H 255 -S 63 /dev/sdX
+```
+
+- `-C CYLINDERS`：设置柱面数量（例如 `1024`）。
+- `-H HEADS`：设置磁头数量（例如 `255`）。
+- `-S SECTORS`：设置每个磁头的扇区数量（例如 `63`）。
+
+##### 将起始和结束单位改为扇区
+
+```bash
+fdisk -u /dev/sdX
+```
+
+- `-u`：将起始和结束单位改为扇区（而非柱面）。
+
+#### 综合应用
+
+##### 显示分区表并设置特定磁盘的柱面和扇区
+
+```bash
+fdisk -l -C 1024 -H 255 -S 63 /dev/sdX
+```
+
+- `-l`：显示磁盘的分区表。
+- `-C 1024 -H 255 -S 63`：设置柱面为 `1024`，磁头为 `255`，每个磁头的扇区为 `63`。
+
+##### 使用自定义扇区大小对磁盘进行分区
+
+```bash
+fdisk -b 2048 /dev/sdX
+```
+
+- `-b 2048`：为磁盘使用 `2048` 字节的扇区。
+
+
+##  ipcrm
+```bash
+bash-5.1# ipcrm --help
+BusyBox v1.35.0 (2024-07-20 11:38:35 CST) multi-call binary.
+
+Usage: ipcrm [-MQS key] [-mqs id]
+
+Upper-case options MQS remove an object by shmkey value.
+Lower-case options remove an object by shmid value.
+
+        -mM     Remove memory segment after last detach
+        -qQ     Remove message queue
+        -sS     Remove semaphore
+```
+
+### 参数解析
+
+#### 删除共享内存段
+
+```bash
+ipcrm -m id
+```
+
+- `-m`：删除共享内存段。
+- `id`：共享内存段的标识符（shmid）。
+
+#### 删除消息队列
+
+```bash
+ipcrm -q id
+```
+
+- `-q`：删除消息队列。
+- `id`：消息队列的标识符（msgid）。
+
+#### 删除信号量集
+
+```bash
+ipcrm -s id
+```
+
+- `-s`：删除信号量集。
+- `id`：信号量集的标识符（semid）。
+
+#### 按键值删除共享内存段、消息队列或信号量集
+
+```bash
+ipcrm -M key
+```
+
+- `-M`：通过键值删除共享内存段。
+- `key`：共享内存段的键值。
+
+```bash
+ipcrm -Q key
+```
+
+- `-Q`：通过键值删除消息队列。
+- `key`：消息队列的键值。
+
+```bash
+ipcrm -S key
+```
+
+- `-S`：通过键值删除信号量集。
+- `key`：信号量集的键值。
+
+### 综合应用
+
+#### 删除特定共享内存段
+
+```bash
+ipcrm -m 1234
+```
+
+- `-m 1234`：删除共享内存段标识符为 `1234` 的共享内存段。
+
+#### 删除特定消息队列
+
+```bash
+ipcrm -q 5678
+```
+
+- `-q 5678`：删除消息队列标识符为 `5678` 的消息队列。
+
+#### 删除特定信号量集
+
+```bash
+ipcrm -s 91011
+```
+
+- `-s 91011`：删除信号量集标识符为 `91011` 的信号量集。
+
+## ipcs
+
+```bash
+bash-5.1# ipcs --help
+BusyBox v1.35.0 (2024-07-20 11:38:35 CST) multi-call binary.
+
+Usage: ipcs [[-smq] -i SHMID] | [[-asmq] [-tcplu]]
+
+        -i ID   Show specific resource
+Resource specification:
+        -m      Shared memory segments
+        -q      Message queues
+        -s      Semaphore arrays
+        -a      All (default)
+Output format:
+        -t      Time
+        -c      Creator
+        -p      Pid
+        -l      Limits
+        -u      Summary
+```
+
+### 参数解析
+
+#### 查看共享内存段、消息队列或信号量数组的详细信息
+
+```bash
+ipcs -m -i SHMID
+```
+
+- `-m`：显示共享内存段。
+- `-i ID`：显示指定标识符（SHMID）的共享内存段。
+
+```bash
+ipcs -q -i SHMID
+```
+
+- `-q`：显示消息队列。
+- `-i ID`：显示指定标识符（MSGID）的消息队列。
+
+```bash
+ipcs -s -i SHMID
+```
+
+- `-s`：显示信号量数组。
+- `-i ID`：显示指定标识符（SEMID）的信号量数组。
+
+#### 查看所有资源的状态
+
+```bash
+ipcs -a
+```
+
+- `-a`：显示所有资源的状态（默认）。
+
+#### 显示时间、创建者、进程、限制和总结信息
+
+```bash
+ipcs -t
+```
+
+- `-t`：显示时间相关信息。
+
+```bash
+ipcs -c
+```
+
+- `-c`：显示创建者信息。
+
+```bash
+ipcs -p
+```
+
+- `-p`：显示进程信息。
+
+```bash
+ipcs -l
+```
+
+- `-l`：显示限制信息。
+
+```bash
+ipcs -u
+```
+
+- `-u`：显示总结信息。
+
+### 综合应用
+
+#### 查看特定共享内存段的信息
+
+```bash
+ipcs -m -i 1234
+```
+
+- `-m -i 1234`：查看标识符为 `1234` 的共享内存段的详细信息。
+
+#### 查看所有资源的状态并显示时间和创建者信息
+
+```bash
+ipcs -a -t -c
+```
+
+- `-a -t -c`：显示所有资源的状态，包括时间和创建者信息。
+
+
 
 
 # 日志

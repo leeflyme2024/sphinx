@@ -3,11 +3,13 @@
 ```Bash
 export REPO_URL="https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/"
 repo init -u git@gitee.com:leev2v1/manifest.git
-cp /home/zlglinux/am62x/am62xx-sdk/.repo/repo/repo /usr/bin/repo
+cp -r .repo/repo/repo /usr/bin/repo
 repo sync
 repo sync -j16
 repo sync build.git
 repo sync docker.git
+repo sync manifest.git
+repo sync release.git
 
 repo list
 repo branches
@@ -32,6 +34,10 @@ repo forall -c 'git add .'
 repo forall -c 'git tag M62xx-T@1.0.0-rc.7+20240801 $(git rev-parse HEAD) && git push gitee M62xx-T@1.0.0-rc.7+20240801'
 git commit -m "xxx"
 repo forall -c 'git tag am62xx-sdk-v1.0.0.5'
+
+repo forall -c 'git checkout am62xx-sdk-v1.0.0.6,en-plus'
+repo forall -c 'git checkout master'
+
 repo upload
 
 repo list

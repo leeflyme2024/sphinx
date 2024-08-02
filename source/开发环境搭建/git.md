@@ -13,6 +13,10 @@ git push orgin master
 
 git tag am62xx-sdk-v1.0.0.6,en-plus 8b96f4a96ae21b5d45518b0ea57854f77bcd2c38
 git push gitee am62xx-sdk-v1.0.0.6,en-plus
+
+git checkout am62xx-sdk-v1.0.0.6,en-plus
+git checkout M62xx-T@1.0.0-rc.7+20240801
+git checkout master
 ```
 
 # 基础命令

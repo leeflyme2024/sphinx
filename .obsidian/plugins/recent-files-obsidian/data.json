@@ -1,8 +1,28 @@
 {
   "recentFiles": [
     {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "Windows",
+      "path": "source/开发环境搭建/Windows.md"
+    },
+    {
       "basename": "GitLab CE 部署",
       "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
+      "basename": "Vim",
+      "path": "source/开发环境搭建/Vim.md"
+    },
+    {
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
     },
     {
       "basename": "Pasted image 20240802151044",
@@ -35,14 +55,6 @@
     {
       "basename": "Pasted image 20240802130753",
       "path": "pic/Pasted image 20240802130753.png"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
-    },
-    {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
     },
     {
       "basename": "01 Buildroot",
@@ -187,18 +199,6 @@
     {
       "basename": "测试报告",
       "path": "source/内核驱动/11 多媒体/GPU/测试报告.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/09 工控接口/CAN/测试报告.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/摄像头/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/音频/命令集.md"
     }
   ],
   "omittedPaths": []

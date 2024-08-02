@@ -293,6 +293,20 @@ git remote -v
 git branch
 ```
 
+## 强制推送
+```bash
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/release# git push origin main -f
+Total 0 (delta 0), reused 0 (delta 0)
+remote: GitLab: You are not allowed to force push code to a protected branch on this project.
+To ssh://192.168.1.168:1022/root/release.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'ssh://git@192.168.1.168:1022/root/release.git'
+
+```
+
+[仓库设置](http://localhost:1080/root/release/-/settings/repository)
+![[Pasted image 20240802151044.png]]
+
 ## 备份 GitLab 
 
 [Docker 部署 Gitlab Docker 入门教程](https://wangchujiang.com/docker-tutorial/gitlab/index.html)

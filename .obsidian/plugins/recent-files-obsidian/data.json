@@ -5,6 +5,10 @@
       "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
+      "basename": "Pasted image 20240802151044",
+      "path": "pic/Pasted image 20240802151044.png"
+    },
+    {
       "basename": "Docker",
       "path": "source/开发环境搭建/Docker.md"
     },
@@ -195,10 +199,6 @@
     {
       "basename": "命令集",
       "path": "source/内核驱动/11 多媒体/音频/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/04 存储管理/MMCSD/测试报告.md"
     }
   ],
   "omittedPaths": []

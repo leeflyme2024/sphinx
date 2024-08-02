@@ -211,6 +211,68 @@ docker volume rm my_volume
 
 ## 5. Compose
 
+```bash
+PS D:\docker> docker-compose --help
+
+Usage:  docker compose [OPTIONS] COMMAND
+
+Define and run multi-container applications with Docker
+
+Options:
+      --all-resources              Include all resources, even those not
+                                   used by services
+      --ansi string                Control when to print ANSI control
+                                   characters ("never"|"always"|"auto")
+                                   (default "auto")
+      --compatibility              Run compose in backward compatibility mode
+      --dry-run                    Execute command in dry run mode
+      --env-file stringArray       Specify an alternate environment file
+  -f, --file stringArray           Compose configuration files
+      --parallel int               Control max parallelism, -1 for
+                                   unlimited (default -1)
+      --profile stringArray        Specify a profile to enable
+      --progress string            Set type of progress output (auto,
+                                   tty, plain, quiet) (default "auto")
+      --project-directory string   Specify an alternate working directory
+                                   (default: the path of the, first
+                                   specified, Compose file)
+  -p, --project-name string        Project name
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a service's running container
+  build       Build or rebuild services
+  config      Parse, resolve and render compose file in canonical format
+  cp          Copy files/folders between a service container and the local filesystem
+  create      Creates containers for a service
+  down        Stop and remove containers, networks
+  events      Receive real time events from containers
+  exec        Execute a command in a running container
+  images      List images used by the created containers
+  kill        Force stop service containers
+  logs        View output from containers
+  ls          List running compose projects
+  pause       Pause services
+  port        Print the public port for a port binding
+  ps          List containers
+  pull        Pull service images
+  push        Push service images
+  restart     Restart service containers
+  rm          Removes stopped service containers
+  run         Run a one-off command on a service
+  scale       Scale services
+  start       Start services
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop services
+  top         Display the running processes
+  unpause     Unpause services
+  up          Create and start containers
+  version     Show the Docker Compose version information
+  wait        Block until the first service container stops
+  watch       Watch build context for service and rebuild/refresh containers when files are updated
+
+Run 'docker compose COMMAND --help' for more information on a command
+```
+
 ### 5.1 `docker-compose up`
 
 该命令用于构建、（重新）创建、启动并连接到容器。如果容器已经存在并且正在运行，`up` 命令不会重建或重启容器，除非它们被配置为在容器停止后重建。
@@ -289,7 +351,7 @@ services:
 
 
 
-### 5.3`docker-compose start`
+### 5.3 `docker-compose start`
 
 此命令用于启动已创建但停止的容器。
 
@@ -343,7 +405,13 @@ services:
   - `--tail`: 输出日志的行数。
   - `--timestamps`: 显示时间戳。
 
-### 5.8 `docker-compose ps`
+- **示例**：
+  ```bash
+  docker-compose logs -f
+  ```
+  这个命令将以流式方式显示最新的日志输出。
+
+### 5.8  `docker-compose ps`
 
 此命令用于列出所有服务的容器状态。
 
@@ -352,7 +420,7 @@ services:
   docker-compose ps [SERVICE...]
 ```
 
-### 5.9`docker-compose config`
+### 5.9 `docker-compose config`
 
 此命令用于验证并查看组合文件的完整有效配置。
 
@@ -361,13 +429,18 @@ services:
   docker-compose config [options]
 ```
 
-### 5.10`docker-compose exec`
+### 5.10 `docker-compose exec`
 
 此命令用于在运行的容器中执行命令。
 
 - **语法**：
 ```bash
   docker-compose exec [options] SERVICE COMMAND [ARGS...]
+```
+
+- **示例**：
+```bash
+docker-compose exec webserver tail -f /var/log/nginx/access.log
 ```
 
 ### 5.11 `docker-compose run`
@@ -383,6 +456,137 @@ services:
   - `-d`, `--detach`: 后台运行命令容器。
   - `--service-ports`: 分配容器的端口到主机，就像在服务定义中一样。
 
+- **示例**：
+```bash
+docker-compose run webserver sh -c "nginx -t"
+```
+
+
+### 5.12 `docker-compose config`
+- **用途**：验证并查看组合文件的配置。
+- **示例**：
+  ```sh
+  docker-compose config
+  ```
+
+### 5.13 `docker-compose images`
+- **用途**：列出项目中使用的镜像。
+- **示例**：
+  ```sh
+  docker-compose images
+  ```
+
+### 5.14 `docker-compose rm`
+- **用途**：移除服务的容器。
+- **示例**：
+  ```sh
+  docker-compose rm
+  ```
+
+### 5.15 `docker-compose pull`
+- **用途**：拉取服务的镜像。
+- **示例**：
+  ```sh
+  docker-compose pull
+  ```
+
+### 5.16 `docker-compose push`
+- **用途**：推送服务的镜像到仓库。
+- **示例**：
+  ```sh
+  docker-compose push
+  ```
+
+### 5.17 `docker-compose attach`
+- **用途**：连接到服务容器的标准输入、输出和错误流。
+- **示例**：
+  ```sh
+  docker-compose attach webserver
+  ```
+
+### 5.18 `docker-compose port`
+- **用途**：打印容器公开端口的绑定端口。
+- **示例**：
+  ```sh
+  docker-compose port webserver 80
+  ```
+
+### 5.19 `docker-compose pause`
+- **用途**：暂停服务容器。
+- **示例**：
+  ```sh
+  docker-compose pause
+  ```
+
+### 5.20 `docker-compose unpause`
+- **用途**：取消暂停服务容器。
+- **示例**：
+  ```sh
+  docker-compose unpause
+  ```
+
+### 5.21 `docker-compose top`
+- **用途**：显示容器中运行的进程列表。
+- **示例**：
+  ```sh
+  docker-compose top webserver
+  ```
+
+### 5.22 `docker-compose stats`
+- **用途**：显示容器资源使用情况。
+- **示例**：
+  ```sh
+  docker-compose stats
+  ```
+
+### 5.23 `docker-compose version`
+- **用途**：显示 Docker Compose 的版本信息。
+- **示例**：
+  ```sh
+  docker-compose version
+  ```
+
+### 5.24 `docker-compose cp`
+- **用途**：复制文件/目录在服务容器和本地文件系统之间。
+- **示例**：
+  ```sh
+  docker-compose cp webserver:/path/in/container /local/path
+  ```
+
+### 5.25 `docker-compose events`
+- **用途**：接收来自容器的真实事件。
+- **示例**：
+  ```sh
+  docker-compose events
+  ```
+
+### 5.26 `docker-compose watch`
+- **用途**：监视服务的构建上下文，并在文件更新时重新构建和刷新容器。
+- **示例**：
+  ```sh
+  docker-compose watch
+  ```
+
+### 5.27 `docker-compose ls`
+- **用途**：列出运行中的组合项目。
+- **示例**：
+  ```sh
+  docker-compose ls
+  ```
+
+### 5.28 `docker-compose kill`
+- **用途**：强制停止服务容器。
+- **示例**：
+  ```sh
+  docker-compose kill
+  ```
+
+### 5.29 `docker-compose wait`
+- **用途**：阻塞直到第一个服务容器停止。
+- **示例**：
+  ```sh
+  docker-compose wait
+  ```
 
 # 应用
 ## Docker Desktop

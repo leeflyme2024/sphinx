@@ -10,6 +10,9 @@ git show am62xx-sdk-v1.0.0.5
 git push origin am62xx-sdk-v1.0.0.5
 git push origin am62xx-sdk-v1.0.0.5 --delete
 git push orgin master
+
+git tag am62xx-sdk-v1.0.0.6,en-plus 8b96f4a96ae21b5d45518b0ea57854f77bcd2c38
+git push gitee am62xx-sdk-v1.0.0.6,en-plus
 ```
 
 # 基础命令

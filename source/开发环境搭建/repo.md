@@ -29,6 +29,7 @@ repo diff
 repo stage
 git add . 
 repo forall -c 'git add .'
+repo forall -c 'git tag M62xx-T@1.0.0-rc.7+20240801 $(git rev-parse HEAD) && git push gitee M62xx-T@1.0.0-rc.7+20240801'
 git commit -m "xxx"
 repo forall -c 'git tag am62xx-sdk-v1.0.0.5'
 repo upload

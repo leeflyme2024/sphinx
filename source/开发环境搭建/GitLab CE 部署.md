@@ -283,15 +283,9 @@ What's next:
 [SSH密钥](http://192.168.1.168:1080/-/user_settings/ssh_keys)
 ![[Pasted image 20240802131300.png]]
 
-## 配置 Git
-```bash
-git config --global user.name leev2v1
-git config --global user.email "1144815495@qq.com"
-git config -l
-
-git remote -v
-git branch
-```
+## 默认分支
+[仓库](http://localhost:1080/admin/application_settings/repository)
+![[Pasted image 20240802170544.png]]
 
 ## 强制推送
 ```bash
@@ -307,9 +301,44 @@ error: failed to push some refs to 'ssh://git@192.168.1.168:1022/root/release.gi
 [仓库设置](http://localhost:1080/root/release/-/settings/repository)
 ![[Pasted image 20240802151044.png]]
 
+
+## 配置 Git
+```bash
+git config --global user.name leev2v1
+git config --global user.email "1144815495@qq.com"
+git config -l
+
+git remote -v
+git branch
+```
+
 ## 备份 GitLab 
 
 [Docker 部署 Gitlab Docker 入门教程](https://wangchujiang.com/docker-tutorial/gitlab/index.html)
+
+## 导入仓库
+[通用](http://localhost:1080/admin/application_settings/general)
+
+![[Pasted image 20240802173258.png]]
+
+![[Pasted image 20240802173351.png]]
+
+![[Pasted image 20240802173414.png]]
+
+![[Pasted image 20240802173436.png]]
+
+![[Pasted image 20240802173535.png]]
+![[Pasted image 20240802173548.png]]
+
+![[Pasted image 20240802173635.png]]
+## 删除仓库
+[常规设置](http://localhost:1080/root/0806-build/edit)
+
+![[Pasted image 20240802171011.png]]
+
+![[Pasted image 20240802171110.png]]
+
+![[Pasted image 20240802171148.png]]
 
 ## GitLab Runner
 [项目管理 之六 详解 Gitlab 本地部署全过程、Gitlab Pages、企业版 PATCH\_gitlab本地部署-CSDN博客](https://blog.csdn.net/ZCShouCSDN/article/details/127105387)

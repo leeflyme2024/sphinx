@@ -1,6 +1,26 @@
 {
   "recentFiles": [
     {
+      "basename": "GitLab CE 部署",
+      "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
+      "basename": "Pasted image 20240802173548",
+      "path": "pic/Pasted image 20240802173548.png"
+    },
+    {
+      "basename": "Pasted image 20240802171011",
+      "path": "pic/Pasted image 20240802171011.png"
+    },
+    {
+      "basename": "Pasted image 20240802171110",
+      "path": "pic/Pasted image 20240802171110.png"
+    },
+    {
+      "basename": "Pasted image 20240802170846",
+      "path": "pic/Pasted image 20240802170846.png"
+    },
+    {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
     },
@@ -11,10 +31,6 @@
     {
       "basename": "Windows",
       "path": "source/开发环境搭建/Windows.md"
-    },
-    {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
       "basename": "Vim",
@@ -183,22 +199,6 @@
     {
       "basename": "DFT",
       "path": "source/内核驱动/10 高速接口/USB/DFT.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/10 高速接口/以太网/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/GPU/DFT.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/音频/DFT.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/11 多媒体/GPU/测试报告.md"
     }
   ],
   "omittedPaths": []

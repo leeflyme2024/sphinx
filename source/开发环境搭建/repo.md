@@ -2,14 +2,19 @@
 
 ```Bash
 export REPO_URL="https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/"
-repo init -u git@gitee.com:leev2v1/manifest.git
+repo init -u git@gitee.com:leev2v1/manifest.git -m default.xml
 cp -r .repo/repo/repo /usr/bin/repo
+
 repo sync
 repo sync -j16
 repo sync build.git
 repo sync docker.git
 repo sync manifest.git
 repo sync release.git
+
+repo init -u git@gitee.com:leev2v1/manifest.git -m default.xml
+repo init -u ssh://git@192.168.1.168:1022/root/0806-manifest.git -m default-local.xml
+repo manifest
 
 repo list
 repo branches
@@ -29,14 +34,20 @@ repo start master mcu-sdk.git
 repo status
 repo diff
 repo stage
-git add . 
+
 repo forall -c 'git add .'
-repo forall -c 'git tag M62xx-T@1.0.0-rc.7+20240801 $(git rev-parse HEAD) && git push gitee M62xx-T@1.0.0-rc.7+20240801'
-git commit -m "xxx"
+repo forall -c 'git commit -m "xxx"'
 repo forall -c 'git tag am62xx-sdk-v1.0.0.5'
+repo forall -c 'git tag M62xx-T@1.0.0-rc.7+20240801 $(git rev-parse HEAD) && git push gitee M62xx-T@1.0.0-rc.7+20240801'
 
 repo forall -c 'git checkout am62xx-sdk-v1.0.0.6,en-plus'
 repo forall -c 'git checkout master'
+
+repo forall -c 'git remote add all ssh://git@gitee.com/leev2v1/manifest.git'
+repo forall -c 'git remote set-url --add all ssh://git@192.168.1.168:1022/root/0806-manifest.git'
+
+repo forall -c 'git remote remove all || true'
+repo forall -c 'echo "Repository: $(pwd)"; git remote -v; echo'
 
 repo upload
 

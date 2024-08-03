@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/GitLab CE 部署.md",
+                "file": "source/开发环境搭建/Git.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/GitLab CE 部署.md",
+                "file": "source/开发环境搭建/Git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/GitLab CE 部署.md",
+                "file": "source/开发环境搭建/Git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/GitLab CE 部署.md"
+                "file": "source/开发环境搭建/Git.md"
               }
             }
           },
@@ -194,11 +194,14 @@
       "copilot:Copilot Chat": false
     }
   },
-  "active": "802503ceec5b2af7",
+  "active": "90412aae1862b884",
   "lastOpenFiles": [
+    "source/开发环境搭建/Repo.md",
+    "source/开发环境搭建/Git.md",
+    "source/开发环境搭建/开发环境搭建.md",
+    "source/开发环境搭建/GitLab CE 部署.md",
     "pic/Pasted image 20240802173635.png",
     "pic/Pasted image 20240802173548.png",
-    "source/开发环境搭建/GitLab CE 部署.md",
     "pic/Pasted image 20240802173535.png",
     "pic/Pasted image 20240802173436.png",
     "pic/Pasted image 20240802173414.png",
@@ -207,9 +210,6 @@
     "pic/Pasted image 20240802171148.png",
     "pic/Pasted image 20240802171011.png",
     "pic/Pasted image 20240802171110.png",
-    "pic/Pasted image 20240802170846.png",
-    "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/Git.md",
     "source/开发环境搭建/Windows.md",
     "source/开发环境搭建/Vim.md",
     "source/开发环境搭建/知识库.md",

@@ -17,6 +17,11 @@ git push gitee am62xx-sdk-v1.0.0.6,en-plus
 git checkout am62xx-sdk-v1.0.0.6,en-plus
 git checkout M62xx-T@1.0.0-rc.7+20240801
 git checkout master
+
+git remote add all ssh://git@192.168.1.168:1022/root/0806-manifest.git
+git remote set-url --add all ssh://git@gitee.com/leev2v1/manifest.git
+git remote -v
+git push all master
 ```
 
 # 基础命令
@@ -575,14 +580,85 @@ git remote add upstream https://github.com/user/repo.git
 ## 修改远程仓库 URL
 
 ```bash
-git remote set-url <shortname> <new-url>
-```
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/manifest# git remote set-url --help
+usage: git remote set-url [--push] <name> <newurl> [<oldurl>]
+   or: git remote set-url --add <name> <newurl>
+   or: git remote set-url --delete <name> <url>
 
-例如，将远程仓库 `origin` 的 URL 更改为 `https://github.com/newuser/newrepo.git`：
+    --push                manipulate push URLs
+    --add                 add URL
+    --delete              delete URLs
+```
 
 ```bash
-git remote set-url origin https://github.com/newuser/newrepo.git
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/manifest# git remote -v
+gitee   ssh://git@gitee.com/leev2v1/manifest.git (fetch)
+gitee   ssh://git@gitee.com/leev2v1/manifest.git (push)
+
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/manifest# git remote add all ssh://git@gitee.com/leev2v1/manifest.git
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/manifest# git remote -v
+all     ssh://git@gitee.com/leev2v1/manifest.git (fetch)
+all     ssh://git@gitee.com/leev2v1/manifest.git (push)
+gitee   ssh://git@gitee.com/leev2v1/manifest.git (fetch)
+gitee   ssh://git@gitee.com/leev2v1/manifest.git (push)
+
+
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/manifest# git remote set-url --add all ssh://git@192.168.1.168:1022/root/0806-manifest.git
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/manifest# git remote -v
+all     ssh://git@gitee.com/leev2v1/manifest.git (fetch)
+all     ssh://git@gitee.com/leev2v1/manifest.git (push)
+all     ssh://git@192.168.1.168:1022/root/0806-manifest.git (push)
+gitee   ssh://git@gitee.com/leev2v1/manifest.git (fetch)
+gitee   ssh://git@gitee.com/leev2v1/manifest.git (push)
 ```
+
+`git remote set-url` 命令用于更改 Git 仓库中远程仓库的 URL。这个命令可以用来更新现有的远程仓库 URL，添加新的远程仓库 URL，或者删除某个远程仓库 URL。
+
+### 基本语法
+
+- `git remote set-url <name> <newurl> [<oldurl>]`: 更新远程仓库 `<name>` 的 URL 为 `<newurl>`。如果提供了 `<oldurl>`，则只更新与该 URL 匹配的远程 URL。
+- `git remote set-url --add <name> <newurl>`: 向远程仓库 `<name>` 添加一个新的 URL `<newurl>`。
+- `git remote set-url --delete <name> <url>`: 从远程仓库 `<name>` 删除指定的 URL。
+
+### 示例
+
+假设你有一个名为 `origin` 的远程仓库，你想修改其 URL 或者添加、删除 URL。
+
+1. **更新远程仓库的 URL**:
+
+   如果你想将远程仓库 `origin` 的 URL 更改为 `https://github.com/newrepo/newproject.git`，你可以运行:
+```bash
+git remote set-url origin https://github.com/newrepo/newproject.git
+```
+
+2. **更新特定 URL**:
+
+   如果远程仓库 `origin` 有多个 URL，你只想更新其中的一个，比如将 `https://github.com/oldrepo/oldproject.git` 更改为 `https://github.com/newrepo/newproject.git`，你可以运行:
+```bash
+git remote set-url origin https://github.com/newrepo/newproject.git https://github.com/oldrepo/oldproject.git
+```
+
+3. **添加新的 URL 到远程仓库**:
+
+   如果你想给远程仓库 `origin` 添加一个新的 URL `https://bitbucket.org/newrepo/newproject.git`，你可以运行:
+```bash
+git remote set-url --add origin https://bitbucket.org/newrepo/newproject.git
+```
+
+4. **删除远程仓库的 URL**:
+
+   如果你想从远程仓库 `origin` 中删除一个 URL `https://bitbucket.org/newrepo/newproject.git`，你可以运行:
+```bash
+git remote set-url --delete origin https://bitbucket.org/newrepo/newproject.git
+```
+
+### 注意事项
+
+- 当使用 `--push` 选项时，它会只更新或添加推送（push）URL。
+- 如果不指定 `--push`，默认情况下，`set-url` 命令会同时更新拉取（fetch）和推送（push）URLs。
+- 使用 `--delete` 选项时要小心，一旦删除了 URL，就无法通过 Git 命令恢复。
+
+
 
 ## 重命名远程仓库
 重命名远程仓库的过程涉及到更改本地 Git 仓库中对远程仓库的引用名称。这不会直接影响远程仓库本身，仅更改本地 Git 配置中对该远程仓库的称呼。以下是使用 `git remote rename` 命令来重命名远程仓库的步骤：
@@ -823,6 +899,47 @@ git am --continue
 git am --abort
 ```
 如果在应用补丁过程中出现问题，使用此命令可以中止补丁应用过程并清理中间状态。
+
+# 仓库清理
+## git gc
+
+`git gc --prune=now --aggressive` 是 Git 中用于清理和优化仓库的命令。以下是该命令的详细说明：
+
+### 1. `git gc`
+
+`git gc`（垃圾回收）命令用于清理 Git 仓库中的不必要的文件和优化仓库的存储。它可以通过以下方式帮助你管理仓库的大小和性能：
+
+- **删除未被引用的对象**：清理那些已经被删除但仍保留在 Git 对象数据库中的文件。
+- **压缩文件**：将多个小的 Git 对象合并成更大的对象以节省存储空间。
+- **优化索引**：提升 Git 操作的性能。
+
+### 2. `--prune=now`
+
+- **`--prune`**：此选项指定 Git 应该删除哪些对象。`prune` 命令用于删除那些不再被任何分支或引用指向的 Git 对象（例如，已经被删除的文件的历史版本）。
+- **`now`**：表示立即删除所有未被引用的对象。这会清除所有已经失效的对象，而不仅仅是那些超出默认保留期限的对象。
+
+### 3. `--aggressive`
+
+- **`--aggressive`**：此选项会使 `git gc` 更加深入地优化仓库。这意味着 Git 会尝试进一步压缩对象和清理额外的空间。使用 `--aggressive` 会消耗更多的时间和计算资源，因此在大型仓库中使用时可能需要较长的时间。
+
+### 总结
+
+`git gc --prune=now --aggressive` 命令会强制 Git 立即删除所有不再被引用的对象，并且以更深入的方式优化和压缩 Git 仓库。这可以帮助减少仓库的大小并提高性能，但可能会花费较长时间。
+
+[【GITEE】码云上传代码文件出现上传错误的问题\_push rejected for repository size exceeds limit.-CSDN博客](https://blog.csdn.net/Ankie_/article/details/129437765)
+
+
+#### 执行示例
+
+```bash
+git gc --prune=now --aggressive
+```
+
+### 注意事项
+
+1. **备份仓库**：在执行这个命令之前，建议备份你的仓库，因为垃圾回收是不可逆的操作。
+2. **等待完成**：这个命令可能会花费一些时间，尤其是在大型仓库中。
+3. **适当使用**：一般情况下，默认的 `git gc` 已经足够用。如果你没有特定的优化需求，不一定需要使用 `--aggressive` 选项。
 
 # show
 

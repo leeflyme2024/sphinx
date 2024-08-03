@@ -1,6 +1,18 @@
 {
   "recentFiles": [
     {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
       "basename": "GitLab CE 部署",
       "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
@@ -19,14 +31,6 @@
     {
       "basename": "Pasted image 20240802170846",
       "path": "pic/Pasted image 20240802170846.png"
-    },
-    {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
     },
     {
       "basename": "Windows",
@@ -195,10 +199,6 @@
     {
       "basename": "DFT",
       "path": "source/内核驱动/10 高速接口/以太网/DFT.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/10 高速接口/USB/DFT.md"
     }
   ],
   "omittedPaths": []

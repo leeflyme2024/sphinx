@@ -24,6 +24,8 @@ git remote -v
 git push all master
 ```
 
+
+
 # 基础命令
 
 ## 初始化仓库
@@ -940,6 +942,23 @@ git gc --prune=now --aggressive
 1. **备份仓库**：在执行这个命令之前，建议备份你的仓库，因为垃圾回收是不可逆的操作。
 2. **等待完成**：这个命令可能会花费一些时间，尤其是在大型仓库中。
 3. **适当使用**：一般情况下，默认的 `git gc` 已经足够用。如果你没有特定的优化需求，不一定需要使用 `--aggressive` 选项。
+4. **查看大小**：
+```bash
+# git count-objects -vH
+count: 0
+size: 0 bytes
+in-pack: 678
+packs: 1
+size-pack: 898.16 MiB
+prune-packable: 0
+garbage: 0
+size-garbage: 0 bytes
+```
+
+```bash
+# git rev-list --objects --all | wc -l
+678
+```
 
 # show
 

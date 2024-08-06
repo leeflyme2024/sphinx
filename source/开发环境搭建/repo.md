@@ -49,10 +49,114 @@ repo forall -c 'git remote set-url --add all ssh://git@192.168.1.168:1022/root/0
 repo forall -c 'git remote remove all || true'
 repo forall -c 'echo "Repository: $(pwd)"; git remote -v; echo'
 
+repo forall -c "/home/leefly/am62x/tag.sh"
+
 repo upload
 
 repo list
 repo info
+```
+
+```bash
+#!/bin/bash
+repo_path=$(pwd)
+latest_commit=$(git rev-parse HEAD)
+
+# /home/leefly/am62x/tag.sh file for get repo tag
+for tag in $(git tag); do
+    tag_commit=$(git rev-list -n 1 $tag)
+    if [ "$tag_commit" == "$latest_commit" ]; then
+        echo "success, $repo_path Tag $tag corresponds to the latest commit."
+    else
+        echo "error, $repo_path Tag $tag does not correspond to the latest commit."
+    fi
+done
+
+echo -e "\n"
+```
+
+```bash
+#!/bin/bash
+
+# set -e
+# set -x
+
+################################################# 1. 同步代码 ##########################################################################
+
+export REPO_URL="https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/"
+
+echo "Please select your target platform:"
+echo "1) am62x"
+echo "2) am62x-local"
+read -p "Enter choice [1-2]: " choice
+
+case $choice in
+    1)
+        repo init -u git@gitee.com:leev2v1/manifest.git -m default.xml
+        ;;
+    2)
+        repo init -u ssh://git@192.168.1.168:1022/root/0806-manifest.git -m default-local.xml
+        ;;
+    *)
+        echo "Invalid choice"
+        exit 1
+        ;;
+esac
+
+cp -r .repo/repo/repo /usr/bin/repo
+
+repo sync
+repo start master --all
+
+
+################################################# 2. 添加远程仓库 ##########################################################################
+
+# 将函数写入一个临时脚本文件
+tmp_script=$(mktemp)
+cat << 'EOF' > $tmp_script
+#!/bin/bash
+excluded_paths=("release")
+gitee_base_url="ssh://git@gitee.com/leev2v1"
+local_base_url="ssh://git@192.168.1.168:1022/root"
+
+add_remotes() {
+    local project_path=$(pwd)
+
+    local remote_info=$(git config --get-regexp remote\..*\.url)
+
+    while read -r line; do
+        local remote_name=$(echo "$line" | awk -F".url " '{print $1}' | awk -F"remote." '{print $2}')
+        local remote_url=$(echo "$line" | awk -F".url " '{print $2}')
+        local project_name=$(basename "$remote_url" .git)
+        echo "Added remote all to project ${project_name} in ${project_path} using remote ${remote_name}"
+
+        # local host
+        if [[ ! "$project_name" =~ ^0806- ]]; then
+            local local_project_name="0806-${project_name}"
+        else
+            local local_project_name=${project_name}
+        fi
+        local local_url="${local_base_url}/${local_project_name}.git"
+        git remote add all ${local_url}
+
+        # remote gitee
+        for excluded_path in "${excluded_paths[@]}"; do
+            if [[ "$project_path" == *"/$excluded_path" ]]; then
+                echo "Skipping project in ${project_path}"
+                return
+            fi
+        done
+        local gitee_url="${gitee_base_url}/${project_name}.git"
+        git remote set-url --add all ${gitee_url}
+    done <<< "$remote_info"
+}
+
+add_remotes
+EOF
+
+chmod +x $tmp_script
+repo forall -c $tmp_script
+rm -f $tmp_script
 ```
 
 ```Bash

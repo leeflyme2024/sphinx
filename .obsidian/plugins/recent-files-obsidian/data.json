@@ -1,12 +1,40 @@
 {
   "recentFiles": [
     {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
+      "basename": "RCU",
+      "path": "source/内核驱动/RCU/RCU.md"
+    },
+    {
+      "basename": "中断",
+      "path": "source/内核驱动/RCU/中断.md"
+    },
+    {
+      "basename": "内核线程",
+      "path": "source/内核驱动/RCU/内核线程.md"
+    },
+    {
+      "basename": "函数查找",
+      "path": "source/内核驱动/RCU/函数查找.md"
+    },
+    {
+      "basename": "企业微信截图_17223240264127",
+      "path": "pic/企业微信截图_17223240264127.png"
+    },
+    {
+      "basename": "企业微信截图_17228374791902",
+      "path": "pic/企业微信截图_17228374791902.png"
+    },
+    {
+      "basename": "Pasted image 20240805155932",
+      "path": "pic/Pasted image 20240805155932.png"
     },
     {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
     },
     {
       "basename": "开发环境搭建",
@@ -171,34 +199,6 @@
     {
       "basename": "命令集",
       "path": "source/内核驱动/08 通信接口/UART/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/08 通信接口/SPI/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/08 通信接口/SPI/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/08 通信接口/SPI/DFT.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/08 通信接口/I2C/DFT.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/08 通信接口/I2C/测试报告.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/GPU/命令集.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/10 高速接口/以太网/DFT.md"
     }
   ],
   "omittedPaths": []

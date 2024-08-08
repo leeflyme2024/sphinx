@@ -1,21 +1,24 @@
 # 函数调用
 ```bash
 // ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/linux-rt-5.10.168+gitAUTOINC+c1a1291911-gc1a1291911/kernel/rcu/tree_stall.h  
+
 show_rcu_gp_kthreads  
-  
-check_cpu_stall  
-    print_cpu_stall  
-        print_cpu_stall_info
-        rcu_check_gp_kthread_starvation
-	        sched_show_task
-        rcu_dump_cpu_stacks  
-        panic_on_rcu_stall  
-    print_other_cpu_stall  
-        print_cpu_stall_info  
-        rcu_print_task_stall  
-        rcu_dump_cpu_stacks
-        rcu_check_gp_kthread_starvation
-        panic_on_rcu_stall
+update_process_times
+	rcu_sched_clock_irq
+		rcu_pending
+			check_cpu_stall  
+			    print_cpu_stall  
+			        print_cpu_stall_info
+			        rcu_check_gp_kthread_starvation
+				        sched_show_task
+			        rcu_dump_cpu_stacks  
+			        panic_on_rcu_stall  
+			    print_other_cpu_stall  
+			        print_cpu_stall_info  
+			        rcu_print_task_stall  
+			        rcu_dump_cpu_stacks
+			        rcu_check_gp_kthread_starvation
+			        panic_on_rcu_stall
 ```
 
 ## rcu_state
@@ -176,6 +179,92 @@ EXPORT_SYMBOL_GPL(sched_show_task);
 
 # 参考文档
 
+RCU stall是一种rcu宽限期内rcu相关内核线程没有得到调度的异常。
+
+- 原理
+    
+    在RCU机制中，reader不用等待，可以任意读取数据，RCU记录reader的信息；writer更新数据时，先复制一份副本，在副本上完成修改，等待所有reader退出后，再一次性地替换旧数据。
+    
+    writer需要等所有reader都停止引用“旧数据”才能替换旧数据。这相当于给了这些reader一个优雅退出的宽限期，这个等待的时间被称为grace-period，简称GP。
+    
+    当reader长时间没有退出，writer等待的时间超过宽限期时，即上报RCU Stall。
+    
+- 触发方法
+    
+    内核在Documentation/RCU/stallwarn.txt文档列出了可能触发RCU stall的场景：cpu在rcu reader临界区一直循环，cpu在关闭中断或关闭抢占场景中一直循环等。
+
+
+```bash
+RCU（Read-Copy Update）是一种用于提高并发读写效率的机制，它的设计使得读取操作可以非常快速且无需锁定。RCU reader临界区是指读操作在RCU机制中的一个保护范围，在此范围内，读操作能够安全地访问共享数据，而无需担心数据一致性问题。以下是对RCU reader临界区的详细解释：
+
+### RCU机制的基本原理
+
+1. **读取操作**：
+   - 读取操作进入RCU reader临界区时，RCU会记录这些reader的状态。由于读取操作不会修改数据，它们可以在不加锁的情况下直接读取数据，从而减少锁竞争，提高读取效率。
+
+2. **更新操作**：
+   - 更新操作通常会创建数据的副本，在副本上进行修改。当所有现有的reader都退出临界区后，更新操作才会用修改后的副本替换旧数据。这一过程保证了reader始终可以读取到一致的数据。
+
+### RCU reader临界区的实现
+
+在Linux内核中，进入和退出RCU reader临界区的典型实现如下：
+
+- **进入临界区**：
+  ```c
+  rcu_read_lock();
+  // 读取操作
+  rcu_read_unlock();
+  ```
+  - `rcu_read_lock()`：标记进入RCU reader临界区。
+  - `rcu_read_unlock()`：标记退出RCU reader临界区。
+
+- **退出临界区**：
+  - 在退出临界区时，RCU会更新内部状态，表明这个reader已经不再使用旧数据。
+
+### RCU reader临界区的特性
+
+1. **无锁性**：
+   - RCU reader临界区的最大特点是无锁性。reader不需要加锁即可读取数据，从而极大提高了读操作的并发性。
+
+2. **高效性**：
+   - 由于不需要加锁，读取操作的开销非常小。这使得RCU非常适合读多写少的场景。
+
+3. **宽限期（Grace Period）**：
+   - 更新操作在替换旧数据之前，必须等待所有在旧数据上的reader退出临界区，这个等待时间称为宽限期（grace period）。RCU通过跟踪reader的状态来确定宽限期结束。
+
+### RCU stall的原因
+
+在实际应用中，RCU stall问题的原因通常是某些reader长时间停留在临界区内，导致宽限期无法结束。以下是一些常见原因：
+
+1. **长时间运行的中断处理或软中断**：
+   - 如果一个中断处理程序或软中断在RCU reader临界区内长时间运行，可能导致RCU stall。
+
+2. **关闭抢占**：
+   - 在某些场景下，如果代码关闭了抢占（preemption）并长时间运行，也会导致RCU stall，因为这些任务无法被调度出去，导致宽限期无法结束。
+
+3. **内核中的长时间循环**：
+   - 某些内核线程如果在临界区内进行长时间的循环操作，同样会导致RCU stall。
+
+### 解决方法
+
+1. **优化中断处理和软中断**：
+   - 确保中断处理程序尽量短小，避免在RCU reader临界区内进行长时间操作。
+
+2. **合理使用抢占控制**：
+   - 避免在需要高并发读写的路径上关闭抢占，确保RCU reader能够及时退出临界区。
+
+3. **检查和优化内核代码**：
+   - 定期检查内核代码，确保没有长时间运行的任务在RCU reader临界区内。
+
+4. **调试和监控工具**：
+   - 使用内核提供的调试和监控工具，及时发现和定位导致RCU stall的问题。例如，可以通过`rcu_stall_timeout`参数调整RCU stall检测的超时时间，以便更早发现问题。
+
+### 结论
+
+RCU reader临界区是RCU机制中的关键部分，它通过无锁读取的方式，极大提高了读取操作的并发性和效率。然而，长时间停留在RCU reader临界区内可能导致RCU stall问题。通过优化中断处理、合理使用抢占控制以及定期检查内核代码，可以有效预防和解决RCU stall问题。
+```
+
+
 [kernel.org/doc/Documentation/RCU/stallwarn.txt](https://www.kernel.org/doc/Documentation/RCU/stallwarn.txt)
 [ltp/testcases/kernel/device-drivers/rcu/rcu\_torture.sh at master · linux-test-project/ltp · GitHub](https://github.com/linux-test-project/ltp/blob/master/testcases/kernel/device-drivers/rcu/rcu_torture.sh)
 [RCU concepts — The Linux Kernel documentation](https://docs.kernel.org/RCU/index.html)
@@ -183,8 +272,53 @@ EXPORT_SYMBOL_GPL(sched_show_task);
 [Linux内核 失速（STALL） 警告说明文档翻译\_rcu stall-CSDN博客](https://blog.csdn.net/lxmega/article/details/122968282)
 [Site Unreachable](https://blog.csdn.net/juS3Ve/article/details/80248793)
 
+[【原创】Linux RCU原理剖析（一）-初窥门径 - LoyenWang - 博客园](https://www.cnblogs.com/LoyenWang/p/12681494.html)
+[【原创】Linux RCU原理剖析（二）-渐入佳境 - LoyenWang - 博客园](https://www.cnblogs.com/LoyenWang/p/12770878.html)
+
+[RCU（1）- 概述](http://www.wowotech.net/kernel_synchronization/461.html)
+[RCU（2）- 使用方法](http://www.wowotech.net/kernel_synchronization/462.html)
+[RCU synchronize原理分析](http://www.wowotech.net/kernel_synchronization/223.html)
+[Linux内核同步机制之（七）：RCU基础](http://www.wowotech.net/kernel_synchronization/rcu_fundamentals.html)
+
+[最浅显易懂的一篇：RCU机制-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/1521416)
+[避免在实时内核中出现 RCU Stalls - Red Hat Customer Portal](https://access.redhat.com/zh_CN/solutions/7049994)
+[【Linux 内核 内存管理】RCU 机制 ① ( RCU 机制简介 | RCU 机制的优势与弊端 | RCU 机制的链表应用场景 )-腾讯云开发者社区-腾讯云](https://cloud.tencent.com/developer/article/2253385)
+[什么是 RCU? — “Read, Copy, Update” – 学习笔记](https://www.dubaojiang.com/2020/06/05/%E4%BB%80%E4%B9%88%E6%98%AF-rcu-read-copy-update/)
+[技术分享 | RCU ：内核小“马达”，让你的产品弯道超车 - 掘金](https://juejin.cn/post/7272556712887648292)
+[内核异常事件分析指南\_Huawei Cloud EulerOS](https://support.huaweicloud.com/usermanual-hce/hce_02_0075.html)
+[Linux INFO: rcu\_sched self-detected stall on CPU什么情况会打印RCU告警？ - 服务器托管|北京服务器租用|机房托管租用|IDC托管租用|机房机柜带宽租用-价格及费用咨询](https://www.fwqtg.net/linux-info-rcu_sched-self-detected-stall-on-cpu%E4%BB%80%E4%B9%88%E6%83%85%E5%86%B5%E4%BC%9A%E6%89%93%E5%8D%B0rcu%E5%91%8A%E8%AD%A6%EF%BC%9F.html)
+[Site Unreachable](https://blog.csdn.net/lmp210/article/details/134404938)
+[rdrop.com/\~paulmck/RCU/stallwarning.2018.01.22a.pdf](http://www.rdrop.com/~paulmck/RCU/stallwarning.2018.01.22a.pdf)
+[rcu, rculist | kernel tour](http://kernel-tour.org/locking/rcu.html)
+[Linux RT 进程引发内核频繁卡死的优化方案 - 掘金](https://juejin.cn/post/7177409624499290172)
+
 
 # 调试方法
+
+当遇到RCU（Read-Copy Update）stall（停滞）问题时，有多种调试手段可以帮助定位和解决问题。以下是一些有效的调试方法：
+
+1. **使用ftrace进行调试**：如果你能够稳定地触发stall，使用ftrace可以提供很大帮助。通过分析ftrace的输出，可以观察到在RCU宽限期（grace period）内发生的情况 。
+
+2. **利用RCU Trace功能**：通过启用`CONFIG_RCU_TRACE`配置选项，可以追踪RCU相关的事件。这可以帮助你了解在RCU宽限期内发生了什么，以及哪些RCU回调函数可能受到影响 。
+
+3. **检查内核参数**：通过修改内核参数，例如`CONFIG_RCU_CPU_STALL_TIMEOUT`，可以调整RCU CPU stall探测器的行为。这个参数定义了从宽限期开始到触发RCU CPU stall警告的等待时间，默认通常为21秒 。
+
+4. **使用sysfs接口**：通过`/sys/module/rcupdate/parameters/`路径下的文件，可以动态地修改RCU相关的参数，比如`rcu_cpu_stall_timeout`和`rcu_cpu_stall_suppress`，这些可以用来调整stall探测器的行为或禁用它 。
+
+5. **分析堆栈跟踪**：如果RCU检测到stall，它会打印出堆栈跟踪信息。分析这些信息可以帮助你定位导致stall的代码路径 。
+
+6. **检查硬件问题**：在某些情况下，硬件故障也可能导致RCU stall。确保硬件没有故障，并且系统稳定运行 。
+
+7. **考虑实时任务的影响**：在启用了`CONFIG_PREEMPT_RT`的内核中，如果高优先级的实时任务阻止了RCU软中断的处理，可能会导致内存不足和stall。确保实时任务不会长时间占用CPU，影响RCU的正常工作 。
+
+8. **调整调度策略**：确保没有内核线程或任务长时间运行，阻止RCU的kthread运行。如果有必要，调整调度策略以避免这种情况 。
+
+9. **使用锁和抢占**：在某些情况下，使用`cond_resched()`或`cond_resched_rcu_qs()`可以帮助避免stall，特别是在使用`!CONFIG_PREEMPT`配置的内核中 。
+
+10. **考虑RCU实现的bug**：如果上述方法都无法解决问题，可能需要考虑RCU自身实现中存在的bug。在这种情况下，查看最新的内核更新和补丁可能会有所帮助 。
+
+使用这些调试手段，你应该能够更好地理解和解决RCU stall的问题。
+
 
 ## 测试脚本
 

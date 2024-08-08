@@ -1,6 +1,18 @@
 {
   "recentFiles": [
     {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "GitLab CE 部署",
+      "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
       "basename": "RCU",
       "path": "source/内核驱动/RCU/RCU.md"
     },
@@ -29,20 +41,8 @@
       "path": "pic/Pasted image 20240805155932.png"
     },
     {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
-    },
-    {
       "basename": "Git",
       "path": "source/开发环境搭建/Git.md"
-    },
-    {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
-    },
-    {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
       "basename": "Pasted image 20240802173548",

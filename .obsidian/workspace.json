@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/内核驱动/RCU/RCU.md",
-                "mode": "source",
+                "file": "source/开发环境搭建/开发环境搭建.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/内核驱动/RCU/RCU.md",
+                "file": "source/开发环境搭建/开发环境搭建.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/内核驱动/RCU/RCU.md",
+                "file": "source/开发环境搭建/开发环境搭建.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/内核驱动/RCU/RCU.md"
+                "file": "source/开发环境搭建/开发环境搭建.md"
               }
             }
           },
@@ -196,8 +196,10 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
-    "source/内核驱动/RCU/中断.md",
+    "source/开发环境搭建/GitLab CE 部署.md",
+    "source/开发环境搭建/Repo.md",
     "source/内核驱动/RCU/RCU.md",
+    "source/内核驱动/RCU/中断.md",
     "source/内核驱动/RCU/内核线程.md",
     "source/内核驱动/RCU/函数查找.md",
     "pic/企业微信截图_17223240264127.png",
@@ -205,11 +207,9 @@
     "pic/企业微信截图_17222147705706.png",
     "pic/企业微信截图_17216097118996.png",
     "pic/Pasted image 20240805155932.png",
-    "source/开发环境搭建/Repo.md",
     "source/内核驱动/RCU",
     "source/开发环境搭建/Git.md",
     "source/开发环境搭建/开发环境搭建.md",
-    "source/开发环境搭建/GitLab CE 部署.md",
     "pic/Pasted image 20240802173635.png",
     "pic/Pasted image 20240802173548.png",
     "pic/Pasted image 20240802173535.png",

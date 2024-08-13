@@ -1,6 +1,10 @@
 {
   "recentFiles": [
     {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
     },
@@ -195,10 +199,6 @@
     {
       "basename": "DFT",
       "path": "source/内核驱动/11 多媒体/LCD/DFT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/08 通信接口/UART/命令集.md"
     }
   ],
   "omittedPaths": []

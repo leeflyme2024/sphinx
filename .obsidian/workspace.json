@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/Repo.md",
-                "mode": "preview",
+                "file": "source/开发环境搭建/AutoHotkey.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/Repo.md",
+                "file": "source/开发环境搭建/AutoHotkey.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/Repo.md",
+                "file": "source/开发环境搭建/AutoHotkey.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/Repo.md"
+                "file": "source/开发环境搭建/AutoHotkey.md"
               }
             }
           },
@@ -196,9 +196,10 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
+    "source/开发环境搭建/Repo.md",
+    "source/开发环境搭建/AutoHotkey.md",
     "source/开发环境搭建/开发环境搭建.md",
     "source/开发环境搭建/GitLab CE 部署.md",
-    "source/开发环境搭建/Repo.md",
     "source/内核驱动/RCU/RCU.md",
     "source/内核驱动/RCU/中断.md",
     "source/内核驱动/RCU/内核线程.md",
@@ -233,7 +234,6 @@
     "source/内核驱动/04 存储管理/FLASH/命令集.md",
     "source/内核驱动/04 存储管理/MMCSD/命令集.md",
     "source/内核驱动/08 通信接口/蓝牙/测试报告.md",
-    "source/内核驱动/08 通信接口/蓝牙/DFT.md",
     "source/内核驱动/11 多媒体/LCD",
     "source/内核驱动/04 存储管理/FLASH",
     "source/内核驱动/08 通信接口/UART",

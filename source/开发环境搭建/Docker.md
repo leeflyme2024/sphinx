@@ -1,6 +1,74 @@
 
 [Fetching Title#kxwe](https://linux.do/t/topic/150936)
 
+```bash
+docker images | grep ubuntu
+docker rmi -f b143410354a2
+docker load -i ubuntu_18.04.06.tar
+docker run -it ubuntu:18.04.06
+sudo apt update
+sudo apt-get install -y cmake
+dpkg-query -s cmake
+pip3 install -i https://pypi.tuna.tsinghua.edu.cn/simple cryptography
+python3 -c "import cryptography"
+pip3 show cryptography
+exit
+
+docker ps -a
+docker commit -m "add packages" -a "leefly" 95e6eaec7db9 ubuntu_zy:18.04.06
+docker save -o ubuntu_zy_18.04.06.tar ubuntu_zy:18.04.06
+docker images | grep ubuntu_zy
+docker rmi -f b143410354a2
+docker load -i ubuntu_zy_18.04.06.tar
+docker run -it ubuntu_zy:18.04.06
+dpkg-query -s cmake
+python3 -c "import cryptography"
+pip3 show cryptography
+curl -I https://signfw.zlg.cn/cgi-bin/ti-sign-apply.cgi
+curl -I https://signfw.zlgmcu.com/cgi-bin/ti-sign-apply.cgi
+ping signfw.zlg.cn
+ping signfw.zlgmcu.com
+exit
+```
+
+```bash
+#!/bin/bash
+
+# 检查docker命令是否存在
+if ! command -v docker &> /dev/null
+then
+    echo "Docker is not installed. Installing Docker..."
+
+    # 更新软件包索引
+    sudo apt-get update
+
+    # 安装所需的软件包
+    sudo apt-get install -y apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+
+    # 添加Docker的官方GPG密钥
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+
+    # 设置稳定版仓库
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+    # 再次更新软件包索引
+    sudo apt-get update
+
+    # 安装Docker Engine
+    sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+    # 验证Docker是否安装成功
+    if sudo docker run hello-world &> /dev/null
+    then
+        echo "Docker has been successfully installed and is running."
+    else
+        echo "Docker installation failed."
+    fi
+else
+    echo "Docker is already installed."
+fi
+```
+
 # 命令集
 
 ## 1. 基本镜像命令
@@ -39,6 +107,7 @@ docker save -o <文件名>.tar <镜像名>:<标签>
 - 将镜像保存到本地文件
 ```bash
 docker save -o redis-6-alpine.tar redis:6-alpine
+docker save -o ubuntu_18.04.06.tar ubuntu:18.04.06
 ```
 
 ### 加载镜像文件
@@ -49,6 +118,7 @@ docker load -i <文件名>.tar
 - 从本地文件加载镜像
 ```bash
 docker load -i redis-6-alpine.tar
+docker load -i ubuntu_18.04.06.tar
 ```
 
 ## 2. 基本容器命令
@@ -61,6 +131,7 @@ docker run [选项] <镜像名>:<标签>
 - 启动一个新的容器
 ```bash
 docker run -it ubuntu:latest
+docker run -it ubuntu:18.04.06
 ```
 常用选项：
 - `-d`：后台运行容器并返回容器ID。

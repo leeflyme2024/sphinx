@@ -1,20 +1,36 @@
 {
   "recentFiles": [
     {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "GitLab CE 部署",
+      "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
     },
     {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
     },
     {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
+      "basename": "Vim",
+      "path": "source/开发环境搭建/Vim.md"
+    },
+    {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
     },
     {
       "basename": "RCU",
@@ -45,10 +61,6 @@
       "path": "pic/Pasted image 20240805155932.png"
     },
     {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
-    },
-    {
       "basename": "Pasted image 20240802173548",
       "path": "pic/Pasted image 20240802173548.png"
     },
@@ -69,20 +81,8 @@
       "path": "source/开发环境搭建/Windows.md"
     },
     {
-      "basename": "Vim",
-      "path": "source/开发环境搭建/Vim.md"
-    },
-    {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
-    },
-    {
       "basename": "Pasted image 20240802151044",
       "path": "pic/Pasted image 20240802151044.png"
-    },
-    {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
     },
     {
       "basename": "Pasted image 20240802132132",

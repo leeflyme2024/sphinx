@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "Python",
+      "path": "source/开发环境搭建/Python.md"
+    },
+    {
+      "basename": "WSL",
+      "path": "source/开发环境搭建/WSL.md"
+    },
+    {
       "basename": "Docker",
       "path": "source/开发环境搭建/Docker.md"
     },
@@ -21,16 +29,8 @@
       "path": "source/开发环境搭建/知识库.md"
     },
     {
-      "basename": "Python",
-      "path": "source/开发环境搭建/Python.md"
-    },
-    {
       "basename": "Git",
       "path": "source/开发环境搭建/Git.md"
-    },
-    {
-      "basename": "WSL",
-      "path": "source/开发环境搭建/WSL.md"
     },
     {
       "basename": "AutoHotkey",

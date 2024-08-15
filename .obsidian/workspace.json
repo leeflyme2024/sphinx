@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/Git.md",
-                "mode": "preview",
+                "file": "source/开发环境搭建/Docker.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/Git.md",
+                "file": "source/开发环境搭建/Docker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/Git.md",
+                "file": "source/开发环境搭建/Docker.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/Git.md"
+                "file": "source/开发环境搭建/Docker.md"
               }
             }
           },
@@ -196,17 +196,21 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
-    "source/开发环境搭建/WSL.md",
     "source/开发环境搭建/开发环境搭建.md",
+    "pic/Docker — 从入门到实践（v1.1.0）.pdf",
+    "pic/Rockchip_User_Guide_SDK_Docker_CN.pdf",
+    "source/开发环境搭建/Docker.md",
+    "source/开发环境搭建/知识库.md",
+    "pic/Debian与Ubuntu编译环境配置说明.pdf",
+    "source/开发环境搭建/Python.md",
+    "source/开发环境搭建/Git.md",
+    "source/开发环境搭建/WSL.md",
     "source/开发环境搭建/AutoHotkey.md",
     "source/开发环境搭建/GitLab CE 部署.md",
     "source/开发环境搭建/Vim.md",
     "source/开发环境搭建/Windows.md",
     "source/开发环境搭建/Markdown.md",
     "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/知识库.md",
-    "source/开发环境搭建/Docker.md",
-    "source/开发环境搭建/Git.md",
     "source/内核驱动/RCU/RCU.md",
     "source/内核驱动/RCU/中断.md",
     "source/内核驱动/RCU/内核线程.md",
@@ -232,16 +236,11 @@
     "source/内核驱动/08 通信接口/WIFI/DFT.md",
     "source/内核驱动/09 工控接口/CAN/DFT.md",
     "source/内核驱动/09 工控接口/CAN/命令集.md",
-    "source/内核驱动/08 通信接口/I2C/命令集.md",
-    "source/内核驱动/04 存储管理/FLASH/命令集.md",
     "source/内核驱动/11 多媒体/LCD",
     "source/内核驱动/04 存储管理/FLASH",
     "source/内核驱动/08 通信接口/UART",
     "source/内核驱动/08 通信接口/SPI",
     "source/内核驱动/08 通信接口/I2C",
-    "source/内核驱动/10 高速接口/以太网",
-    "source/内核驱动/01 时钟/RTC",
-    "source/内核驱动/03 处理器",
     "未命名.canvas"
   ]
 }

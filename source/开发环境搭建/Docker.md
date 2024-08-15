@@ -15,6 +15,7 @@ pip3 show cryptography
 exit
 
 docker ps -a
+docker container prune
 docker commit -m "add packages" -a "leefly" 95e6eaec7db9 ubuntu_zy:18.04.06
 docker save -o ubuntu_zy_18.04.06.tar ubuntu_zy:18.04.06
 docker images | grep ubuntu_zy
@@ -660,6 +661,7 @@ docker-compose run webserver sh -c "nginx -t"
   ```
 
 # 应用
+
 ## Docker Desktop
 ![[img_v3_02d1_77940bf2-d0fa-48ba-b2b7-fdfb0795a33g.jpg]]
 
@@ -685,3 +687,410 @@ docker-compose run webserver sh -c "nginx -t"
 }
 ```
 
+
+## dockerfile
+
+![[Debian与Ubuntu编译环境配置说明.pdf]]
+
+![[Docker — 从入门到实践（v1.1.0）.pdf]]
+
+![[Rockchip_User_Guide_SDK_Docker_CN.pdf]]
+
+### 01-setup-env.sh
+```bash
+#!/bin/bash
+#
+# install and setup docker enviroment
+#
+# author:
+#    huaqiyan <huaqiyan@zlg.cn> 2022-07-28
+#
+
+# install docker packages
+DOCKER=`apt list --installed 2>/dev/null | grep -E "docker.io|docker-ce"`
+if [ -z $DOCKER ]; then
+    apt-get update
+    apt-get install -y docker.io
+fi
+
+# set run docker env for current user
+usermod -a -G docker $USER
+sed -i -e '/\%sudo/c %sudo  ALL=(ALL) NOPASSWD: ALL' /etc/sudoers
+
+# build debian/ubuntu docker images from docker-file
+mkdir ctx
+cd ctx
+docker build -f ../docker-file-buster.txt -t debian/arm-multicross:buster .
+docker build -f ../docker-file-focal.txt -t ubuntu/arm-multicross:20.04 .
+cd -
+
+exit 0
+```
+
+### docker-file-focal.txt
+```dockerfile
+FROM ubuntu:20.04 as ubuntu-base
+MAINTAINER huaqiyan <huaqiyan@zlg.cn>
+RUN \
+sed -i 's/archive.ubuntu.com/192.168.23.90/;s/security.ubuntu.com/192.168.23.90/' /etc/apt/sources.list && \
+DEBIAN_FRONTEND=noninteractive apt-get update -y && \
+DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
+DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    adduser \
+    apparmor \
+    apt-transport-https \
+    apt-utils \
+    apt \
+    autoconf \
+    autotools-dev \
+    base-files \
+    base-passwd \
+    bash-completion \
+    bash \
+    bc \
+    binfmt-support \
+    binutils \
+    bison \
+    bsdutils \
+    bzip2 \
+    ca-certificates \
+    cmake \
+    coreutils \
+    cpio \
+    crossbuild-essential-arm64 \
+    crossbuild-essential-armhf \
+    curl \
+    dash \
+    dbus \
+    debconf \
+    debianutils \
+    debootstrap \
+    device-tree-compiler \
+    dialog \
+    diffutils \
+    distro-info-data \
+    dpkg-dev \
+    dpkg \
+    e2fsprogs \
+    expect \
+    fakeroot \
+    fdisk \
+    file \
+    findutils \
+    flex \
+    gawk \
+    gcc-10-base \
+    gcc-8-aarch64-linux-gnu \
+    gcc-8-arm-linux-gnueabihf \
+    git-man \
+    git \
+    gpgv \
+    grep \
+    gzip \
+    hostname \
+    init-system-helpers \
+    intltool \
+    iproute2 \
+    jq \
+    kmod \
+    language-pack-zh-hans-base \
+    language-pack-zh-hans \
+    less \
+    lib32stdc++6 \
+    libacl1 \
+    libapt-pkg6.0 \
+    libattr1 \
+    libaudit-common \
+    libaudit1 \
+    libblkid1 \
+    libbz2-1.0 \
+    libc-bin \
+    libc-dev-bin \
+    libc6-arm64-cross \
+    libc6-armhf-cross \
+    libc6-dev-arm64-cross \
+    libc6-dev-armhf-cross \
+    libc6-dev \
+    libc6-i386 \
+    libc6 \
+    libcap-ng0 \
+    libcom-err2 \
+    libcrypt1 \
+    libcups2 \
+    libcurl3-gnutls \
+    libcurl4 \
+    libdb5.3 \
+    libdbus-1-3 \
+    libdebconfclient0 \
+    libdpkg-perl \
+    libext2fs2 \
+    libfdisk1 \
+    libffi7 \
+    libgcc-s1 \
+    libgcrypt20 \
+    libglade2-dev \
+    libglib2.0-dev \
+    libgmp10 \
+    libgnutls30 \
+    libgpg-error0 \
+    libhogweed5 \
+    libidn2-0 \
+    libkeyutils1 \
+    libkmod2 \
+    libldap-2.4-2 \
+    libldap-common \
+    liblz4-1 \
+    liblz4-tool \
+    liblzma5 \
+    libmount1 \
+    libncurses5-dev \
+    libncurses6 \
+    libncursesw6 \
+    libnettle7 \
+    libnss-systemd \
+    libp11-kit0 \
+    libpam-modules-bin \
+    libpam-modules \
+    libpam-runtime \
+    libpam-systemd \
+    libpam0g \
+    libpcre16-3 \
+    libpcre2-8-0 \
+    libpcre3-dev \
+    libpcre32-3 \
+    libpcre3 \
+    libpcrecpp0v5 \
+    libprocps8 \
+    libseccomp2 \
+    libselinux1 \
+    libsemanage-common \
+    libsemanage1 \
+    libsepol1-dev \
+    libsepol1 \
+    libsigsegv2 \
+    libsmartcols1 \
+    libsqlite3-0 \
+    libss2 \
+    libssl-dev \
+    libssl1.1 \
+    libstdc++6 \
+    libsystemd0 \
+    libtasn1-6 \
+    libtiff5 \
+    libtinfo6 \
+    libudev-dev \
+    libudev1 \
+    libunistring2 \
+    libusb-1.0-0-dev \
+    libuuid1 \
+    libxml2-dev \
+    libxml2-utils \
+    libxml2 \
+    libzstd1 \
+    linux-libc-dev-arm64-cross \
+    linux-libc-dev-armhf-cross \
+    linux-libc-dev \
+    live-build \
+    locales \
+    login \
+    logsave \
+    lsb-base \
+    m4 \
+    make \
+    man-db \
+    mawk \
+    meson \
+    mount \
+    mtools \
+    ncurses-base \
+    ncurses-bin \
+    net-tools \
+    networkd-dispatcher \
+    ninja-build \
+    nlohmann-json3-dev \
+    openssh-client \
+    openssh-server \
+    openssh-sftp-server \
+    openssl \
+    parted \
+    passwd \
+    patch \
+    perl-base \
+    perl \
+    procps \
+    python3 \
+    qemu-user-static \
+    rsync \
+    sed \
+    sensible-utils \
+    sudo \
+    systemd-sysv \
+    systemd-timesyncd \
+    systemd \
+    sysvinit-utils \
+    tar \
+    time \
+    tree \
+    tzdata \
+    u-boot-tools \
+    ubuntu-keyring \
+    udev \
+    unzip \
+    util-linux \
+    vim \
+    wget \
+    zfsutils-linux \
+    zip \
+    zlib1g && \
+echo 'export TERM=xterm-color' >> ${HOME}/.bashrc && \
+echo 'Asia/Shanghai' > /etc/timezone && \
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+sed -i -e '/^%sudo*/s/ALL$/NOPASSWD:ALL/' /etc/sudoers && \
+sed -i 's/^#\ zh_CN/zh_CN/' /etc/locale.gen && \
+locale-gen && \
+echo 'LANG="zh_CN.UTF-8"' > /etc/default/locale && \
+echo 'LANGUAGE="zh_CN:en"' >> /etc/default/locale && \
+rm -rf /var/cache/*  /var/lib/apt/list/*
+```
+
+### docker-file-buster.txt
+```dockerfile
+FROM debian:buster as init-systemd
+MAINTAINER huaqiyan <huaqiyan@zlg.cn>
+RUN \
+export TERM=xterm-color && \
+sed -i 's/deb.debian.org/192.168.23.90/;s/security.debian.org/192.168.23.90/;s/main$/main contrib non-free/' /etc/apt/sources.list && \
+DEBIAN_FRONTEND=noninteractive apt-get update -y && \
+DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y && \
+DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    apt-transport-https \
+    apt-utils \
+    autoconf \
+    autotools-dev \
+    base-files \
+    bash-completion \
+    bash \
+    bc \
+    binfmt-support \
+    binutils \
+    bison \
+    bzip2 \
+    ca-certificates \
+    cmake \
+    cpio \
+    crossbuild-essential-arm64 \
+    crossbuild-essential-armhf \
+    curl \
+    debootstrap \
+    device-tree-compiler \
+    dialog \
+    dirmngr \
+    dpkg-dev \
+    dpkg \
+    expect \
+    fakeroot \
+    file \
+    flex \
+    fonts-noto-cjk-extra \
+    gawk \
+    git \
+    gnupg-l10n \
+    gnupg-utils \
+    gnupg \
+    gpg-agent \
+    gpg-wks-client \
+    gpg-wks-server \
+    gpg \
+    gpgconf \
+    gpgsm \
+    gpgv \
+    gzip \
+    icu-devtools \
+    intltool \
+    iproute2 \
+    iputils-ping \
+    jq \
+    kmod \
+    less \
+    lib32stdc++6 \
+    libc-bin \
+    libc-dev-bin \
+    libc-l10n \
+    libc6-dev \
+    libc6-i386 \
+    libc6 \
+    libcups2 \
+    libdpkg-perl \
+    libexpat1-dev \
+    libexpat1 \
+    libglade2-dev \
+    libglib2.0-dev \
+    libgmp10 \
+    libicu-dev \
+    libicu63 \
+    libldap-2.4-2 \
+    libldap-common \
+    liblz4-tool \
+    liblzma5 \
+    libncurses5-dev \
+    libsasl2-2 \
+    libsasl2-modules-db \
+    libsasl2-modules \
+    libsigsegv2 \
+    libssl-dev \
+    libssl1.1 \
+    libtiff5 \
+    libudev-dev \
+    libusb-1.0-0-dev \
+    libxml2-dev \
+    libxml2-utils \
+    libxml2 \
+    linux-libc-dev \
+    live-build \
+    locales \
+    m4 \
+    make \
+    meson \
+    mtd-utils \
+    mtools \
+    ninja-build \
+    nlohmann-json-dev \
+    openssh-client \
+    openssh-server \
+    openssl \
+    parted \
+    patch \
+    perl \
+    publicsuffix \
+    python3 \
+    qemu-user-static \
+    rsync \
+    sed \
+    sudo \
+    systemd-sysv \
+    systemd \
+    tar \
+    time \
+    tree \
+    tzdata \
+    u-boot-tools \
+    unzip \
+    vim-common \
+    vim-runtime \
+    vim \
+    wget \
+    xxd \
+    xz-utils \
+    zip \
+    zlib1g-dev \
+    zlib1g && \
+echo "export TERM=xterm-color" >> ${HOME}/.bashrc && \
+echo 'Asia/Shanghai' > /etc/timezone && \
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+sed -i -e '/^%sudo*/s/ALL$/NOPASSWD:ALL/' /etc/sudoers && \
+sed -i 's/^#\ zh_CN/zh_CN/' /etc/locale.gen && \
+locale-gen && \
+echo 'LANG=zh_CN.UTF-8' > /etc/default/locale && \
+echo 'LANGUAGE=zh_CN:en' >> /etc/default/locale && \
+rm -rf /var/cache/*  /var/lib/apt/list/*
+```

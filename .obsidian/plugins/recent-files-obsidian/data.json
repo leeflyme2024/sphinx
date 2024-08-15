@@ -1,16 +1,36 @@
 {
   "recentFiles": [
     {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "Docker — 从入门到实践（v1.1.0）",
+      "path": "pic/Docker — 从入门到实践（v1.1.0）.pdf"
+    },
+    {
+      "basename": "Rockchip_User_Guide_SDK_Docker_CN",
+      "path": "pic/Rockchip_User_Guide_SDK_Docker_CN.pdf"
+    },
+    {
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
+    },
+    {
+      "basename": "Python",
+      "path": "source/开发环境搭建/Python.md"
+    },
+    {
       "basename": "Git",
       "path": "source/开发环境搭建/Git.md"
     },
     {
       "basename": "WSL",
       "path": "source/开发环境搭建/WSL.md"
-    },
-    {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
     },
     {
       "basename": "AutoHotkey",
@@ -35,14 +55,6 @@
     {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
-    },
-    {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
-    },
-    {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
     },
     {
       "basename": "RCU",
@@ -187,18 +199,6 @@
     {
       "basename": "DFT",
       "path": "source/内核驱动/01 时钟/RTC/DFT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/10 高速接口/USB/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/10 高速接口/以太网/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/LCD/命令集.md"
     }
   ],
   "omittedPaths": []

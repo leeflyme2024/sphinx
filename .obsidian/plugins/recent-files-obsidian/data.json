@@ -5,8 +5,32 @@
       "path": "source/开发环境搭建/Git.md"
     },
     {
+      "basename": "WSL",
+      "path": "source/开发环境搭建/WSL.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
       "basename": "GitLab CE 部署",
       "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
+      "basename": "Vim",
+      "path": "source/开发环境搭建/Vim.md"
+    },
+    {
+      "basename": "Windows",
+      "path": "source/开发环境搭建/Windows.md"
+    },
+    {
+      "basename": "Markdown",
+      "path": "source/开发环境搭建/Markdown.md"
     },
     {
       "basename": "Repo",
@@ -17,20 +41,8 @@
       "path": "source/开发环境搭建/知识库.md"
     },
     {
-      "basename": "Vim",
-      "path": "source/开发环境搭建/Vim.md"
-    },
-    {
       "basename": "Docker",
       "path": "source/开发环境搭建/Docker.md"
-    },
-    {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
-    },
-    {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
     },
     {
       "basename": "RCU",
@@ -75,10 +87,6 @@
     {
       "basename": "Pasted image 20240802170846",
       "path": "pic/Pasted image 20240802170846.png"
-    },
-    {
-      "basename": "Windows",
-      "path": "source/开发环境搭建/Windows.md"
     },
     {
       "basename": "Pasted image 20240802151044",
@@ -191,14 +199,6 @@
     {
       "basename": "命令集",
       "path": "source/内核驱动/11 多媒体/LCD/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/11 多媒体/LCD/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/LCD/DFT.md"
     }
   ],
   "omittedPaths": []

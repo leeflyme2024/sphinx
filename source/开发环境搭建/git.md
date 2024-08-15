@@ -905,7 +905,21 @@ git am --abort
 # 仓库清理
 ## git gc
 
-`git gc --prune=now --aggressive` 是 Git 中用于清理和优化仓库的命令。以下是该命令的详细说明：
+```bash
+git gc --prune=now --aggressive
+```
+```bash
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/release# git gc --prune=now --aggressive
+Enumerating objects: 3271, done.
+Counting objects: 100% (3271/3271), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (2966/2966), done.
+Writing objects: 100% (3271/3271), done.
+Total 3271 (delta 1047), reused 2104 (delta 0)
+```
+
+
+ Git 中用于清理和优化仓库的命令。
 
 ### 1. `git gc`
 
@@ -931,18 +945,55 @@ git am --abort
 [【GITEE】码云上传代码文件出现上传错误的问题\_push rejected for repository size exceeds limit.-CSDN博客](https://blog.csdn.net/Ankie_/article/details/129437765)
 
 
-#### 执行示例
-
-```bash
-git gc --prune=now --aggressive
-```
-
 ### 注意事项
 
 1. **备份仓库**：在执行这个命令之前，建议备份你的仓库，因为垃圾回收是不可逆的操作。
 2. **等待完成**：这个命令可能会花费一些时间，尤其是在大型仓库中。
 3. **适当使用**：一般情况下，默认的 `git gc` 已经足够用。如果你没有特定的优化需求，不一定需要使用 `--aggressive` 选项。
-4. **查看大小**：
+
+### 常见问题
+```bash
+root@DESKTOP-GC4LAR7:# git gc --prune=now --aggressive 
+Enumerating objects: 3271, done. Counting objects: 100% (3271/3271), done. 
+Delta compression using up to 16 threads 
+error: pack-objects died of signal 9) 
+fatal: failed to run repack
+```
+
+`git gc --prune=now --aggressive` 命令失败并出现 `error: pack-objects died of signal 9` 错误，这通常是由于内存不足导致的。`git gc` 在执行过程中会占用大量内存，特别是在处理大仓库时。
+可在 WSL（Windows Subsystem for Linux）中的 Ubuntu 增加内存大小。
+
+## git reflog
+```bash
+git reflog expire --expire=now --all
+```
+
+`git reflog expire --expire=now --all` 是一个用于清理 Git 仓库中的引用日志 (reflog) 的命令。以下是对该命令的详细解释：
+
+### 1. `git reflog`
+Git 的 `reflog` 记录了对分支引用所做的所有修改。例如，当你执行 `git commit`、`git rebase` 或 `git reset` 等操作时，Git 会在 `reflog` 中记录这些操作。`reflog` 是一个本地的日志，只有在你的本地仓库中存在，不会被推送到远程仓库。
+
+### 2. `expire`
+`git reflog expire` 命令用于清理和过期 `reflog` 中的条目。这个命令会删除指定时间之前的 `reflog` 条目，释放一些磁盘空间。
+
+### 3. `--expire=now`
+`--expire=now` 选项告诉 Git 立即过期所有 `reflog` 条目，而不是保留指定时间段内的条目。这意味着所有 `reflog` 条目将被清理掉。
+
+### 4. `--all`
+`--all` 选项告诉 Git 清理所有引用（branches 和 tags）的 `reflog`，而不仅仅是当前分支的 `reflog`。
+
+### 组合起来
+`git reflog expire --expire=now --all` 命令会立即清理掉所有分支和标签的 `reflog` 条目。这在你进行垃圾回收和清理仓库时非常有用，因为 `reflog` 条目可以引用已经被删除的对象，导致这些对象无法被 `git gc` 清理掉。
+
+### 进一步的解释
+- `git reflog expire --expire=now --all` 只是删除 `reflog` 条目，但不会删除实际的 Git 对象。
+- 要删除不再被任何引用引用的 Git 对象，需要运行 `git gc --prune=now --aggressive`。
+- 强制推送是为了确保远程仓库也同步更新，删除不需要的历史记录。
+
+## git count-objects
+```bash
+git count-objects -vH
+```
 ```bash
 # git count-objects -vH
 count: 0
@@ -955,10 +1006,55 @@ garbage: 0
 size-garbage: 0 bytes
 ```
 
+## git rev-list
 ```bash
-# git rev-list --objects --all | wc -l
-678
+git rev-list --objects --all | wc -l
 ```
+
+## 示例脚本
+
+```bash
+# Step 1: 删除不需要的文件
+git rm --cached <file>
+
+# Step 2: 移除大文件的历史记录
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch <file>' --prune-empty --tag-name-filter cat -- --all
+
+# Step 3: 清理引用日志
+git reflog expire --expire=now --all
+
+# Step 4: 进行垃圾回收
+git gc --prune=now --aggressive
+
+# Step 5: 强制推送清理后的仓库
+git push origin --force --all
+git push origin --force --tags
+```
+
+```bash
+# Step 1: 找出并删除不必要的大文件
+largest_files=$(git rev-list --objects --all | sort -k 2 | while read -r sha path; do
+    size=$(git cat-file -s $sha)
+    echo $size $path
+done | sort -n -r | head -20)
+
+echo "Largest files in the repository:"
+echo "$largest_files"
+
+# Step 2: 移除大文件的历史记录 (使用 BFG Repo-Cleaner)
+bfg --delete-files "<filename_pattern>"
+
+# Step 3: 清理 Git 仓库
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+
+# Step 4: 强制推送清理后的仓库
+git push origin --force --all
+git push origin --force --tags
+
+```
+
+
 
 # show
 
@@ -1472,6 +1568,27 @@ git rebase -i commit123
 ```
 
 在编辑器中，找到 `commit456` 的行，并将 `pick` 改为 `drop` 或者删除该行。
+
+# rm
+Git 追踪文件的行为与 `.gitignore` 文件有关，但 `.gitignore` 文件只能阻止未被追踪的文件被添加到版本控制中。对于已经被追踪的文件（即已经被添加到 Git 仓库中的文件），即使它们匹配 `.gitignore` 中的模式，Git 也会继续追踪它们的变化。
+
+在你的情况下，`release/docker/docker_compile.sh` 已经被添加到 Git 仓库中，因此即使你在 `.gitignore` 文件中添加了这个文件，它仍然会被 Git 追踪到。
+
+要使 Git 停止追踪这个文件，你需要执行以下步骤：
+
+1. **从 Git 追踪中移除文件**：
+   ```bash
+   git rm --cached release/docker/docker_compile.sh
+   ```
+
+2. **提交更改**：
+   ```bash
+   git commit -m "Stop tracking release/docker/docker_compile.sh"
+   ```
+
+这将从 Git 的追踪列表中移除文件，但不会删除工作目录中的文件。
+
+执行以上步骤后，Git 将停止追踪 `release/docker/docker_compile.sh`，并且由于 `.gitignore` 文件的配置，它将不再被添加到 Git 仓库中。
 
 # Submodule 
 

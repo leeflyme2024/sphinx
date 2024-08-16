@@ -51,7 +51,49 @@ DISKPART> list volume
 根据 diskpart 返回的错误信息，`虚拟磁盘服务错误: 卷大小太大`，这是由于 FAT32 文件系统无法处理超过` 32GB` 的卷大小。虽然 FAT32 实际上可以支持更大的卷，但 Windows 内置工具在格式化超过 32GB 的卷时存在限制。
 
 # 解决方法
-在Linux中进行格式化
+在Linux中进行格式化，但是还是无法从TF卡启动
+```bash
+U-Boot SPL 2021.01-00001-ga347ec164e-dirty (Aug 15 2024 - 17:50:42 +0800)
+SYSFW ABI: 3.1 (firmware rev 0x0008 '8.6.4--v08.06.04 (Chill Capybar')
+SPL initial stack usage: 13424 bytes
+WDT:   Not found!
+Trying to boot from MMC2
+Authentication passed
+
+Authentication passed
+
+Authentication passed
+
+Authentication passed
+
+Authentication passed
+
+Starting ATF on ARM64 core...
+
+NOTICE:  BL31: v2.8(release):v2.8-226-g2fcd408bb
+NOTICE:  BL31: Built : 17:50:08, Aug 15 2024
+I/TC:
+I/TC: OP-TEE version: Unknown_3.20 (gcc version 9.2.1 20191025 (GNU Toolchain for the A-profile Architecture 9.2-2019.12 (arm-9.10))) #1 Thu Aug 15 09:50:19 UTC 2024 aarch64
+I/TC: WARNING: This OP-TEE configuration might be insecure!
+I/TC: WARNING: Please check https://optee.readthedocs.io/en/latest/architecture/porting_guidelines.html
+I/TC: Primary CPU initializing
+I/TC: SYSFW ABI: 3.1 (firmware rev 0x0008 '8.6.4--v08.06.04 (Chill Capybar')
+I/TC: HUK Initialized
+I/TC: Activated SA2UL device
+I/TC: Enabled firewalls for SA2UL TRNG device
+I/TC: SA2UL TRNG initialized
+I/TC: SA2UL Drivers initialized
+I/TC: Primary CPU switching to normal world boot
+
+U-Boot SPL 2021.01-00001-ga347ec164e-dirty (Aug 15 2024 - 17:50:25 +0800)
+SYSFW ABI: 3.1 (firmware rev 0x0008 '8.6.4--v08.06.04 (Chill Capybar')
+WDT:   Not found!
+Trying to boot from MMC2
+Error: FAT cluster size too big (cs=32768, max=16384)
+spl_load_image_fat: error reading image u-boot.img, err - -6
+SPL: failed to boot from all boot devices
+### ERROR ### Please RESET the board ###
+```
 ## 命令
 ### fdisk
 ```bash

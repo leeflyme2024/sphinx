@@ -94,6 +94,11 @@ spl_load_image_fat: error reading image u-boot.img, err - -6
 SPL: failed to boot from all boot devices
 ### ERROR ### Please RESET the board ###
 ```
+
+上述也是单个FAT32的分区大于`32GB`导致的，如果想用`64GB`的TF卡启动，可以使用`/home/leefly/am62x/debug/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/bin/create-sdcard.sh`
+脚本，将`64GB`的TF卡分为两个分区，一个是`fat32`分区，大小为`8GB`，另一个为`ext4`分区，占据剩余的空间。
+
+
 ## 命令
 ### fdisk
 ```bash

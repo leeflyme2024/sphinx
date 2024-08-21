@@ -30,57 +30,67 @@ python3 -c "import cryptography"
 which python python2 python3
 ```
 
+# Selenium
+
+
 # 案例
 ## 自动登录
 ```python
 pip install selenium webdriver-manager -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 ```python
+#!/usr/bin/env python3
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
 
-# Setup Chrome options
+# 设置 Chrome 浏览器选项
 chrome_options = Options()
-chrome_options.add_argument("--disable-extensions")
-chrome_options.add_argument("--disable-popup-blocking")
-chrome_options.add_argument("--profile-directory=Default")
-chrome_options.add_argument("--ignore-certificate-errors")
-chrome_options.add_argument("--disable-plugins-discovery")
-chrome_options.add_argument("--incognito")
-chrome_options.add_argument("user_agent=DN")
+chrome_options.add_argument("--disable-extensions")  # 禁用扩展
+chrome_options.add_argument("--disable-popup-blocking")  # 禁用弹窗拦截
+chrome_options.add_argument("--profile-directory=Default")  # 使用默认的用户配置文件目录
+chrome_options.add_argument("--ignore-certificate-errors")  # 忽略证书错误
+chrome_options.add_argument("--disable-plugins-discovery")  # 禁用插件发现
+chrome_options.add_argument("--incognito")  # 以无痕模式启动
+chrome_options.add_argument("user_agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3")  # 设置用户代理
 
-# Path to your ChromeDriver
-chromedriver_path = '/path/to/chromedriver'  # Update this path
+# 指定 ChromeDriver 的路径
+chromedriver_path = r'D:\downloads\chromedriver-win64\chromedriver-win64\chromedriver.exe'
 
-# Setup Chrome driver
+# 设置 ChromeDriver 服务
 service = Service(chromedriver_path)
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
-# Open the webpage
-driver.get("https://hr.zlgmcu.com/hrself/index.html#/home")
+# 打开网页
+driver.get("https://gitee.com/login") 
 
-# Locate the username and password fields
-username_field = driver.find_element(By.XPATH, '//*[@id="app"]/div/div[2]/div/form/div[1]/div/div/input')
-password_field = driver.find_element(By.XPATH, '//*[@id="app"]/div/div[2]/div/form/div[2]/div/div/input')
+# 显式等待，直到页面元素加载完成
+wait = WebDriverWait(driver, 10)
 
-# Enter your login credentials
-username_field.send_keys('liweiyu')
-password_field.send_keys('your_password')  # Replace 'your_password' with the actual password
+# 使用正确的 XPath 定位用户名和密码输入框
+username_field = wait.until(EC.presence_of_element_located((By.XPATH, '//input[@placeholder="手机／邮箱／个人空间地址"]')))
+password_field = wait.until(EC.presence_of_element_located((By.XPATH, '//input[@placeholder="请输入密码"]')))
 
-# Locate the login button and click it
-login_button = driver.find_element(By.XPATH, '//*[@id="app"]/div/div[2]/div/form/button')
+# 输入登录凭据
+username_field.send_keys('15876519422')
+password_field.send_keys('leweyu2023.')  # 将 'your_password' 替换为实际密码
+
+# 定位登录按钮并点击
+login_button = wait.until(EC.element_to_be_clickable((By.XPATH, '//input[@value="登 录"]')))
 login_button.click()
 
-# Wait for a few seconds to ensure the page loads
+# 等待几秒钟以确保页面加载
 time.sleep(5)
 
-# You can now add more automation steps if needed
+# 如有需要，可以添加更多的自动化步骤
 
-# Close the browser
+# 关闭浏览器
 driver.quit()
 ```
 

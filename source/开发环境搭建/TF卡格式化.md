@@ -1,4 +1,4 @@
-# 问题
+# 问题1
 格式化过程中出现问题导致驱动器变为 `RAW`：
 ```bash
 Microsoft DiskPart 版本 10.0.19041.3636
@@ -372,3 +372,7 @@ Disk identifier: 0x51467675
 Device         Boot Start       End   Sectors  Size Id Type
 /dev/mmcblk1p1 *     2048 124669951 124667904 59.4G  c W95 FAT32 (LBA)
 ```
+
+# 问题2
+
+![[Pasted image 20240822193324.png]]

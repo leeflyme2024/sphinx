@@ -1,16 +1,64 @@
 {
   "recentFiles": [
     {
+      "basename": "TF卡格式化",
+      "path": "source/开发环境搭建/TF卡格式化.md"
+    },
+    {
+      "basename": "GitLab CE 部署",
+      "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
+      "basename": "vue",
+      "path": "source/开发环境搭建/vue.md"
+    },
+    {
+      "basename": "Electron",
+      "path": "source/开发环境搭建/Electron.md"
+    },
+    {
+      "basename": "conda",
+      "path": "source/开发环境搭建/conda.md"
+    },
+    {
+      "basename": "Markdown",
+      "path": "source/开发环境搭建/Markdown.md"
+    },
+    {
+      "basename": "Windows",
+      "path": "source/开发环境搭建/Windows.md"
+    },
+    {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
       "basename": "Python",
       "path": "source/开发环境搭建/Python.md"
     },
     {
-      "basename": "WSL",
-      "path": "source/开发环境搭建/WSL.md"
-    },
-    {
       "basename": "Docker",
       "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "Vim",
+      "path": "source/开发环境搭建/Vim.md"
+    },
+    {
+      "basename": "WSL",
+      "path": "source/开发环境搭建/WSL.md"
     },
     {
       "basename": "开发环境搭建",
@@ -23,38 +71,6 @@
     {
       "basename": "Rockchip_User_Guide_SDK_Docker_CN",
       "path": "pic/Rockchip_User_Guide_SDK_Docker_CN.pdf"
-    },
-    {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
-    },
-    {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
-    },
-    {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
-    },
-    {
-      "basename": "Vim",
-      "path": "source/开发环境搭建/Vim.md"
-    },
-    {
-      "basename": "Windows",
-      "path": "source/开发环境搭建/Windows.md"
-    },
-    {
-      "basename": "Markdown",
-      "path": "source/开发环境搭建/Markdown.md"
-    },
-    {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
     },
     {
       "basename": "RCU",
@@ -183,22 +199,6 @@
     {
       "basename": "DFT",
       "path": "source/内核驱动/08 通信接口/蓝牙/DFT.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/04 存储管理/MMCSD/DFT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/01 时钟/RTC/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/01 时钟/RTC/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/01 时钟/RTC/DFT.md"
     }
   ],
   "omittedPaths": []

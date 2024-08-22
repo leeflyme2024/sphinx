@@ -740,6 +740,9 @@ cnpm list -g
 2. 按照提示输入项目名称和描述等信息
 3. 等待项目创建完成后，进入项目目录
 
+[GitHub - electron/electron-quick-start: Clone to try a simple Electron app](https://github.com/electron/electron-quick-start)
+
+
 # **步骤 4：安装 Vue3 和 Element Plus**
 
 1. 在命令行工具中输入 `npm install vue@next` 来安装 Vue3

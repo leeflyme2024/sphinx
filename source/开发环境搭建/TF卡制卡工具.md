@@ -1,4 +1,57 @@
-# 问题1
+# 命令
+## 分区格式化
+在cmd里面执行 `diskpart`，在出现的窗口中输入下面命令
+```bash
+select disk 1
+clean
+create partition primary size=16384
+select partition 1
+active
+list disk
+list volume
+list partition
+
+select disk 1
+select partition 1
+format fs=fat32 quick label=M62xx-Boot
+list disk
+list volume
+list partition
+
+
+select disk 1
+select partition 1
+set id=0C
+select partition 1
+active
+list disk
+list volume
+list partition
+
+select disk 1
+create partition primary
+select partition 2
+format fs=exfat quick label=M62xx-Root
+assign letter=M
+list disk
+list volume
+list partition
+```
+
+## 镜像拷贝
+```bash
+C:\Windows\system32\cmd.exe /c "robocopy "C:\Users\leefly\Desktop\镜像" "F:" /E /ETA /BYTES"
+```
+
+
+# exe生成
+
+![[Pasted image 20240823101445.png]]
+
+![[Pasted image 20240823101520.png]]
+
+# 问题汇总
+##  问题1
 格式化过程中出现问题导致驱动器变为 `RAW`：
 ```bash
 Microsoft DiskPart 版本 10.0.19041.3636
@@ -50,7 +103,7 @@ DISKPART> list volume
 
 根据 diskpart 返回的错误信息，`虚拟磁盘服务错误: 卷大小太大`，这是由于 FAT32 文件系统无法处理超过` 32GB` 的卷大小。虽然 FAT32 实际上可以支持更大的卷，但 Windows 内置工具在格式化超过 32GB 的卷时存在限制。
 
-# 解决方法
+###  解决方法
 在Linux中进行格式化，但是还是无法从TF卡启动
 ```bash
 U-Boot SPL 2021.01-00001-ga347ec164e-dirty (Aug 15 2024 - 17:50:42 +0800)
@@ -99,8 +152,8 @@ SPL: failed to boot from all boot devices
 脚本，将`64GB`的TF卡分为两个分区，一个是`fat32`分区，大小为`8GB`，另一个为`ext4`分区，占据剩余的空间。
 
 
-## 命令
-### fdisk
+###  命令
+####  fdisk
 ```bash
 root@AM62x:~# fdisk /dev/mmcblk1
 
@@ -147,7 +200,7 @@ Help:
    o   create a new empty DOS partition table
    s   create a new empty Sun partition table
 ```
-### 格式化命令
+#### 格式化命令
 ```bash
 umount /run/media/mmcblk1p1
 dd if=/dev/zero of=/dev/mmcblk1p1 bs=1024 count=1024
@@ -185,7 +238,7 @@ Device         Boot Start       End   Sectors  Size Id Type
 
 检查`/dev/mmcblk1p1 *`这里面的`*`号是否存在，如果存在，则表明当前分区为启动分区
 
-## 日志
+### 日志
 ```bash
 root@AM62x:~# df
 Filesystem     1K-blocks   Used Available Use% Mounted on
@@ -373,6 +426,20 @@ Device         Boot Start       End   Sectors  Size Id Type
 /dev/mmcblk1p1 *     2048 124669951 124667904 59.4G  c W95 FAT32 (LBA)
 ```
 
-# 问题2
+## 问题2
 
 ![[Pasted image 20240822193324.png]]
+
+![[Pasted image 20240823100718.png]]
+
+## 问题3
+
+遗留问题：
+![[Pasted image 20240823100822.png]]
+![[Pasted image 20240823100752.png]]
+
+不影响使用，一秒左右自动消失
+
+偶尔弹出如下窗口
+
+![[Pasted image 20240823101010.png]]

@@ -1,44 +1,44 @@
 {
   "recentFiles": [
     {
-      "basename": "TF卡格式化",
-      "path": "source/开发环境搭建/TF卡格式化.md"
-    },
-    {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
-    },
-    {
       "basename": "vue",
       "path": "source/开发环境搭建/vue.md"
-    },
-    {
-      "basename": "Electron",
-      "path": "source/开发环境搭建/Electron.md"
     },
     {
       "basename": "conda",
       "path": "source/开发环境搭建/conda.md"
     },
     {
-      "basename": "Markdown",
-      "path": "source/开发环境搭建/Markdown.md"
-    },
-    {
-      "basename": "Windows",
-      "path": "source/开发环境搭建/Windows.md"
-    },
-    {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
+      "basename": "TF卡制卡工具",
+      "path": "source/开发环境搭建/TF卡制卡工具.md"
     },
     {
       "basename": "Python",
       "path": "source/开发环境搭建/Python.md"
     },
     {
+      "basename": "Electron",
+      "path": "source/开发环境搭建/Electron.md"
+    },
+    {
+      "basename": "GitLab CE 部署",
+      "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
       "basename": "Docker",
       "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "Windows",
+      "path": "source/开发环境搭建/Windows.md"
+    },
+    {
+      "basename": "Markdown",
+      "path": "source/开发环境搭建/Markdown.md"
+    },
+    {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
     },
     {
       "basename": "Repo",

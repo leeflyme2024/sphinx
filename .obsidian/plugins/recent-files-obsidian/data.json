@@ -1,6 +1,14 @@
 {
   "recentFiles": [
     {
+      "basename": "efuse烧写工具",
+      "path": "source/开发环境搭建/efuse烧写工具.md"
+    },
+    {
+      "basename": "Pasted image 20240823132436",
+      "path": "pic/Pasted image 20240823132436.png"
+    },
+    {
       "basename": "vue",
       "path": "source/开发环境搭建/vue.md"
     },
@@ -191,14 +199,6 @@
     {
       "basename": "命令集",
       "path": "source/内核驱动/04 存储管理/MMCSD/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/08 通信接口/蓝牙/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/08 通信接口/蓝牙/DFT.md"
     }
   ],
   "omittedPaths": []

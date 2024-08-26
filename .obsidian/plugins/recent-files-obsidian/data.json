@@ -1,6 +1,50 @@
 {
   "recentFiles": [
     {
+      "basename": "element-plus",
+      "path": "source/开发环境搭建/前端/element-plus.md"
+    },
+    {
+      "basename": "vue.js",
+      "path": "source/开发环境搭建/前端/vue.js.md"
+    },
+    {
+      "basename": "html",
+      "path": "source/开发环境搭建/前端/html.md"
+    },
+    {
+      "basename": "JavaScript",
+      "path": "source/开发环境搭建/前端/JavaScript.md"
+    },
+    {
+      "basename": "css",
+      "path": "source/开发环境搭建/前端/css.md"
+    },
+    {
+      "basename": "webtest",
+      "path": "source/开发环境搭建/webtest.md"
+    },
+    {
+      "basename": "Node.js",
+      "path": "source/开发环境搭建/前端/Node.js.md"
+    },
+    {
+      "basename": "Electron",
+      "path": "source/开发环境搭建/前端/Electron.md"
+    },
+    {
+      "basename": "conda",
+      "path": "source/开发环境搭建/前端/conda.md"
+    },
+    {
+      "basename": "vue",
+      "path": "source/开发环境搭建/前端/vue.md"
+    },
+    {
+      "basename": "Python",
+      "path": "source/开发环境搭建/Python.md"
+    },
+    {
       "basename": "efuse烧写工具",
       "path": "source/开发环境搭建/efuse烧写工具.md"
     },
@@ -9,24 +53,8 @@
       "path": "pic/Pasted image 20240823132436.png"
     },
     {
-      "basename": "vue",
-      "path": "source/开发环境搭建/vue.md"
-    },
-    {
-      "basename": "conda",
-      "path": "source/开发环境搭建/conda.md"
-    },
-    {
       "basename": "TF卡制卡工具",
       "path": "source/开发环境搭建/TF卡制卡工具.md"
-    },
-    {
-      "basename": "Python",
-      "path": "source/开发环境搭建/Python.md"
-    },
-    {
-      "basename": "Electron",
-      "path": "source/开发环境搭建/Electron.md"
     },
     {
       "basename": "GitLab CE 部署",
@@ -171,34 +199,6 @@
     {
       "basename": "命令集",
       "path": "source/内核驱动/08 通信接口/WIFI/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/08 通信接口/蓝牙/命令集.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/08 通信接口/WIFI/DFT.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/09 工控接口/CAN/DFT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/09 工控接口/CAN/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/08 通信接口/I2C/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/04 存储管理/FLASH/命令集.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/04 存储管理/MMCSD/命令集.md"
     }
   ],
   "omittedPaths": []

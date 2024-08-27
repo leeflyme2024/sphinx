@@ -94,6 +94,7 @@ cnpm -v
 cnpm install electron -g --unsafe-perm
 electron -v
 cnpm info electron
+
 cnpm list -g
 
 npm view electron

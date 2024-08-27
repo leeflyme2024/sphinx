@@ -1,8 +1,68 @@
 {
   "recentFiles": [
     {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "GitLab CE 部署",
+      "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
+      "basename": "WSL",
+      "path": "source/开发环境搭建/WSL.md"
+    },
+    {
+      "basename": "Python",
+      "path": "source/开发环境搭建/Python.md"
+    },
+    {
+      "basename": "TF卡制卡工具",
+      "path": "source/开发环境搭建/TF卡制卡工具.md"
+    },
+    {
+      "basename": "efuse烧写工具",
+      "path": "source/开发环境搭建/efuse烧写工具.md"
+    },
+    {
+      "basename": "webtest",
+      "path": "source/开发环境搭建/webtest.md"
+    },
+    {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "Electron",
+      "path": "source/开发环境搭建/前端/Electron.md"
+    },
+    {
+      "basename": "vue",
+      "path": "source/开发环境搭建/前端/vue.md"
+    },
+    {
+      "basename": "Node.js",
+      "path": "source/开发环境搭建/前端/Node.js.md"
+    },
+    {
       "basename": "element-plus",
       "path": "source/开发环境搭建/前端/element-plus.md"
+    },
+    {
+      "basename": "1688",
+      "path": "source/开发环境搭建/前端/1688.md"
     },
     {
       "basename": "vue.js",
@@ -21,48 +81,12 @@
       "path": "source/开发环境搭建/前端/css.md"
     },
     {
-      "basename": "webtest",
-      "path": "source/开发环境搭建/webtest.md"
-    },
-    {
-      "basename": "Node.js",
-      "path": "source/开发环境搭建/前端/Node.js.md"
-    },
-    {
-      "basename": "Electron",
-      "path": "source/开发环境搭建/前端/Electron.md"
-    },
-    {
       "basename": "conda",
       "path": "source/开发环境搭建/前端/conda.md"
     },
     {
-      "basename": "vue",
-      "path": "source/开发环境搭建/前端/vue.md"
-    },
-    {
-      "basename": "Python",
-      "path": "source/开发环境搭建/Python.md"
-    },
-    {
-      "basename": "efuse烧写工具",
-      "path": "source/开发环境搭建/efuse烧写工具.md"
-    },
-    {
       "basename": "Pasted image 20240823132436",
       "path": "pic/Pasted image 20240823132436.png"
-    },
-    {
-      "basename": "TF卡制卡工具",
-      "path": "source/开发环境搭建/TF卡制卡工具.md"
-    },
-    {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
-    },
-    {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
     },
     {
       "basename": "Windows",
@@ -73,32 +97,12 @@
       "path": "source/开发环境搭建/Markdown.md"
     },
     {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
-    },
-    {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
     },
     {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
-    },
-    {
       "basename": "Vim",
       "path": "source/开发环境搭建/Vim.md"
-    },
-    {
-      "basename": "WSL",
-      "path": "source/开发环境搭建/WSL.md"
-    },
-    {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
     },
     {
       "basename": "Docker — 从入门到实践（v1.1.0）",
@@ -195,10 +199,6 @@
     {
       "basename": "04 Systemd",
       "path": "source/文件系统/04 Systemd.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/08 通信接口/WIFI/命令集.md"
     }
   ],
   "omittedPaths": []

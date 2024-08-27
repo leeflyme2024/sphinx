@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/前端/element-plus.md",
+                "file": "source/开发环境搭建/开发环境搭建.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/前端/element-plus.md",
+                "file": "source/开发环境搭建/开发环境搭建.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/前端/element-plus.md",
+                "file": "source/开发环境搭建/开发环境搭建.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/前端/element-plus.md"
+                "file": "source/开发环境搭建/开发环境搭建.md"
               }
             }
           },
@@ -196,47 +196,47 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
-    "source/开发环境搭建/前端/vue.js.md",
+    "source/开发环境搭建/知识库.md",
+    "source/开发环境搭建/Git.md",
+    "source/开发环境搭建/GitLab CE 部署.md",
+    "source/开发环境搭建/AutoHotkey.md",
+    "source/开发环境搭建/WSL.md",
+    "source/开发环境搭建/Python.md",
+    "source/开发环境搭建/TF卡制卡工具.md",
+    "source/开发环境搭建/efuse烧写工具.md",
+    "source/开发环境搭建/webtest.md",
+    "source/开发环境搭建/开发环境搭建.md",
+    "source/开发环境搭建/Docker.md",
+    "source/开发环境搭建/前端/Electron.md",
+    "source/开发环境搭建/前端/vue.md",
+    "source/开发环境搭建/前端/Node.js.md",
     "source/开发环境搭建/前端/element-plus.md",
+    "source/开发环境搭建/前端/1688.md",
+    "source/开发环境搭建/前端/vue.js.md",
     "source/开发环境搭建/前端/html.md",
     "source/开发环境搭建/前端/JavaScript.md",
     "source/开发环境搭建/前端/css.md",
     "source/开发环境搭建/前端",
-    "source/开发环境搭建/webtest.md",
-    "source/开发环境搭建/前端/Node.js.md",
-    "source/开发环境搭建/前端/Electron.md",
     "source/开发环境搭建/前端/conda.md",
-    "source/开发环境搭建/前端/vue.md",
-    "source/开发环境搭建/Python.md",
-    "source/开发环境搭建/efuse烧写工具.md",
     "pic/Pasted image 20240823132436.png",
     "单文件制作_x64.exe.lnk",
     "单文件制作_x64.exe",
     "pic/Pasted image 20240823132413.png",
-    "source/开发环境搭建/TF卡制卡工具.md",
     "pic/Pasted image 20240823101520.png",
     "pic/Pasted image 20240823101445.png",
     "pic/Pasted image 20240823101010.png",
     "pic/Pasted image 20240823100822.png",
     "pic/Pasted image 20240823100752.png",
     "pic/Pasted image 20240823100718.png",
-    "source/开发环境搭建/GitLab CE 部署.md",
-    "source/开发环境搭建/Docker.md",
     "source/开发环境搭建/Windows.md",
     "pic/Pasted image 20240822193324.png",
     "source/开发环境搭建/Markdown.md",
-    "source/开发环境搭建/AutoHotkey.md",
     "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/知识库.md",
-    "source/开发环境搭建/Git.md",
     "source/开发环境搭建/Vim.md",
-    "source/开发环境搭建/WSL.md",
-    "source/开发环境搭建/开发环境搭建.md",
     "pic/Docker — 从入门到实践（v1.1.0）.pdf",
     "pic/Rockchip_User_Guide_SDK_Docker_CN.pdf",
     "pic/Debian与Ubuntu编译环境配置说明.pdf",
     "source/内核驱动/RCU/RCU.md",
-    "source/内核驱动/RCU/中断.md",
     "pic/企业微信截图_17223240264127.png",
     "source/内核驱动/RCU",
     "source/文件系统/05 Debian",

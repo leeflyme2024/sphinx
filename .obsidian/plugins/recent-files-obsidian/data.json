@@ -1,14 +1,6 @@
 {
   "recentFiles": [
     {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
-    },
-    {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
-    },
-    {
       "basename": "Git",
       "path": "source/开发环境搭建/Git.md"
     },
@@ -17,8 +9,68 @@
       "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
+      "basename": "06 Ubuntu",
+      "path": "source/文件系统/06 Ubuntu.md"
+    },
+    {
       "basename": "AutoHotkey",
       "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
+      "basename": "teraterm",
+      "path": "source/开发环境搭建/teraterm.md"
+    },
+    {
+      "basename": "工作月报",
+      "path": "source/开发环境搭建/工作月报.md"
+    },
+    {
+      "basename": "efuse烧写工具",
+      "path": "source/开发环境搭建/efuse烧写工具.md"
+    },
+    {
+      "basename": "Pasted image 20240830171940",
+      "path": "pic/Pasted image 20240830171940.png"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "Pasted image 20240830110708",
+      "path": "pic/Pasted image 20240830110708.png"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
+    },
+    {
+      "basename": "Vim",
+      "path": "source/开发环境搭建/Vim.md"
+    },
+    {
+      "basename": "TF卡制卡工具",
+      "path": "source/开发环境搭建/TF卡制卡工具.md"
+    },
+    {
+      "basename": "Pasted image 20240823132413",
+      "path": "pic/Pasted image 20240823132413.png"
+    },
+    {
+      "basename": "Pasted image 20240802170846",
+      "path": "pic/Pasted image 20240802170846.png"
+    },
+    {
+      "basename": "Pasted image 20240802171110",
+      "path": "pic/Pasted image 20240802171110.png"
     },
     {
       "basename": "WSL",
@@ -29,20 +81,8 @@
       "path": "source/开发环境搭建/Python.md"
     },
     {
-      "basename": "TF卡制卡工具",
-      "path": "source/开发环境搭建/TF卡制卡工具.md"
-    },
-    {
-      "basename": "efuse烧写工具",
-      "path": "source/开发环境搭建/efuse烧写工具.md"
-    },
-    {
       "basename": "webtest",
       "path": "source/开发环境搭建/webtest.md"
-    },
-    {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
     },
     {
       "basename": "Electron",
@@ -97,14 +137,6 @@
       "path": "source/开发环境搭建/Markdown.md"
     },
     {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
-    },
-    {
-      "basename": "Vim",
-      "path": "source/开发环境搭建/Vim.md"
-    },
-    {
       "basename": "Docker — 从入门到实践（v1.1.0）",
       "path": "pic/Docker — 从入门到实践（v1.1.0）.pdf"
     },
@@ -149,14 +181,6 @@
       "path": "pic/Pasted image 20240802171011.png"
     },
     {
-      "basename": "Pasted image 20240802171110",
-      "path": "pic/Pasted image 20240802171110.png"
-    },
-    {
-      "basename": "Pasted image 20240802170846",
-      "path": "pic/Pasted image 20240802170846.png"
-    },
-    {
       "basename": "Pasted image 20240802151044",
       "path": "pic/Pasted image 20240802151044.png"
     },
@@ -175,30 +199,6 @@
     {
       "basename": "Pasted image 20240802131300",
       "path": "pic/Pasted image 20240802131300.png"
-    },
-    {
-      "basename": "Pasted image 20240802131209",
-      "path": "pic/Pasted image 20240802131209.png"
-    },
-    {
-      "basename": "Pasted image 20240802130753",
-      "path": "pic/Pasted image 20240802130753.png"
-    },
-    {
-      "basename": "01 Buildroot",
-      "path": "source/文件系统/01 Buildroot.md"
-    },
-    {
-      "basename": "02 Yocto",
-      "path": "source/文件系统/02 Yocto.md"
-    },
-    {
-      "basename": "03 System V",
-      "path": "source/文件系统/03 System V.md"
-    },
-    {
-      "basename": "04 Systemd",
-      "path": "source/文件系统/04 Systemd.md"
     }
   ],
   "omittedPaths": []

@@ -23,6 +23,16 @@ C:\Users\Administrator\dist\efuse.exe
 C:\Users\Administrator\dist\parse_uart_boot_socid.exe
 ```
 
+![[Pasted image 20240830110708.png]]
+![[Pasted image 20240830110802.png]]
+[python 3.x - Can't get .exe to execute on other machine - "No module named serial" error - Stack Overflow](https://stackoverflow.com/questions/54910208/cant-get-exe-to-execute-on-other-machine-no-module-named-serial-error/73846888#73846888?newreg=52bd2df66aca44c8a32d463aa57a1a88)
+
+```bash
+cp efuse.py C:\Users\leefly\AppData\Roaming\Python\Python312\site-packages
+cd C:\Users\leefly\AppData\Roaming\Python\Python312\site-packages
+pyinstaller --onefile efuse.py --additional-hooks-dir serial\__init__.py
+```
+
 # 单文件制作
 ![[Pasted image 20240823132413.png]]
 ```HTML
@@ -63,3 +73,15 @@ Source: "D:\am62x_efuse\*"; DestDir: "{app}"; Flags: recursesubdirs ignoreversio
 Name: "{group}\am62x_efuse"; Filename: "{app}\efuse.exe"
 Name: "{commondesktop}\am62x_efuse"; Filename: "{app}\efuse.exe"
 ```
+
+# 问题汇总
+## 加密
+1.加密完成后，蜂鸣器没有响
+
+## 验证
+1.没有显示最后的“Trying to boot from UART”，芯片无法正常启动
+![[Pasted image 20240830171940.png]]
+正常应该是下面这样
+![[图片1.png]]
+## 检测
+1.芯片没有发送数据到上位机

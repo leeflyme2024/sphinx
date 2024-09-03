@@ -1,6 +1,9 @@
 ```Bash
 git log --oneline
 
+git config --global user.name "liweiyu"
+git config --global user.email "1144815495@qq.com"
+
 git add -u
 git commit -m "XXX"
 git tag

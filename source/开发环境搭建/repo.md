@@ -2,6 +2,11 @@
 
 ```Bash
 export REPO_URL="https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/"
+repo init -u ssh://git@192.168.1.168:1022/root/1000-manifest.git -m default-local.xml
+cp -r .repo/repo/repo /usr/bin/repo
+
+
+export REPO_URL="https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/"
 repo init -u git@gitee.com:leev2v1/manifest.git -m default.xml
 cp -r .repo/repo/repo /usr/bin/repo
 

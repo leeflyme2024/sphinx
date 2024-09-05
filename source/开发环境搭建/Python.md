@@ -30,6 +30,10 @@ python3 -c "import cryptography"
 which python python2 python3
 ```
 
+## 查看pip源的软件包版本
+指定一个不存在的版本即可
+![[企业微信截图_17254481346210.png]]
+
 # Selenium
 
 
@@ -93,6 +97,11 @@ time.sleep(5)
 # 关闭浏览器
 driver.quit()
 ```
+
+### chromedriver.exte
+
+[chromedriver浏览器驱动各版本下载（...113、114、115、116、117、118、119、120、121、122、123、124、125、126、127、128、129、130）（原创） - Z哎呀 - 博客园](https://www.cnblogs.com/aiyablog/articles/17948703)
+
 
 ## 加班时间获取
 ```python

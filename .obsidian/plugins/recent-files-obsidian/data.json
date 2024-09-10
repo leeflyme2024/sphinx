@@ -1,16 +1,24 @@
 {
   "recentFiles": [
     {
+      "basename": "efuse烧写工具",
+      "path": "source/开发环境搭建/efuse烧写工具.md"
+    },
+    {
+      "basename": "Pasted image 20240823132413",
+      "path": "pic/Pasted image 20240823132413.png"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
       "basename": "GitLab CE 部署",
       "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
     },
     {
       "basename": "Vim",
@@ -49,10 +57,6 @@
       "path": "source/开发环境搭建/工作月报.md"
     },
     {
-      "basename": "efuse烧写工具",
-      "path": "source/开发环境搭建/efuse烧写工具.md"
-    },
-    {
       "basename": "Pasted image 20240830171940",
       "path": "pic/Pasted image 20240830171940.png"
     },
@@ -71,10 +75,6 @@
     {
       "basename": "TF卡制卡工具",
       "path": "source/开发环境搭建/TF卡制卡工具.md"
-    },
-    {
-      "basename": "Pasted image 20240823132413",
-      "path": "pic/Pasted image 20240823132413.png"
     },
     {
       "basename": "Pasted image 20240802170846",

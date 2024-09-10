@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/GitLab CE 部署.md",
-                "mode": "preview",
+                "file": "source/开发环境搭建/efuse烧写工具.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 277.5
+    "width": 381.5
   },
   "right": {
     "id": "9fe260630bf57eef",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/GitLab CE 部署.md",
+                "file": "source/开发环境搭建/efuse烧写工具.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/GitLab CE 部署.md",
+                "file": "source/开发环境搭建/efuse烧写工具.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/GitLab CE 部署.md"
+                "file": "source/开发环境搭建/efuse烧写工具.md"
               }
             }
           },
@@ -194,32 +194,35 @@
       "copilot:Copilot Chat": false
     }
   },
-  "active": "90412aae1862b884",
+  "active": "802503ceec5b2af7",
   "lastOpenFiles": [
-    "source/开发环境搭建/Repo.md",
+    "pic/Pasted image 20240910150809.png",
+    "pic/Pasted image 20240910141225.png",
+    "pic/Pasted image 20240910141204.png",
+    "pic/Pasted image 20240910141151.png",
+    "pic/Pasted image 20240910141128.png",
+    "pic/Pasted image 20240910141037.png",
+    "pic/Pasted image 20240823132413.png",
+    "source/开发环境搭建/efuse烧写工具.md",
     "source/开发环境搭建/Git.md",
+    "source/开发环境搭建/GitLab CE 部署.md",
+    "source/开发环境搭建/Repo.md",
     "source/开发环境搭建/Vim.md",
     "source/开发环境搭建/Python.md",
     "pic/企业微信截图_17254481346210.png",
     "source/开发环境搭建/webtest.md",
     "source/开发环境搭建/知识库.md",
     "source/开发环境搭建/Windows.md",
-    "source/开发环境搭建/GitLab CE 部署.md",
     "source/文件系统/06 Ubuntu.md",
     "source/开发环境搭建/AutoHotkey.md",
     "source/开发环境搭建/teraterm.md",
     "source/开发环境搭建/工作月报.md",
-    "source/开发环境搭建/efuse烧写工具.md",
     "pic/Pasted image 20240830171940.png",
     "pic/图片1.png",
     "pic/Pasted image 20240830110802.png",
-    "pic/Pasted image 20240830110708.png",
     "source/开发环境搭建/开发环境搭建.md",
     "source/开发环境搭建/Docker.md",
     "source/开发环境搭建/TF卡制卡工具.md",
-    "pic/Pasted image 20240823132413.png",
-    "pic/Pasted image 20240802170846.png",
-    "pic/Pasted image 20240802171110.png",
     "source/开发环境搭建/WSL.md",
     "source/开发环境搭建/前端/Electron.md",
     "source/开发环境搭建/前端/vue.md",
@@ -230,10 +233,8 @@
     "source/开发环境搭建/前端/html.md",
     "source/开发环境搭建/前端/JavaScript.md",
     "source/开发环境搭建/前端",
-    "pic/Pasted image 20240823132436.png",
     "单文件制作_x64.exe.lnk",
     "单文件制作_x64.exe",
-    "pic/Pasted image 20240823101520.png",
     "pic/Docker — 从入门到实践（v1.1.0）.pdf",
     "pic/Rockchip_User_Guide_SDK_Docker_CN.pdf",
     "pic/Debian与Ubuntu编译环境配置说明.pdf",

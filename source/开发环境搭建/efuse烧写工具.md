@@ -15,8 +15,14 @@ pip list
 假设python脚本的名字为：efuse.py、parse_uart_boot_socid.py
 打开cmd窗口
 
+# 显示cmd窗口
 pyinstaller --onefile efuse.py
+
+# 不显示cmd窗口
+pyinstaller --onefile --noconsole efuse.py
+
 pyinstaller --onefile parse_uart_boot_socid.py
+
 
 phython文件打包完成后的exe放在这个目录:
 C:\Users\Administrator\dist\efuse.exe
@@ -41,7 +47,7 @@ https://url27.ctfile.com/f/43907027-1015033222-fd71d3?p=4261
 http://bbs.wuyou.net/forum.php?mod=viewthread&tid=419412&extra=&page=1
 ```
 
-
+![[Pasted image 20240910150809.png]]
 # Inno Setup 配置文件
 
 ```Bash
@@ -73,6 +79,64 @@ Source: "D:\am62x_efuse\*"; DestDir: "{app}"; Flags: recursesubdirs ignoreversio
 Name: "{group}\am62x_efuse"; Filename: "{app}\efuse.exe"
 Name: "{commondesktop}\am62x_efuse"; Filename: "{app}\efuse.exe"
 ```
+
+```toml
+; 脚本由 Inno Setup 脚本向导生成。
+; 有关创建 INNO SETUP 脚本文件的详细信息请查阅帮助文档！
+
+#define MyAppName "overwork"
+#define MyAppVersion "M62xx-T@2.0.0"
+#define MyAppPublisher "zlg,Inc."
+#define MyAppURL "https://www.zlg.cn"
+#define MyAppExeName "overwork.exe"
+
+[Setup]
+; 注: AppId的值为单独标识该应用程序。
+; 不要为其他安装程序使用相同的AppId值。
+; (若要生成新的 GUID，可在菜单中点击 "工具|生成 GUID"。)
+AppId={{99479638-C9DE-4064-AB67-D4C17BF2F468}}
+AppName={#MyAppName}
+AppVersion={#MyAppVersion}
+;AppVerName={#MyAppName} {#MyAppVersion}
+AppPublisher={#MyAppPublisher}
+AppPublisherURL={#MyAppURL}
+AppSupportURL={#MyAppURL}
+AppUpdatesURL={#MyAppURL}
+DefaultDirName={autopf}\{#MyAppName}
+DisableProgramGroupPage=yes
+; 以下行取消注释，以在非管理安装模式下运行（仅为当前用户安装）。
+PrivilegesRequired=admin
+OutputDir=Output
+OutputBaseFilename={#MyAppName}
+Compression=lzma
+SolidCompression=yes
+WizardStyle=modern
+
+[Languages]
+Name: "english"; MessagesFile: "compiler:Default.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
+
+[Files]
+Source: "D:\加班\overwork\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; 注意: 不要在任何共享系统文件上使用"Flags: ignoreversion"
+
+[Icons]
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+
+[Run]
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
+```
+
+![[Pasted image 20240910141151.png]]
+![[Pasted image 20240910141204.png]]
+![[Pasted image 20240910141225.png]]
+![[Pasted image 20240910141037.png]]
+
+![[Pasted image 20240910141128.png]]
 
 # 问题汇总
 ## 加密

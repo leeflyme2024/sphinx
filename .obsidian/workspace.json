@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/efuse烧写工具.md",
+                "file": "source/文件系统/05 Debian/debian.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/efuse烧写工具.md",
+                "file": "source/文件系统/05 Debian/debian.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/efuse烧写工具.md",
+                "file": "source/文件系统/05 Debian/debian.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/efuse烧写工具.md"
+                "file": "source/文件系统/05 Debian/debian.md"
               }
             }
           },
@@ -194,44 +194,44 @@
       "copilot:Copilot Chat": false
     }
   },
-  "active": "802503ceec5b2af7",
+  "active": "90412aae1862b884",
   "lastOpenFiles": [
-    "pic/Pasted image 20240910150809.png",
-    "pic/Pasted image 20240910141225.png",
-    "pic/Pasted image 20240910141204.png",
-    "pic/Pasted image 20240910141151.png",
-    "pic/Pasted image 20240910141128.png",
-    "pic/Pasted image 20240910141037.png",
-    "pic/Pasted image 20240823132413.png",
-    "source/开发环境搭建/efuse烧写工具.md",
-    "source/开发环境搭建/Git.md",
     "source/开发环境搭建/GitLab CE 部署.md",
+    "source/文件系统/05 Debian/debian.md",
     "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/Vim.md",
-    "source/开发环境搭建/Python.md",
-    "pic/企业微信截图_17254481346210.png",
+    "source/开发环境搭建/Git.md",
+    "pic/Pasted image 20240921100801.png",
+    "source/文件系统/01 Buildroot.md",
+    "pic/Pasted image 20240914143832.png",
+    "source/开发环境搭建/AutoHotkey.md",
+    "source/开发环境搭建/sdk升级.md",
+    "source/开发环境搭建/rust/rust入门.md",
+    "pic/Pasted image 20240914143631.png",
+    "pic/Pasted image 20240914143407.png",
+    "pic/Pasted image 20240914143240.png",
+    "pic/Pasted image 20240914143059.png",
+    "pic/Pasted image 20240914143015.png",
+    "pic/Pasted image 20240914142927.png",
+    "pic/Pasted image 20240914135727.png",
+    "pic/Pasted image 20240914135650.png",
+    "source/开发环境搭建/rust/未命名.md",
     "source/开发环境搭建/webtest.md",
+    "source/开发环境搭建/Python.md",
+    "source/开发环境搭建/rust",
+    "source/开发环境搭建/前端/Electron.md",
+    "source/开发环境搭建/前端/conda.md",
+    "source/开发环境搭建/前端/Node.js.md",
+    "source/开发环境搭建/efuse烧写工具.md",
+    "source/开发环境搭建/Vim.md",
     "source/开发环境搭建/知识库.md",
     "source/开发环境搭建/Windows.md",
     "source/文件系统/06 Ubuntu.md",
-    "source/开发环境搭建/AutoHotkey.md",
     "source/开发环境搭建/teraterm.md",
     "source/开发环境搭建/工作月报.md",
-    "pic/Pasted image 20240830171940.png",
-    "pic/图片1.png",
-    "pic/Pasted image 20240830110802.png",
     "source/开发环境搭建/开发环境搭建.md",
     "source/开发环境搭建/Docker.md",
     "source/开发环境搭建/TF卡制卡工具.md",
     "source/开发环境搭建/WSL.md",
-    "source/开发环境搭建/前端/Electron.md",
-    "source/开发环境搭建/前端/vue.md",
-    "source/开发环境搭建/前端/Node.js.md",
-    "source/开发环境搭建/前端/element-plus.md",
-    "source/开发环境搭建/前端/1688.md",
-    "source/开发环境搭建/前端/vue.js.md",
-    "source/开发环境搭建/前端/html.md",
-    "source/开发环境搭建/前端/JavaScript.md",
     "source/开发环境搭建/前端",
     "单文件制作_x64.exe.lnk",
     "单文件制作_x64.exe",
@@ -241,7 +241,6 @@
     "source/内核驱动/RCU",
     "source/文件系统/05 Debian",
     "source/内核驱动/11 多媒体/LCD",
-    "source/内核驱动/04 存储管理/FLASH",
     "未命名.canvas"
   ]
 }

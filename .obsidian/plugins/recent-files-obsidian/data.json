@@ -1,16 +1,8 @@
 {
   "recentFiles": [
     {
-      "basename": "efuse烧写工具",
-      "path": "source/开发环境搭建/efuse烧写工具.md"
-    },
-    {
-      "basename": "Pasted image 20240823132413",
-      "path": "pic/Pasted image 20240823132413.png"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
+      "basename": "debian",
+      "path": "source/文件系统/05 Debian/debian.md"
     },
     {
       "basename": "GitLab CE 部署",
@@ -21,16 +13,80 @@
       "path": "source/开发环境搭建/Repo.md"
     },
     {
-      "basename": "Vim",
-      "path": "source/开发环境搭建/Vim.md"
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "01 Buildroot",
+      "path": "source/文件系统/01 Buildroot.md"
+    },
+    {
+      "basename": "Pasted image 20240914143832",
+      "path": "pic/Pasted image 20240914143832.png"
+    },
+    {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
+    },
+    {
+      "basename": "rust入门",
+      "path": "source/开发环境搭建/rust/rust入门.md"
+    },
+    {
+      "basename": "Pasted image 20240914143059",
+      "path": "pic/Pasted image 20240914143059.png"
+    },
+    {
+      "basename": "Pasted image 20240912195111",
+      "path": "pic/Pasted image 20240912195111.png"
+    },
+    {
+      "basename": "未命名",
+      "path": "source/开发环境搭建/rust/未命名.md"
+    },
+    {
+      "basename": "Pasted image 20240911194839",
+      "path": "pic/Pasted image 20240911194839.png"
+    },
+    {
+      "basename": "Pasted image 20240911193541",
+      "path": "pic/Pasted image 20240911193541.png"
+    },
+    {
+      "basename": "webtest",
+      "path": "source/开发环境搭建/webtest.md"
     },
     {
       "basename": "Python",
       "path": "source/开发环境搭建/Python.md"
     },
     {
-      "basename": "webtest",
-      "path": "source/开发环境搭建/webtest.md"
+      "basename": "Electron",
+      "path": "source/开发环境搭建/前端/Electron.md"
+    },
+    {
+      "basename": "conda",
+      "path": "source/开发环境搭建/前端/conda.md"
+    },
+    {
+      "basename": "Node.js",
+      "path": "source/开发环境搭建/前端/Node.js.md"
+    },
+    {
+      "basename": "efuse烧写工具",
+      "path": "source/开发环境搭建/efuse烧写工具.md"
+    },
+    {
+      "basename": "Pasted image 20240823132413",
+      "path": "pic/Pasted image 20240823132413.png"
+    },
+    {
+      "basename": "Vim",
+      "path": "source/开发环境搭建/Vim.md"
     },
     {
       "basename": "知识库",
@@ -43,10 +99,6 @@
     {
       "basename": "06 Ubuntu",
       "path": "source/文件系统/06 Ubuntu.md"
-    },
-    {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
     },
     {
       "basename": "teraterm",
@@ -89,16 +141,8 @@
       "path": "source/开发环境搭建/WSL.md"
     },
     {
-      "basename": "Electron",
-      "path": "source/开发环境搭建/前端/Electron.md"
-    },
-    {
       "basename": "vue",
       "path": "source/开发环境搭建/前端/vue.md"
-    },
-    {
-      "basename": "Node.js",
-      "path": "source/开发环境搭建/前端/Node.js.md"
     },
     {
       "basename": "element-plus",
@@ -123,10 +167,6 @@
     {
       "basename": "css",
       "path": "source/开发环境搭建/前端/css.md"
-    },
-    {
-      "basename": "conda",
-      "path": "source/开发环境搭建/前端/conda.md"
     },
     {
       "basename": "Pasted image 20240823132436",
@@ -159,46 +199,6 @@
     {
       "basename": "函数查找",
       "path": "source/内核驱动/RCU/函数查找.md"
-    },
-    {
-      "basename": "企业微信截图_17223240264127",
-      "path": "pic/企业微信截图_17223240264127.png"
-    },
-    {
-      "basename": "企业微信截图_17228374791902",
-      "path": "pic/企业微信截图_17228374791902.png"
-    },
-    {
-      "basename": "Pasted image 20240805155932",
-      "path": "pic/Pasted image 20240805155932.png"
-    },
-    {
-      "basename": "Pasted image 20240802173548",
-      "path": "pic/Pasted image 20240802173548.png"
-    },
-    {
-      "basename": "Pasted image 20240802171011",
-      "path": "pic/Pasted image 20240802171011.png"
-    },
-    {
-      "basename": "Pasted image 20240802151044",
-      "path": "pic/Pasted image 20240802151044.png"
-    },
-    {
-      "basename": "Pasted image 20240802132132",
-      "path": "pic/Pasted image 20240802132132.png"
-    },
-    {
-      "basename": "Pasted image 20240802134153",
-      "path": "pic/Pasted image 20240802134153.png"
-    },
-    {
-      "basename": "Pasted image 20240802131856",
-      "path": "pic/Pasted image 20240802131856.png"
-    },
-    {
-      "basename": "Pasted image 20240802131300",
-      "path": "pic/Pasted image 20240802131300.png"
     }
   ],
   "omittedPaths": []

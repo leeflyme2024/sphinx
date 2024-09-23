@@ -5,16 +5,16 @@
       "path": "source/文件系统/05 Debian/debian.md"
     },
     {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
       "basename": "GitLab CE 部署",
       "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
     },
     {
       "basename": "01 Buildroot",

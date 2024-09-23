@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "source/文件系统/05 Debian/debian.md",
-                "mode": "source",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -196,10 +196,10 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
-    "source/开发环境搭建/GitLab CE 部署.md",
-    "source/文件系统/05 Debian/debian.md",
-    "source/开发环境搭建/Repo.md",
     "source/开发环境搭建/Git.md",
+    "source/文件系统/05 Debian/debian.md",
+    "source/开发环境搭建/GitLab CE 部署.md",
+    "source/开发环境搭建/Repo.md",
     "pic/Pasted image 20240921100801.png",
     "source/文件系统/01 Buildroot.md",
     "pic/Pasted image 20240914143832.png",

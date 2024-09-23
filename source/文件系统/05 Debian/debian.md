@@ -242,6 +242,15 @@ options:
 
 ```
 
+```bash
+bdebstrap 
+	-c /home/liweiyu/am62x/debug/ti-processor-sdk-linux-rt-am62xx-evm-10.00.07.04/filesystem/am62xx-evm/zy/tisdk-debian-trixie-rt-am62xx-evm/src/ti-bdebstrap/configs/bdebstrap_configs/trixie/trixie-rt-am62xx-evm.yaml 
+	--name /home/liweiyu/am62x/debug/ti-processor-sdk-linux-rt-am62xx-evm-10.00.07.04/filesystem/am62xx-evm/zy/tisdk-debian-trixie-rt-am62xx-evm/src/ti-bdebstrap/build/trixie-rt-am62xx-evm 
+	--target tisdk-debian-trixie-rt-am62xx-evm-rootfs 
+	--hostname am62xx-evm 
+	-f
+```
+
 `bdebstrap` 命令是一个用于创建 Debian 或其衍生系统（如 Ubuntu）的工具，它允许用户定制化地创建一个 Debian 系统的根文件系统。通过使用不同的参数，用户可以控制输出目录、安装的套件、目标文件系统的位置等。下面是对给定命令的分析以及 `bdebstrap` 的工作原理的解释：
 
 ### 命令分析
@@ -257,6 +266,371 @@ options:
 - `-f`: 强制覆盖已存在的输出目录。如果输出路径已经存在，将会删除旧的再重新创建新的。
 
 - `&>>"${LOG_FILE}"`: 将命令执行期间的所有标准输出和错误输出追加到 `${LOG_FILE}` 文件中，以便于后续的日志查看和调试。
+
+### 调试方法
+根据您提供的 bdebstrap 命令用法和 Debian 镜像信息，我可以为您列出几种可能的调试手段：
+
+1. 使用 -v 或 --verbose 选项：
+   这会增加输出的详细程度，将 dpkg 和 apt 的输出直接写入标准错误流。
+```
+bdebstrap -v ...
+```
+
+2. 使用 --debug 选项：
+   这会提供比 --verbose 更详细的调试信息。
+```
+bdebstrap --debug ...
+```
+
+3. 使用 -q 或 --quiet 选项的反向操作：
+   确保没有使用这个选项，以获取更多输出信息。
+
+4. 使用 --simulate 或 --dry-run 选项：
+   这允许您快速检查包的选择和依赖关系，而不实际下载或安装任何东西。
+```
+bdebstrap --simulate ...
+```
+
+5. 使用 --setup-hook、--essential-hook、--customize-hook 和 --cleanup-hook：
+   在不同阶段添加自定义命令来检查状态或执行调试操作。
+```
+bdebstrap --setup-hook "echo 'Setup complete'" --essential-hook "ls -l /" ...
+```
+
+6. 修改 --mode 选项：
+   尝试不同的模式（如 sudo、root、unshare 等）来排除权限或隔离相关问题。
+```
+bdebstrap --mode sudo ...
+```
+
+7. 使用 --tmpdir 选项：
+   指定一个自定义的临时目录，以便更容易检查中间文件。
+```
+bdebstrap --tmpdir /path/to/debug/dir ...
+```
+
+8. 检查日志文件：
+   查看 /var/log/apt/、/var/log/dpkg.log 等目录下的日志文件。
+
+9. 使用 strace：
+   跟踪系统调用和信号。
+```
+strace bdebstrap ...
+```
+
+10. 使用环境变量：
+    设置 APT 或 DPKG 的调试环境变量。
+```
+export APT_DEBUG=1
+export DPKG_DEBUG=1
+bdebstrap ...
+```
+
+11. 检查网络连接：
+    确保能够访问指定的 Debian 镜像，例如 http://ftp.debian.org/debian/。
+
+12. 使用 --aptopt 和 --dpkgopt：
+    传递额外的配置选项给 apt 和 dpkg 以获取更多信息。
+```
+bdebstrap --aptopt="Debug::pkgProblemResolver=true" ...
+```
+
+13. 分步执行：
+    如果可能，尝试将过程分解为多个步骤，单独执行每个步骤并检查结果。
+
+这些方法可以单独使用，也可以组合使用，以帮助您诊断和解决 bdebstrap 过程中遇到的问题。根据具体遇到的问题，选择最合适的调试方法。
+
+### trixie-rt-am62xx-evm.yaml 详解
+```
+---
+mmdebstrap:
+  architectures:
+    - arm64
+  mode: auto
+  keyrings:
+    - /usr/share/keyrings/debian-archive-keyring.gpg
+  suite: trixie
+  variant: standard
+  hostname: am62xx-evm
+  components:
+    - main
+    - contrib
+    - non-free-firmware
+  packages:
+    - build-essential
+    - gpg
+    - curl
+    - firmware-ti-connectivity
+    - init
+    - iproute2
+    - less
+    - libdrm-dev
+    - libpam-systemd
+    - locales
+    - neofetch
+    - network-manager
+    - net-tools
+    - openssh-server
+    - sudo
+    - vim
+    - k3conf
+    - weston
+    - alsa-utils
+    - libasound2-plugins
+    - gstreamer1.0-tools
+    - gstreamer1.0-plugins-base
+    - gstreamer1.0-plugins-good
+    - gstreamer1.0-plugins-bad
+    - i2c-tools
+    - linux-image-6.6.32-k3-rt
+    - linux-headers-6.6.32-k3-rt
+    - linux-libc-dev
+    - cryptodev-linux-dkms
+    - ti-img-rogue-driver-am62-dkms
+    - ti-img-rogue-firmware-am62
+    - ti-img-rogue-tools-am62
+    - ti-img-rogue-umlibs-am62
+    - firmware-ti-ipc-am62
+    - firmware-cnm-wave
+    - libti-rpmsg-char
+    - libti-rpmsg-char-dev
+    - libd3dadapter9-mesa-dev
+    - libd3dadapter9-mesa
+    - libegl-mesa0
+    - libegl1-mesa
+    - libgbm1
+    - libgl1-mesa-dri
+    - libgl1-mesa-glx
+    - libglapi-mesa
+    - libgles2-mesa
+    - libglx-mesa0
+    - libosmesa6
+    - libwayland-egl1-mesa
+    - mesa-opencl-icd
+    - mesa-va-drivers
+    - mesa-vdpau-drivers
+    - mesa-vulkan-drivers
+    - libpru-pssp-dev
+    - pru-pssp
+    - parted
+    - e2fsprogs
+    - chromium
+  mirrors:
+    - http://deb.debian.org/debian
+  setup-hooks:
+      # Setup TI Debian Package Repository
+    - 'mkdir -p $1/etc/apt/sources.list.d/'
+    - 'wget https://raw.githubusercontent.com/TexasInstruments/ti-debpkgs/main/ti-debpkgs.sources -P $1/etc/apt/sources.list.d/'
+    - 'sed -i "s/bookworm/trixie/g" $1/etc/apt/sources.list.d/ti-debpkgs.sources'
+      # Setup Apt repository preferences
+    - 'mkdir -p $1/etc/apt/preferences.d/'
+    - 'printf "Package: *\nPin: origin TexasInstruments.github.io\nPin-Priority: 1001" >> $1/etc/apt/preferences.d/ti-debpkgs'
+      # Setup Kernel post-install scripts
+    - 'mkdir -p $1/etc/kernel/postinst.d/'
+    - 'echo "PWD = $PWD"'
+    - 'upload target/kernel/postinst.d/cp-kernel-and-overlays /etc/kernel/postinst.d/cp-kernel-and-overlays'
+    - 'chmod a+x $1/etc/kernel/postinst.d/cp-kernel-and-overlays'
+  essential-hooks:
+    # FIXME: Find a better workaround instead of sleep
+    - 'sleep 10' # workaround for /proc resource busy unable to umount issue
+  customize-hooks:
+      # Remove passwd for root user
+    - 'chroot "$1" passwd --delete root'
+      # Fix apt install mandb permission issue
+    - 'chroot "$1" chown -R man: /var/cache/man/'
+    - 'chroot "$1" chmod -R 755 /var/cache/man/'
+      # update packages to avoid mandatory update after first boot
+    - 'chroot "$1" apt-get update'
+      # Setup .bashrc for clean command-line experience
+    - 'chroot "$1" cp /etc/skel/.bashrc ~/.bashrc'
+      # Weston Service and Config Files
+    - 'chroot "$1" mkdir -p /etc/systemd/system/'
+    - 'upload target/weston/weston.service /etc/systemd/system/weston.service'
+    - 'upload target/weston/weston.socket /etc/systemd/system/weston.socket'
+    - 'chroot "$1" mkdir -p /etc/default/'
+    - 'upload target/weston/weston /etc/default/weston'
+    - '$BDEBSTRAP_HOOKS/enable-units "$1" weston'
+    - 'chroot "$1" echo "export WAYLAND_DISPLAY=wayland-1" >> $1/etc/profile'
+      # Enable ssh to root user without password
+    - 'chroot "$1" echo "PermitRootLogin yes" >> $1/etc/ssh/sshd_config'
+    - 'chroot "$1" echo "PermitEmptyPasswords yes" >> $1/etc/ssh/sshd_config'
+      # Resize Rootfs Service
+    - 'chroot "$1" mkdir -p /usr/bin'
+    - 'upload target/resize_rootfs/resize_rootfs.sh /usr/bin/resize_rootfs.sh'
+    - 'chroot "$1" chmod a+x /usr/bin/resize_rootfs.sh'
+    - 'chroot "$1" mkdir -p /etc/systemd/system/'
+    - 'upload target/resize_rootfs/resize_rootfs.service /etc/systemd/system/resize_rootfs.service'
+    - '$BDEBSTRAP_HOOKS/enable-units "$1" resize_rootfs'
+```
+
+#### setup-hooks
+```bash
+  setup-hooks:
+      # Setup TI Debian Package Repository
+    - 'mkdir -p $1/etc/apt/sources.list.d/'
+    - 'wget https://raw.githubusercontent.com/TexasInstruments/ti-debpkgs/main/ti-debpkgs.sources -P $1/etc/apt/sources.list.d/'
+    - 'sed -i "s/bookworm/trixie/g" $1/etc/apt/sources.list.d/ti-debpkgs.sources'
+      # Setup Apt repository preferences
+    - 'mkdir -p $1/etc/apt/preferences.d/'
+    - 'printf "Package: *\nPin: origin TexasInstruments.github.io\nPin-Priority: 1001" >> $1/etc/apt/preferences.d/ti-debpkgs'
+      # Setup Kernel post-install scripts
+    - 'mkdir -p $1/etc/kernel/postinst.d/'
+    - 'echo "PWD = $PWD"'
+    - 'upload target/kernel/postinst.d/cp-kernel-and-overlays /etc/kernel/postinst.d/cp-kernel-and-overlays'
+    - 'chmod a+x $1/etc/kernel/postinst.d/cp-kernel-and-overlays'
+```
+这段 YAML 配置文件定义了一系列用于设置目标文件系统的 `setup-hooks`。这些 hooks 会在 `bdebstrap` 构建过程的初始阶段被执行，主要用于配置 APT 仓库和相关设置。下面是每个步骤的详细解释：
+
+1. **创建 APT 源列表目录**
+   ```yaml
+   - mkdir -p $1/etc/apt/sources.list.d/
+   ```
+   这一行会确保 `$1/etc/apt/sources.list.d/` 目录存在，其中 `$1` 是指代目标文件系统的路径。
+
+2. **下载德州仪器（Texas Instruments）的 APT 仓库源列表**
+   ```yaml
+   - wget https://raw.githubusercontent.com/TexasInstruments/ti-debpkgs/main/ti-debpkgs.sources -P $1/etc/apt/sources.list.d/
+   ```
+   这一行使用 `wget` 命令从 GitHub 上下载德州仪器的 APT 仓库配置文件，并将其保存到 `$1/etc/apt/sources.list.d/` 目录下。
+
+3. **修改仓库源文件中的发行版名称**
+   ```yaml
+   - sed -i "s/bookworm/trixie/g" $1/etc/apt/sources.list.d/ti-debpkgs.sources
+   ```
+   使用 `sed` 命令替换仓库源文件中的发行版名称，将 `bookworm` 替换为 `trixie`。
+
+4. **创建 APT 优先级目录**
+   ```yaml
+   - mkdir -p $1/etc/apt/preferences.d/
+   ```
+   创建 `$1/etc/apt/preferences.d/` 目录，用于存放 APT 优先级配置文件。
+
+5. **设置 APT 仓库优先级**
+   ```yaml
+   - printf "Package: *\nPin: origin TexasInstruments.github.io\nPin-Priority: 1001" >> $1/etc/apt/preferences.d/ti-debpkgs
+   ```
+   这一行向 `$1/etc/apt/preferences.d/` 目录中的 `ti-debpkgs` 文件追加内容，设置了来自 `TexasInstruments.github.io` 的仓库具有最高的优先级（1001）。
+
+6. **创建内核后安装脚本目录**
+   ```yaml
+   - mkdir -p $1/etc/kernel/postinst.d/
+   ```
+   创建 `$1/etc/kernel/postinst.d/` 目录，用于存放内核安装后的脚本。
+
+7. **打印当前工作目录**
+   ```yaml
+   - echo "PWD = $PWD"
+   ```
+   打印出当前的工作目录，有助于调试。
+
+8. **上传内核后处理脚本**
+   ```yaml
+   - upload target/kernel/postinst.d/cp-kernel-and-overlays /etc/kernel/postinst.d/cp-kernel-and-overlays
+   ```
+   将本地目录 `target/kernel/postinst.d/cp-kernel-and-overlays` 中的脚本复制到目标文件系统的 `/etc/kernel/postinst.d/` 目录下。这里的 `upload` 命令是一个假定的命令，实际使用时需要替换为有效的命令或脚本逻辑。
+
+9. **设置内核后处理脚本的执行权限**
+   ```yaml
+   - chmod a+x $1/etc/kernel/postinst.d/cp-kernel-and-overlays
+   ```
+   设置 `$1/etc/kernel/postinst.d/cp-kernel-and-overlays` 脚本的执行权限，使其可以被执行。
+
+这些步骤的目的是为了确保目标文件系统能够正确地配置德州仪器提供的 APT 仓库，并且能够在安装内核之后执行一些特定的脚本任务，比如复制内核和覆盖文件等。这样可以保证目标设备上使用的内核和其他组件是最新的，并且与德州仪器的硬件平台兼容。
+
+#### customize-hooks
+```bash
+      # Remove passwd for root user
+    - 'chroot "$1" passwd --delete root'
+      # Fix apt install mandb permission issue
+    - 'chroot "$1" chown -R man: /var/cache/man/'
+    - 'chroot "$1" chmod -R 755 /var/cache/man/'
+      # update packages to avoid mandatory update after first boot
+    - 'chroot "$1" apt-get update'
+      # Setup .bashrc for clean command-line experience
+    - 'chroot "$1" cp /etc/skel/.bashrc ~/.bashrc'
+      # Weston Service and Config Files
+    - 'chroot "$1" mkdir -p /etc/systemd/system/'
+    - 'upload target/weston/weston.service /etc/systemd/system/weston.service'
+    - 'upload target/weston/weston.socket /etc/systemd/system/weston.socket'
+    - 'chroot "$1" mkdir -p /etc/default/'
+    - 'upload target/weston/weston /etc/default/weston'
+    - '$BDEBSTRAP_HOOKS/enable-units "$1" weston'
+    - 'chroot "$1" echo "export WAYLAND_DISPLAY=wayland-1" >> $1/etc/profile'
+      # Enable ssh to root user without password
+    - 'chroot "$1" echo "PermitRootLogin yes" >> $1/etc/ssh/sshd_config'
+    - 'chroot "$1" echo "PermitEmptyPasswords yes" >> $1/etc/ssh/sshd_config'
+      # Resize Rootfs Service
+    - 'chroot "$1" mkdir -p /usr/bin'
+    - 'upload target/resize_rootfs/resize_rootfs.sh /usr/bin/resize_rootfs.sh'
+    - 'chroot "$1" chmod a+x /usr/bin/resize_rootfs.sh'
+    - 'chroot "$1" mkdir -p /etc/systemd/system/'
+    - 'upload target/resize_rootfs/resize_rootfs.service /etc/systemd/system/resize_rootfs.service'
+    - '$BDEBSTRAP_HOOKS/enable-units "$1" resize_rootfs'
+```
+
+这段 YAML 配置文件定义了一系列 `customize-hooks`，这些 hooks 会在 `bdebstrap` 构建过程的后期执行，主要用于定制目标文件系统的各种配置。以下是每个步骤的详细解释：
+
+1. 移除 root 用户的密码
+```yaml
+- chroot "$1" passwd --delete root
+```
+这条命令进入目标文件系统的 chroot 环境，并移除 root 用户的密码。这意味着 root 用户将不需要密码即可登录。
+
+2. 解决 `man` 命令的权限问题
+```yaml
+- 'chroot "$1" chown -R man: /var/cache/man/'
+- chroot "$1" chmod -R 755 /var/cache/man/
+```
+这两条命令分别改变了 `/var/cache/man/` 目录及其子目录的所有权和权限，以修复 `man` 命令安装时可能出现的权限问题。
+
+```bash
+root@am62xx-evm:/# ls -l /var/cache/
+drwxr-xr-x 34 man  man   396 Aug  4  2024 man
+```
+
+3. 更新软件包列表
+```yaml
+- chroot "$1" apt-get update
+```
+这条命令更新目标文件系统中的软件包索引文件，以确保后续安装或升级软件包时能够获取到最新的版本信息。
+
+ 4. 设置 `.bashrc` 文件
+```yaml
+- chroot "$1" cp /etc/skel/.bashrc ~/.bashrc
+```
+这条命令将 `/etc/skel/.bashrc` 文件复制到用户的主目录下，作为用户的 `.bashrc` 文件。这有助于提供一个干净的命令行体验。
+
+5. 配置 Weston 显示服务器
+```yaml
+- chroot "$1" mkdir -p /etc/systemd/system/
+- upload target/weston/weston.service /etc/systemd/system/weston.service
+- upload target/weston/weston.socket /etc/systemd/system/weston.socket
+- chroot "$1" mkdir -p /etc/default/
+- upload target/weston/weston /etc/default/weston
+- $BDEBSTRAP_HOOKS/enable-units "$1" weston
+- chroot "$1" echo "export WAYLAND_DISPLAY=wayland-1" >> $1/etc/profile
+```
+这些命令首先创建必要的目录，然后上传 `weston.service` 和 `weston.socket` 到目标文件系统的 `/etc/systemd/system/` 目录下，同时上传 `weston` 配置文件到 `/etc/default/` 目录。最后启用 `weston` 服务并设置环境变量 `WAYLAND_DISPLAY`，使得 Weston 可以作为 Wayland 显示服务器运行。
+
+6. 允许无密码的 root 用户 SSH 登录
+```yaml
+- chroot "$1" echo "PermitRootLogin yes" >> $1/etc/ssh/sshd_config
+- chroot "$1" echo "PermitEmptyPasswords yes" >> $1/etc/ssh/sshd_config
+```
+这两条命令允许 root 用户无需密码通过 SSH 登录，并允许空密码登录。需要注意的是，这种配置存在安全风险，应谨慎使用。
+
+ 7. 配置根文件系统调整大小的服务
+```yaml
+- chroot "$1" mkdir -p /usr/bin
+- upload target/resize_rootfs/resize_rootfs.sh /usr/bin/resize_rootfs.sh
+- chroot "$1" chmod a+x /usr/bin/resize_rootfs.sh
+- chroot "$1" mkdir -p /etc/systemd/system/
+- upload target/resize_rootfs/resize_rootfs.service /etc/systemd/system/resize_rootfs.service
+- $BDEBSTRAP_HOOKS/enable-units "$1" resize_rootfs
+```
+这些命令创建必要的目录，上传 `resize_rootfs.sh` 脚本并赋予其执行权限，上传 `resize_rootfs.service` 到 `/etc/systemd/system/` 目录下，并启用该服务。这使得系统可以在启动时自动调整根文件系统的大小。
+
+这些步骤的目的是为了确保目标文件系统在启动时能够正确配置和运行，并提供一定的便利性和安全性。需要注意的是，允许无密码的 root 用户 SSH 登录是一种高风险的操作，应在生产环境中避免使用。
 
 ### 工作原理
 

@@ -1,0 +1,70 @@
+=~=~=~=~=~=~=~=~=~=~=~= MobaXterm log 2024.10.22 14:14:27 =~=~=~=~=~=~=~=~=~=~=~=
+0x409031
+0x800023
+#
+# Decrypting extensions..
+#
+MPK Options:  0x0
+MEK Options:  0x0
+MPK Opt P1:  0x0
+MPK Opt P2:  0x0
+MEK Opt   :  0x0
+* SMPKH Part 1 BCH code: 0070dd04
+
+* SMPKH Part 2 BCH code: 00085431
+
+* SMPK Hash (part-1,2):
+
+65a50670992a96c271bb6bc7b7d22f7670dea228abbb24e769a9c5a95f78e55c00
+
+092e0e7e87ea84701ef5ff858f9473f82592e1c38c36690b4615f79c1183706400
+
+* SMEK BCH code: 60d5636e
+
+* SMEK Hash: f8667150107ce648c4e5c9ccee87e6cd6a7ead15c90de585275f4a16e1408d204d4383479dc20d17ea18f6078f2e22cee07253f18a138d5d36d859d8b443444e
+
+EXT OTP extension disabled
+* BCH code & MSV: fe0fac8b
+
+* KEY CNT: 01010000
+
+* KEY REV: 01010000
+
+SWREV extension disabled
+
+FW CFG REV extension disabled
+
+* KEYWR VERSION:  0x20000
+
+#
+# Programming Keys..
+#
+
+* MSV: 
+[u32] bch + msv:  0x0
+Error in programming MSV
+debug_response:  0x2000000
+[u32] bch + msv:  0x0
+
+* SWREV: 
+[u32] SWREV-SBL:  0x1
+[u32] SWREV-SYSFW  :  0x1
+SWREV extension disabled
+[u32] SWREV-SBL:  0x1
+[u32] SWREV-SYSFW  :  0x1
+
+* FW CFG REV: 
+[u32] SWREV-FW-CFG-REV:  0x1
+SWREV SEC BCFG extension disabled
+[u32] SWREV-FW-CFG-REV:  0x1
+
+* EXT OTP: 
+EXT OTP extension disabled
+
+* BMPKH, BMEK: 
+BMPKH extension disabled
+BMEK extension disabled
+
+* SMPKH, SMEK: 
+Error in programming SMPKH part 1
+debug_response:  0x2010000

@@ -1,20 +1,132 @@
 {
   "recentFiles": [
     {
-      "basename": "debian",
-      "path": "source/文件系统/05 Debian/debian.md"
+      "basename": "Pasted image 20241106105430",
+      "path": "pic/Pasted image 20241106105430.png"
+    },
+    {
+      "basename": "源码分析",
+      "path": "source/内核驱动/12 安全系统/OPTEE/源码分析.md"
+    },
+    {
+      "basename": "Pasted image 20241106094605",
+      "path": "pic/Pasted image 20241106094605.png"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/12 安全系统/OPTEE/DFT.md"
     },
     {
       "basename": "Git",
       "path": "source/开发环境搭建/Git.md"
     },
     {
+      "basename": "DFT",
+      "path": "source/内核驱动/09 工控接口/CAN/DFT.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/09 工控接口/CAN/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/09 工控接口/CAN/测试报告.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/01 时钟/RTC/DFT.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/01 时钟/RTC/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/01 时钟/RTC/测试报告.md"
+    },
+    {
+      "basename": "WSL",
+      "path": "source/开发环境搭建/WSL.md"
+    },
+    {
+      "basename": "Python",
+      "path": "source/开发环境搭建/Python.md"
+    },
+    {
+      "basename": "Pasted image 20241101192244",
+      "path": "pic/Pasted image 20241101192244.png"
+    },
+    {
+      "basename": "efuse烧写工具",
+      "path": "source/开发环境搭建/efuse烧写工具.md"
+    },
+    {
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
+    },
+    {
+      "basename": "README",
+      "path": "pic/README.md"
+    },
+    {
+      "basename": "Pasted image 20241031161120",
+      "path": "pic/Pasted image 20241031161120.png"
+    },
+    {
+      "basename": "转产验证",
+      "path": "source/开发环境搭建/转产验证.md"
+    },
+    {
+      "basename": "TF卡制卡工具",
+      "path": "source/开发环境搭建/TF卡制卡工具.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "Windows",
+      "path": "source/开发环境搭建/Windows.md"
+    },
+    {
+      "basename": "Vim",
+      "path": "source/开发环境搭建/Vim.md"
+    },
+    {
+      "basename": "webtest",
+      "path": "source/开发环境搭建/webtest.md"
+    },
+    {
       "basename": "GitLab CE 部署",
       "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
+      "basename": "Markdown",
+      "path": "source/开发环境搭建/Markdown.md"
+    },
+    {
+      "basename": "teraterm",
+      "path": "source/开发环境搭建/teraterm.md"
+    },
+    {
       "basename": "Repo",
       "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "知识库",
+      "path": "source/开发环境搭建/知识库.md"
+    },
+    {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "debian",
+      "path": "source/文件系统/05 Debian/debian.md"
     },
     {
       "basename": "01 Buildroot",
@@ -23,14 +135,6 @@
     {
       "basename": "Pasted image 20240914143832",
       "path": "pic/Pasted image 20240914143832.png"
-    },
-    {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
-    },
-    {
-      "basename": "sdk升级",
-      "path": "source/开发环境搭建/sdk升级.md"
     },
     {
       "basename": "rust入门",
@@ -57,14 +161,6 @@
       "path": "pic/Pasted image 20240911193541.png"
     },
     {
-      "basename": "webtest",
-      "path": "source/开发环境搭建/webtest.md"
-    },
-    {
-      "basename": "Python",
-      "path": "source/开发环境搭建/Python.md"
-    },
-    {
       "basename": "Electron",
       "path": "source/开发环境搭建/前端/Electron.md"
     },
@@ -77,32 +173,12 @@
       "path": "source/开发环境搭建/前端/Node.js.md"
     },
     {
-      "basename": "efuse烧写工具",
-      "path": "source/开发环境搭建/efuse烧写工具.md"
-    },
-    {
       "basename": "Pasted image 20240823132413",
       "path": "pic/Pasted image 20240823132413.png"
     },
     {
-      "basename": "Vim",
-      "path": "source/开发环境搭建/Vim.md"
-    },
-    {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
-    },
-    {
-      "basename": "Windows",
-      "path": "source/开发环境搭建/Windows.md"
-    },
-    {
       "basename": "06 Ubuntu",
       "path": "source/文件系统/06 Ubuntu.md"
-    },
-    {
-      "basename": "teraterm",
-      "path": "source/开发环境搭建/teraterm.md"
     },
     {
       "basename": "工作月报",
@@ -117,88 +193,12 @@
       "path": "pic/Pasted image 20240830110708.png"
     },
     {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
-    },
-    {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
-    },
-    {
-      "basename": "TF卡制卡工具",
-      "path": "source/开发环境搭建/TF卡制卡工具.md"
-    },
-    {
       "basename": "Pasted image 20240802170846",
       "path": "pic/Pasted image 20240802170846.png"
     },
     {
       "basename": "Pasted image 20240802171110",
       "path": "pic/Pasted image 20240802171110.png"
-    },
-    {
-      "basename": "WSL",
-      "path": "source/开发环境搭建/WSL.md"
-    },
-    {
-      "basename": "vue",
-      "path": "source/开发环境搭建/前端/vue.md"
-    },
-    {
-      "basename": "element-plus",
-      "path": "source/开发环境搭建/前端/element-plus.md"
-    },
-    {
-      "basename": "1688",
-      "path": "source/开发环境搭建/前端/1688.md"
-    },
-    {
-      "basename": "vue.js",
-      "path": "source/开发环境搭建/前端/vue.js.md"
-    },
-    {
-      "basename": "html",
-      "path": "source/开发环境搭建/前端/html.md"
-    },
-    {
-      "basename": "JavaScript",
-      "path": "source/开发环境搭建/前端/JavaScript.md"
-    },
-    {
-      "basename": "css",
-      "path": "source/开发环境搭建/前端/css.md"
-    },
-    {
-      "basename": "Pasted image 20240823132436",
-      "path": "pic/Pasted image 20240823132436.png"
-    },
-    {
-      "basename": "Markdown",
-      "path": "source/开发环境搭建/Markdown.md"
-    },
-    {
-      "basename": "Docker — 从入门到实践（v1.1.0）",
-      "path": "pic/Docker — 从入门到实践（v1.1.0）.pdf"
-    },
-    {
-      "basename": "Rockchip_User_Guide_SDK_Docker_CN",
-      "path": "pic/Rockchip_User_Guide_SDK_Docker_CN.pdf"
-    },
-    {
-      "basename": "RCU",
-      "path": "source/内核驱动/RCU/RCU.md"
-    },
-    {
-      "basename": "中断",
-      "path": "source/内核驱动/RCU/中断.md"
-    },
-    {
-      "basename": "内核线程",
-      "path": "source/内核驱动/RCU/内核线程.md"
-    },
-    {
-      "basename": "函数查找",
-      "path": "source/内核驱动/RCU/函数查找.md"
     }
   ],
   "omittedPaths": []

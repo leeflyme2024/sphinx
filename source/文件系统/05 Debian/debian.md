@@ -152,6 +152,7 @@ ti-bdebstrap/
 5. **builds.toml**: 这个文件包含了所有有效构建的列表及其定义。TOML（Tom's Obvious, Minimal Language）是一种配置文件格式，这里用来定义构建过程中的各种参数和选项。
 
 ## 编译命令
+
 ```bash
 # The `<build-name>` must be one present inside `builds.toml` file.
 sudo ./build.sh <build-name>
@@ -166,7 +167,40 @@ sudo ./build.sh <build-name>
 在构建完成后，RootFS（根文件系统）、Boot分区和bsp_sources（板级支持包源代码）将被存储在`build/<build-name>`目录下。其中，`<build-name>`是构建过程中指定的名称。
 构建日志将被存储在`logs/<build-name>.log`文件中。
 
+#### chroot
+```bash
+Usage: /usr/sbin/chroot [OPTION] NEWROOT [COMMAND [ARG]...]
+  or:  /usr/sbin/chroot OPTION
+Run COMMAND with root directory set to NEWROOT.
+
+  --groups=G_LIST        specify supplementary groups as g1,g2,..,gN
+  --userspec=USER:GROUP  specify user and group (ID or name) to use
+  --skip-chdir           do not change working directory to '/'
+      --help     display this help and exit
+      --version  output version information and exit
+
+If no command is given, run '"$SHELL" -i' (default: '/bin/sh -i').
+
+GNU coreutils online help: <https://www.gnu.org/software/coreutils/>
+Report any translation bugs to <https://translationproject.org/team/>
+Full documentation <https://www.gnu.org/software/coreutils/chroot>
+or available locally via: info '(coreutils) chroot invocation'
+```
+
+
 #### bdebstrap命令
+
+[bdebstrap(1) — bdebstrap — Debian bullseye — Debian Manpages](https://manpages.debian.org/bullseye/bdebstrap/bdebstrap.1.en.html)
+[Site Unreachable](https://manpages.debian.org/bullseye/mmdebstrap/mmdebstrap.1.en.html)
+[Packages for Linux and Unix](https://ubuntu.pkgs.org/22.04/ubuntu-universe-amd64/bdebstrap_0.4.0-1_all.deb.html)
+[GitHub - bdrung/bdebstrap at v0.4.0](https://github.com/bdrung/bdebstrap/tree/v0.4.0)
+```bash
+/usr/lib/python3/dist-packages/bdebstrap-0.4.0.egg-info/PKG-INFO
+```
+[Git : Code : bdebstrap package : Ubuntu](https://code.launchpad.net/ubuntu/+source/bdebstrap)
+[josch/mmdebstrap - Muffin Gitea](https://gitlab.mister-muffin.de/josch/mmdebstrap#)
+
+
 
 ```bash
 bdebstrap \
@@ -177,6 +211,92 @@ bdebstrap \
     -f \
     &>>"${LOG_FILE}"
 ```
+
+##### -c
+```bash
+-c CONFIG, --config CONFIG
+Configuration YAML file. See YAML CONFIGURATION below for the expected structure of this file. 
+This parameter can be specified multiple times. 
+The content of YAML files will be merged by appending lists and recursively merging maps.
+```
+
+这段内容是命令行工具的参数说明，其中“-c CONFIG, --config CONFIG”是参数的使用方法。具体解释如下：
+
+- `-c CONFIG` 和 `--config CONFIG` 是两个等价的参数，用于指定配置文件。用户可以通过这两个参数中的任意一个来指定一个YAML格式的配置文件。
+- 配置文件用于定义该工具的运行配置，比如需要安装的软件包、环境变量等。这个配置文件的结构在文档的“YAML CONFIGURATION”部分有详细说明。
+- 这个参数可以被指定多次，意味着用户可以同时指定多个配置文件。当指定多个配置文件时，这些文件的内容会被合并。合并规则是：列表类型的配置项会被追加合并，而映射（键值对）类型的配置项会被递归合并。
+- 例如，如果有两个配置文件，一个指定了安装包A和B，另一个指定了安装包C，那么最终的配置会是安装包A、B和C。
+
+简而言之，这个参数允许用户通过指定一个或多个YAML格式的配置文件来自定义工具的行为。
+
+##### --name
+```bash
+-n NAME, --name NAME
+name of the generated golden image. 
+If no output directory is specified, the golden image will be placed in OUTPUT_BASE_DIR/NAME.
+```
+这段内容是命令行工具的参数说明，其中包含对 `-h, --help` 和 `-c CONFIG, --config CONFIG` 等参数的解释。这些参数用于配置和运行该工具。现在，我将解释你指定的部分：
+
+`-n NAME, --name NAME` 这个参数用于指定生成的金质（golden）镜像的名称。如果未指定输出目录，则金质镜像会被放置在 `OUTPUT_BASE_DIR/NAME` 目录下。简单来说，这个参数决定了生成的镜像文件的名称，以及在没有明确指定输出目录时，镜像文件的存储位置。
+
+
+##### --target
+```bash
+--target TARGET, TARGET
+The optional target argument can either be the path to a directory, 
+the path to a tarball filename, the path to a squashfs image or -.
+```
+这段内容是命令行工具的参数说明，描述了 `--target` 参数的用法。下面是对这个部分的解释：
+
+- 参数名：`--target`
+- 参数别名：没有别名，只有一个参数名 `TARGET`。
+- 参数说明：这是一个可选参数。
+- 功能：`--target` 参数用于指定目标位置，可以是以下几种类型：
+  1. 目录路径：指定一个文件夹路径，作为操作的目标目录。
+  2. tarball 文件名：指定一个 tarball 文件的路径，这个文件将被用来进行操作。
+  3. squashfs 文件路径：指定一个 squashfs 镜像文件的路径，这个文件将被用来进行操作。
+  4. `-`：表示使用标准输入或输出。
+
+简单来说，`--target` 参数允许用户指定一个目标路径，这个路径可以是目录、tarball 文件、squashfs 镜像，或者使用标准输入输出。
+
+##### -f
+```bash
+-f, --force
+Remove existing output directory before creating a new one
+```
+
+这段内容描述了一个命令行工具的参数选项。其中 `-f` 和 `--force` 是该工具的两个参数，它们具有相同的功能。当你在命令行中使用这个工具并加上 `-f` 或 `--force` 参数时，工具会在创建新的输出目录之前删除任何已存在的同名输出目录。这确保了输出目录是干净的，不会包含之前运行时留下的任何文件或数据。
+
+##### -v
+```bash
+-v, --verbose
+Write informational messages 
+(about configuration files, environment variables, mmdebstrap call, etc.) 
+to standard error. 
+
+Instead of progress bars, 
+mmdebstrap writes the dpkg and apt output directly to standard error. 
+If used together with --quiet or --debug, only the last option will take effect.
+```
+
+这段内容描述了一个命令行选项 `-v` 或 `--verbose` 的功能。当使用这个选项时，程序会向标准错误输出（通常是终端或命令行界面）提供信息性消息。这些信息可能包括关于配置文件、环境变量、mmdebstrap调用等的详细信息。
+
+此外，使用 `-v` 或 `--verbose` 选项时，程序不会显示进度条，而是直接将 dpkg 和 apt 的输出直接写入标准错误。这意味着用户可以看到程序执行过程中的详细输出，而不是仅仅一个进度条。
+
+如果 `-v` 或 `--verbose` 与 `--quiet` 或 `--debug` 同时使用，只有最后指定的选项会生效。这意味着如果用户先使用了 `-v`，然后又使用了 `--quiet`，那么程序将不会输出任何信息，因为 `--quiet` 会覆盖之前的 `-v` 选项。同样，如果用户先使用了 `-v`，然后又使用了 `--debug`，那么程序将输出详细的调试信息，因为 `--debug` 会覆盖 `-v` 选项。
+
+##### --debug
+```bash
+--debug
+In addition to the output produced by --verbose, write detailed debugging information to standard error. 
+Errors of mmdebstrap will print a backtrace. 
+If used together with --quiet or --verbose, only the last option will take effect.
+```
+
+这段内容是命令行工具的参数说明，具体解释了`--debug`参数的作用：
+
+- `--debug`：这个选项用于增加额外的详细调试信息输出到标准错误（stderr）。当使用`--debug`时，除了`--verbose`选项产生的输出外，还会输出更详细的调试信息。如果`mmdebstrap`（一个用于创建Debian系统镜像的工具）出现错误，它还会打印出错误回溯信息。如果`--debug`与`--quiet`或`--verbose`一起使用，只有最后指定的那个选项会生效。
+
 
 ```bash
 usage: bdebstrap [-h] [-c CONFIG] [-n NAME] [-e ENV] [-s] [-b OUTPUT_BASE_DIR] [-o OUTPUT] [-q] [-v] [--debug] [-f] [-t TMPDIR] [--variant {extract,custom,essential,apt,required,minbase,buildd,important,debootstrap,-,standard}]
@@ -463,7 +583,150 @@ mmdebstrap:
     - '$BDEBSTRAP_HOOKS/enable-units "$1" resize_rootfs'
 ```
 
+#### architectures
+```bash
+# 需要提供一个由逗号或空格分隔的架构列表，列表中的第一个架构是chroot内部的原生架构
+--architectures ARCHITECTURES
+Comma or whitespace separated list of architectures. 
+The first architecture is the native architecture inside the chroot.
+```
+
+#### mode
+```bash
+# 选择合适的方法来执行chroot操作，并创建一个新的文件系统，其所有权信息与当前用户不同。
+# 这通常用于隔离不同的环境或用户，以提高系统的安全性和灵活性。
+--mode {auto,sudo,root,unshare,fakeroot,fakechroot,proot,chrootless}
+Choose how to perform the chroot operation and 
+create a filesystem with ownership information different from the current user.
+```
+
+这里是一些与Linux系统权限和容器技术相关的选项，通常用于控制程序的运行环境。
+
+1. **auto**：自动模式，系统会根据需要自动选择最合适的运行环境。
+2. **sudo**：使用sudo运行程序，意味着以超级用户（root）的权限执行命令，通常用于需要高权限的操作。
+3. **root**：直接以root用户身份运行程序，拥有系统的最高权限。
+4. **unshare**：使用unshare命令创建一个新的用户命名空间，使得程序在隔离的环境中运行，不会影响到宿主机的其他部分。
+5. **fakeroot**：一种模拟root环境的工具，允许非root用户模拟root权限执行命令，但实际并不具备真正的root权限。
+6. **fakechroot**：类似于fakeroot，fakechroot用于创建一个虚拟的chroot环境，使得程序认为自己在根目录下运行，但实际上是在指定的目录中。
+7. **proot**：一个用户空间的chroot工具，允许用户无需root权限即可运行程序在隔离的环境中。
+8. **chrootless**：不使用chroot环境运行程序，即程序直接在宿主机环境中运行，没有隔离。
+
+这些选项通常用于容器技术或需要隔离运行环境的场景，以增强安全性和灵活性。
+
+#### keyrings
+```bash
+# 密钥环是用来存储软件包签名密钥的
+# APT在安装或更新软件包时会使用这些密钥来验证软件包的来源和完整性。
+keyrings
+list of default keyring to use by apt. Additional keyring files can be specified with --keyring.
+```
+
+#### suite
+```bash
+--suite SUITE, SUITE
+The suite may be a valid release code name (eg, sid, stretch, jessie) 
+or a symbolic name (eg, unstable, testing, stable, oldstable).
+```
+
+作用：指定使用的软件包套件（suite）。
+这个套件可以是一个有效的发行版代号（例如 sid, stretch, jessie）
+或者是符号名称（例如 unstable, testing, stable, oldstable）。
+
+#### variant
+```bash
+--variant 
+{extract,custom,essential,apt,required,minbase,
+buildd,important,debootstrap,-,standard}
+Choose which package set to install.
+```
+这段文字是命令行工具的参数说明，它描述了用户可以通过命令行选项来选择安装哪种软件包集合。具体来说，`--variant` 参数允许用户从一系列预定义的软件包集合中选择一个来安装。这些选项包括：
+
+- `extract`：可能指安装用于文件提取的软件包。
+- `custom`：允许用户自定义软件包集合。
+- `essential`：安装基本必需的软件包。
+- `apt`：安装用于软件包管理的 `apt` 工具相关的软件包。
+- `required`：安装必需的软件包。
+- `minbase`：安装最小基础系统所需的软件包。
+- `buildd`：安装用于构建软件包的软件包。
+- `important`：安装重要的软件包。
+- `debootstrap`：安装 `debootstrap` 工具，它用于从官方镜像创建 Debian 系统。
+- `-`：表示不安装任何额外的软件包。
+- `standard`：安装标准软件包集合。
+
+用户可以通过指定这些选项来定制他们需要的软件包集合。
+
+#### hostname
+```bash
+--hostname HOSTNAME
+Write the given HOSTNAME into /etc/hostname in the target chroot.
+```
+
+#### components
+```bash
+--components COMPONENTS
+Comma or whitespace separated list of components 
+like main, contrib and non-free which will be used for all URI-only MIRROR arguments.
+```
+这段内容是命令行工具的参数说明，其中特定部分的解释如下：
+
+  这个参数允许用户指定一个由逗号或空格分隔的组件列表，例如 `main`、`contrib` 和 `non-free`。
+  这些组件将被用于所有仅URI（统一资源标识符）的镜像参数。
+  
+  简单来说，当你在构建或配置一个基于Debian的系统时，你可能需要从不同的存储库中获取软件包。这些存储库被分为不同的组件，每个组件包含不同类型的软件包。
+  
+  通过使用 `--components` 参数，你可以明确指定要从哪些组件中获取软件包。
+
+#### packages
+```bash
+--packages PACKAGES, --include PACKAGES
+Comma or whitespace separated list of packages 
+which will be installed in addition to the packages 
+installed by the specified variant.
+```
+
+`--packages PACKAGES, --include PACKAGES` 参数允许用户指定一个由逗号或空格分隔的包列表，这些包将被安装在由指定的变体（variant）安装的包之外。这意味着，除了默认的包集合之外，用户还可以添加额外的包。这个功能在构建定制化的系统镜像时非常有用，因为它允许用户根据需要添加额外的工具或库。
+
+#### mirrors
+```bash
+--mirrors MIRRORS, MIRRORS
+Comma separated list of mirrors. 
+If no mirror option is provided, http://deb.debian.org/debian is used.
+```
+
+[debian镜像\_debian下载地址\_debian安装教程-阿里巴巴开源镜像站](https://developer.aliyun.com/mirror/debian/?spm=a2c6h.25603864.0.0.1c3d29e8bWnHrt)
+
+```bash
+root@am62xx-evm:/# cat /etc/apt/sources.list
+deb http://deb.debian.org/debian trixie main contrib non-free-firmware
+```
+
 #### setup-hooks
+```bash
+setup-hooks
+list of setup hooks (string). 
+
+Execute arbitrary commands right after initial setup (directory creation, configuration of apt and dpkg, ...) 
+but before any packages are downloaded or installed. 
+
+At that point, the chroot directory does not contain any executables and thus cannot be chroot-ed into. 
+
+See HOOKS in mmdebstrap(1) for more information and examples. 
+Additional setup hooks can be specified with --setup-hook.
+```
+
+这段内容描述的是在使用 `mmdebstrap` 工具时，如何通过 `setup-hooks` 参数来指定在初始设置后、下载或安装任何软件包之前执行的一系列自定义命令。具体来说：
+
+- **setup-hooks**：这是一个字符串列表，用于定义一系列在初始设置完成后立即执行的命令。这些命令会在创建目录、配置 `apt` 和 `dpkg` 等之后执行，但在任何软件包被下载或安装之前。
+
+- **执行时机**：在这个阶段，chroot 目录中还没有包含任何可执行文件，因此还无法进入 chroot 环境。
+
+- **更多信息和示例**：如果需要了解更多关于这些钩子（hooks）的信息和示例，可以参考 `mmdebstrap(1)` 手册中的 "HOOKS" 部分。
+
+- **指定额外的 setup hooks**：可以通过 `--setup-hook` 参数来指定额外的 setup hooks。这意味着你可以在命令行中添加多个 `--setup-hook` 参数，每个参数后面跟一个要执行的命令或脚本。
+
+这个功能允许用户在软件包管理器和包安装之前进行一些自定义操作，比如预先配置环境、设置权限、或者执行一些特定的初始化任务。
+
+
 ```bash
   setup-hooks:
       # Setup TI Debian Package Repository
@@ -537,7 +800,50 @@ mmdebstrap:
 
 这些步骤的目的是为了确保目标文件系统能够正确地配置德州仪器提供的 APT 仓库，并且能够在安装内核之后执行一些特定的脚本任务，比如复制内核和覆盖文件等。这样可以保证目标设备上使用的内核和其他组件是最新的，并且与德州仪器的硬件平台兼容。
 
+#### essential-hooks
+```bash
+essential-hooks
+list of essential hooks (string). 
+Execute arbitrary commands after the Essential:yes packages have been installed, 
+but before installing the remaining packages. 
+
+See HOOKS in mmdebstrap(1) for more information and examples. 
+Additional essential hooks can be specified with --essential-hook.
+```
+在上述片段中，"essential-hooks" 指的是一系列关键的设置钩子（hooks），它们是用于在安装了标记为 "Essential:yes" 的软件包之后、但在安装剩余软件包之前执行任意命令的列表。这些钩子在 mmdebstrap 工具中被用到，mmdebstrap 是一个用于在 Debian 系统上设置 chroot 环境的工具。
+
+- **列表（list）**: 表示可以指定多个钩子，它们将按照指定的顺序执行。
+- **字符串（string）**: 每个钩子都以字符串的形式给出，可以是任何命令或脚本。
+- **执行（Execute）**: 表示这些钩子将在特定的安装阶段自动执行。
+- **Essential:yes**: 这是一个特定的标记，用于指明某些软件包是系统运行所必需的。
+- **mmdebstrap(1)**: 这是指 mmdebstrap 的手册页，其中包含了关于如何使用这些钩子的更多信息和示例。
+- **--essential-hook**: 这是一个命令行选项，用于在 mmdebstrap 命令中添加额外的关键钩子。
+
+简而言之，"essential-hooks" 允许用户在安装过程中的关键点执行自定义的命令或脚本，这可以用于配置系统、安装额外的依赖或执行其他必要的设置。
+
 #### customize-hooks
+```bash
+customize-hooks
+list of customize hooks (string). 
+Execute arbitrary commands after the chroot is set up 
+and all packages got installed but before final cleanup actions are carried out. 
+
+See HOOKS in mmdebstrap(1) for more information and examples. 
+Additional customize hooks can be specified with --customize-hook.
+```
+
+这段内容描述的是 `customize-hooks` 参数，它是一个字符串列表，用于在 chroot 环境设置完成并且所有软件包安装完毕后，但在进行最终清理操作之前，执行任意命令。这些自定义钩子（hooks）允许用户在安装过程的特定阶段执行额外的命令或脚本。
+
+- **customize-hooks**：这是一个参数，用户可以指定一系列自定义的钩子命令。
+- **list of customize hooks (string)**：表示用户可以提供一个字符串列表，其中包含要在特定阶段执行的命令。
+- **Execute arbitrary commands**：意味着用户可以执行任何他们想要的命令。
+- **after the chroot is set up and all packages got installed**：指出这些命令将在 chroot 环境配置完成并且所有软件包都已安装好之后执行。
+- **before final cleanup actions are carried out**：这些命令会在进行最终的清理操作之前执行。
+- **See HOOKS in mmdebstrap(1) for more information and examples**：提供了一个参考，用户可以通过查看 `mmdebstrap(1)` 的手册中的 `HOOKS` 部分来获取更多信息和示例。
+- **Additional customize hooks can be specified with --customize-hook**：说明用户可以通过 `--customize-hook` 选项来指定额外的自定义钩子。
+
+简而言之，`customize-hooks` 参数允许用户在软件包安装完成后和最终清理之前，执行自定义的命令或脚本，以进行额外的配置或修改。
+
 ```bash
       # Remove passwd for root user
     - 'chroot "$1" passwd --delete root'

@@ -387,3 +387,52 @@ k3-am625-r5-sk.dts
 		#include "k3-am625-sk-binman.dtsi"
 			#include "k3-binman.dtsi"
 ```
+
+### 自动在k3-am625-sk.dts加k3-am625-sk-uboot.dtsi
+![[Pasted image 20241101191522.png]]
+![[Pasted image 20241101191630.png]]
+![[Pasted image 20241101192244.png]]
+![[Pasted image 20241101191719.png]]
+![[Pasted image 20241101191735.png]]
+
+## 安全启动
+```bash
+doc/usage/fit/howto.rst
+boot/image-fit.c
+
+./arch/arm/mach-k3/keys/custMpk.pem
+./arch/arm/mach-k3/keys/ti-degenerate-key.pem
+
+
+root@DESKTOP-GC4LAR7:/home/liweiyu/am62x/debug/ti-processor-sdk-linux-rt-am62xx-evm-10.00.07.04/board-support/ti-u-boot-2024.04+git# ll ./board/ti/am62x/
+total 80
+drwxr-xr-x  2 root  root  4096 Sep 25 07:32 ./
+drwxr-xr-x 20 root  root  4096 Sep 18 09:34 ../
+-rw-r--r--  1 60898 1373   606 Aug  5 11:40 Kconfig
+-rw-r--r--  1 60898 1373   213 Aug  5 11:40 MAINTAINERS
+-rw-r--r--  1 60898 1373   170 Aug  5 11:40 Makefile
+-rwxrwxrwx  1 root  root  2768 Sep 19 06:36 am62x.env*
+-rw-r--r--  1 60898 1373   798 Aug  5 11:40 board-cfg.yaml
+-rwxrwxrwx  1 root  root  4414 Sep 18 09:33 evm.c*
+-rw-r--r--  1 60898 1373   244 Aug  5 11:40 pm-cfg.yaml
+-rw-r--r--  1 60898 1373 25889 Aug  5 11:40 rm-cfg.yaml
+-rw-r--r--  1 60898 1373 11009 Aug  5 11:40 sec-cfg.yaml
+
+ll tools/binman/
+	etype/x509_cert.py
+	etype/ti_secure.py
+	etype/ti_secure_rom.py
+
+	btool/openssl.py
+
+	entries.rst
+	ftest.py
+```
+
+# 内核
+## lvds
+![[Pasted image 20241031161024.png]]
+![[img_v3_02g6_be16b9aa-bf40-4b30-bfd8-4d1cc6c5915g.jpg]]
+
+原因是tidss先于panel先初始化，这个错误无影响
+![[Pasted image 20241031161120.png]]

@@ -25,6 +25,16 @@ git remote add all ssh://git@192.168.1.168:1022/root/0806-manifest.git
 git remote set-url --add all ssh://git@gitee.com/leev2v1/manifest.git
 git remote -v
 git push all master
+
+# 恢复删除的 main.c 文件
+git checkout -- main.c
+
+# 暂存当前的修改 
+git stash 
+# 回退到指定的提交 
+git reset --hard 197b42ea2afd3d2ed461512556e2a152578 
+# 恢复暂存的修改 
+git stash pop
 ```
 
 
@@ -1185,6 +1195,44 @@ git reset --keep <commit-hash>
 ```
 
 这将重置暂存区和已跟踪文件的状态，同时保留工作目录中的未跟踪文件。
+
+# stash
+```bash
+# 暂存当前的修改 
+git stash 
+# 回退到指定的提交 
+git reset --hard 197b42ea2afd3d2ed461512556e2a152578 
+# 恢复暂存的修改 
+git stash pop
+```
+
+```bash
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/optee_os-3.20.0/core/arch/arm/plat-k3# git stash
+Saved working directory and index state WIP on master: 7466f2f add support for read SOC_UID in optee -- add main.c
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/optee_os-3.20.0/core/arch/arm/plat-k3# git status
+On branch master
+Your branch is ahead of 'gitee/master' by 31 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/optee_os-3.20.0/core/arch/arm/plat-k3# git reset --hard 197b42ea2afd3d2ed46151c1a512556e2a152578
+HEAD is now at 197b42e add support for read write external otp efuse in optee os -- write mmr and row
+
+
+root@DESKTOP-GC4LAR7:/home/leefly/am62x/src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/optee_os-3.20.0/core/arch/arm/plat-k3# git stash pop
+On branch master
+Your branch is ahead of 'gitee/master' by 30 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   drivers/ti_sci.c
+        modified:   drivers/ti_sci.h
+        modified:   drivers/ti_sci_protocol.h
+```
 
 # clone
 

@@ -11,9 +11,12 @@
             "id": "90412aae1862b884",
             "type": "leaf",
             "state": {
-              "type": "image",
+              "type": "markdown",
               "state": {
-                "file": "pic/Pasted image 20241106105430.png"
+                "file": "source/开发环境搭建/Git.md",
+                "mode": "preview",
+                "backlinks": false,
+                "source": false
               }
             }
           }
@@ -91,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "pic/Pasted image 20241106105430.png",
+                "file": "source/开发环境搭建/Git.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -108,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "pic/Pasted image 20241106105430.png",
+                "file": "source/开发环境搭建/Git.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -131,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "pic/Pasted image 20241106105430.png"
+                "file": "source/开发环境搭建/Git.md"
               }
             }
           },
@@ -191,20 +194,20 @@
       "copilot:Copilot Chat": false
     }
   },
-  "active": "802503ceec5b2af7",
+  "active": "90412aae1862b884",
   "lastOpenFiles": [
     "source/内核驱动/12 安全系统/OPTEE/源码分析.md",
+    "source/内核驱动/12 安全系统/OPTEE/DFT.md",
+    "Pasted image 20241107200322.png",
+    "Pasted image 20241107200247.png",
+    "Pasted image 20241107173347.png",
+    "Pasted image 20241107173315.png",
+    "pic/Pasted image 20241106110212.png",
     "pic/Pasted image 20241106105430.png",
     "pic/Pasted image 20241106105410.png",
     "pic/Pasted image 20241106105351.png",
     "pic/Pasted image 20241106105104.png",
     "pic/Pasted image 20241106105031.png",
-    "pic/Pasted image 20241106104901.png",
-    "pic/Pasted image 20241106104851.png",
-    "pic/Pasted image 20241106104803.png",
-    "pic/Pasted image 20241106104428.png",
-    "pic/Pasted image 20241106104123.png",
-    "source/内核驱动/12 安全系统/OPTEE/DFT.md",
     "source/开发环境搭建/Git.md",
     "source/内核驱动/09 工控接口/CAN/DFT.md",
     "source/内核驱动/09 工控接口/CAN/命令集.md",

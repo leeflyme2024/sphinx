@@ -1024,6 +1024,71 @@ size-garbage: 0 bytes
 git rev-list --objects --all | wc -l
 ```
 
+[blog.51cto.com/u\_16099356/10655948](https://blog.51cto.com/u_16099356/10655948)
+
+你提供的命令用于查找 Git 仓库中最大的对象，并列出它们的相关信息。这个命令组合了几个 Git 和 Unix 命令来完成任务。让我们逐步解析这个命令：
+
+1. **`git verify-pack -v .git/objects/pack/*.idx`**：
+   - 这个命令会验证 Git 对象数据库中的包文件，并输出详细信息。
+   - 输出包括对象的 SHA-1 哈希值、类型、大小等信息。
+
+2. **`sort -k 3 -n`**：
+   - 这个命令按第三列（即对象的大小）进行数字排序。
+
+3. **`tail -500`**：
+   - 这个命令取出排序后的最后 500 行，也就是最大的 500 个对象的信息。
+
+4. **`awk '{print $1}'`**：
+   - 这个命令提取每行的第一个字段，即对象的 SHA-1 哈希值。
+
+5. **`git rev-list --objects --all`**：
+   - 这个命令列出仓库中所有对象及其对应的提交信息。
+
+6. **`grep "$( ... )" `**：
+   - 这个命令使用前面生成的 SHA-1 哈希值列表来过滤 `git rev-list` 的输出，只保留匹配的对象。
+
+### 完整命令解释
+
+```sh
+git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -500 | awk '{print $1}')"
+```
+
+### 步骤详解
+
+1. **获取最大的对象哈希值**：
+   ```sh
+   git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -500 | awk '{print $1}'
+   ```
+
+2. **过滤 `git rev-list` 的输出**：
+   ```sh
+   git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -500 | awk '{print $1}')"
+   ```
+
+### 实际操作
+
+1. **进入你的 Git 仓库目录**：
+   ```sh
+   cd /path/to/your/repo
+   ```
+
+2. **运行命令**：
+   ```sh
+   git rev-list --objects --all | grep "$(git verify-pack -v .git/objects/pack/*.idx | sort -k 3 -n | tail -500 | awk '{print $1}')"
+   ```
+
+### 结果解读
+
+- 输出结果将显示最大的 500 个对象及其相关的提交信息。
+- 每一行包含对象的 SHA-1 哈希值和相关的提交信息。
+
+### 注意事项
+
+- 这个命令可能会非常耗时，特别是对于大型仓库。
+- 如果你的仓库中有大量的对象，可能需要调整 `tail -500` 中的数字，以适应你的需求。
+
+希望这些信息对你有所帮助！如果有任何问题或需要进一步的帮助，请随时提问。
+
 ## 示例脚本
 
 ```bash
@@ -1067,7 +1132,269 @@ git push origin --force --tags
 
 ```
 
+```bash
+pip install git-filter-repo
 
+cd release
+git rm -r --cached patch
+echo "patch/" >> .gitignore
+git add .gitignore
+git commit -m "Stop tracking patch"
+git filter-repo --path patch --invert-paths
+git filter-branch --force --index-filter \
+  "git rm -r --cached --ignore-unmatch patch" \
+  --prune-empty --tag-name-filter cat -- --all
+git push origin --force --all
+git push origin --force --tags
+
+git fetch origin
+git reset --hard origin/main
+
+df
+export TMPDIR=/mnt/c
+git reflog expire --expire=now --all
+git gc --prune=now --aggressive
+
+git count-objects -vH
+git rev-list --objects --all | wc -l
+```
+
+在 Git 中，要停止跟踪某个文件夹，并且清除其历史记录，可以按以下步骤操作：
+
+---
+
+### 1. **停止跟踪文件夹并将其添加到 `.gitignore`**
+
+#### 假设需要停止跟踪的文件夹为 `folder_to_ignore`
+
+1. 停止跟踪文件夹（但不删除本地文件夹）：
+    
+    ```bash
+    git rm -r --cached folder_to_ignore
+    ```
+    
+2. 将文件夹添加到 `.gitignore` 文件：
+    
+    ```bash
+    echo "folder_to_ignore/" >> .gitignore
+    ```
+    
+3. 提交更改：
+    
+    ```bash
+    git add .gitignore
+    git commit -m "Stop tracking folder_to_ignore"
+    ```
+    
+
+---
+
+### 2. **清除历史记录中的该文件夹**
+
+清除历史记录中的某个文件夹需要重写整个仓库的历史。这会导致仓库的 Git SHA-1 哈希发生变化，所以团队协作时需要特别小心。
+
+#### 使用 `git filter-repo`（推荐）
+
+1. 确保安装了 `git-filter-repo` 工具。如果未安装，可以通过以下命令安装：
+    
+    - Linux:
+        
+        ```bash
+        sudo apt install git-filter-repo
+        ```
+        
+    - macOS (使用 Homebrew):
+        
+        ```bash
+        brew install git-filter-repo
+        ```
+        
+2. 重写历史以移除指定文件夹：
+    
+    ```bash
+    git filter-repo --path folder_to_ignore --invert-paths
+    ```
+    
+    - `--path folder_to_ignore` 表示选择目标路径。
+    - `--invert-paths` 表示删除该路径的内容。
+
+#### 使用 `git filter-branch`（不推荐，但可选）
+
+如果不能使用 `git-filter-repo`，可以用 `git filter-branch`：
+
+```bash
+git filter-branch --force --index-filter \
+  "git rm -r --cached --ignore-unmatch folder_to_ignore" \
+  --prune-empty --tag-name-filter cat -- --all
+```
+
+> **注意：** `git filter-branch` 在较大的代码库中速度较慢，并且可能会出现警告提示。
+
+---
+
+### 3. **强制推送到远程仓库**
+
+清除历史后，需要强制推送更改到远程仓库：
+
+```bash
+git push origin --force --all
+git push origin --force --tags
+```
+
+---
+
+### 4. **通知团队成员**
+
+由于历史被重写，其他开发者需要重置他们的本地仓库：
+
+```bash
+git fetch origin
+git reset --hard origin/main
+```
+
+---
+
+### 总结
+
+- 使用 `git rm -r --cached` 停止跟踪文件夹。
+- 用 `git filter-repo` 或 `git filter-branch` 清除历史记录。
+- 强制推送更改并通知团队重新拉取仓库。
+
+这可以有效地从仓库中清除指定文件夹及其历史记录。
+
+## BFG Repo-Cleaner
+[blog.51cto.com/u\_16099356/10655948](https://blog.51cto.com/u_16099356/10655948)
+
+你提供的命令是使用 BFG Repo-Cleaner 工具来清理 Git 仓库中的特定文件夹。BFG 是一个高效的 Git 存储库清理工具，特别适合处理大规模的数据删除任务。以下是对你提供的命令的详细解释：
+
+### 命令解释
+
+```sh
+java -jar bfg-1.14.0.jar --delete-folders {dist} --no-blob-protection frontend_saas.git
+```
+
+1. **`java -jar bfg-1.14.0.jar`**：
+   - 这部分指定了使用 Java 运行 BFG Repo-Cleaner 工具。`bfg-1.14.0.jar` 是 BFG 工具的 JAR 文件。
+
+2. **`--delete-folders {dist}`**：
+   - 这个选项告诉 BFG 删除指定名称的文件夹。在这个例子中，`{dist}` 是要删除的文件夹名称。注意 `{dist}` 需要用大括号包围，表示这是一个文件夹名称的占位符。
+
+3. **`--no-blob-protection`**：
+   - 这个选项告诉 BFG 不要保护最近的任何大文件。默认情况下，BFG 会保护最近的大文件不被删除，以防止意外删除重要数据。如果你确定要删除这些文件，可以使用这个选项。
+
+4. **`frontend_saas.git`**：
+   - 这是你 Git 仓库的路径。BFG 将在这个仓库中执行清理操作。
+
+### 执行步骤
+
+1. **备份仓库**：
+   - 在执行任何清理操作之前，强烈建议先备份你的仓库，以防止数据丢失。
+   ```sh
+   cp -r frontend_saas.git frontend_saas_backup.git
+   ```
+
+2. **运行 BFG 命令**：
+   - 在你的 Git 仓库目录中运行 BFG 命令。
+   ```sh
+   java -jar bfg-1.14.0.jar --delete-folders {dist} --no-blob-protection frontend_saas.git
+   ```
+
+3. **清理 Git 仓库**：
+   - BFG 清理完成后，你需要运行一些 Git 命令来彻底清除历史记录并优化仓库。
+   ```sh
+   cd frontend_saas.git
+   git reflog expire --all --force
+   git gc --prune=now --aggressive
+   ```
+
+4. **推送更改**：
+   - 如果你在本地仓库中进行了清理，需要将更改推送到远程仓库。
+   ```sh
+   git push --force --all
+   git push --force --tags
+   ```
+
+### 注意事项
+
+- **数据备份**：始终在执行清理操作前备份仓库。
+- **测试环境**：建议在测试环境中先进行操作，确保不会影响生产环境。
+- **团队沟通**：如果仓库是多人协作的，确保团队成员知道你正在进行清理操作，避免冲突。
+
+希望这些信息对你有所帮助！如果有任何问题或需要进一步的帮助，请随时提问。
+
+## gitlab-rake
+[清理 | 极狐GitLab](https://gitlab.cn/docs/jh/raketasks/cleanup.html)
+
+
+看起来命令有误，正确的命令是 `gitlab:cleanup:project_uploads`。以下是正确的清理命令序列：
+
+```bash
+# 清理项目上传文件
+gitlab-rake gitlab:cleanup:project_uploads
+
+# 清理仓库
+gitlab-rake gitlab:cleanup:repos
+
+# 清理废弃的命名空间
+gitlab-rake gitlab:cleanup:orphan_namespaces
+
+# 清理构建产物
+gitlab-rake gitlab:cleanup:builds
+
+# 清理陈旧的 CI/CD 数据
+gitlab-rake ci:cleanup:builds
+
+# 清理过期的 LFS 对象
+gitlab-rake gitlab:cleanup:orphan_lfs_files
+
+# 强制执行垃圾回收
+gitlab-rake gitlab:gc
+
+# 检查仓库完整性
+gitlab-rake gitlab:check SANITIZE=true
+```
+
+要查看所有可用的清理任务：
+```bash
+gitlab-rake -T | grep cleanup
+```
+
+```bash
+
+root@9ffd82a20890:/# gitlab-rake -T | grep cleanup
+rake ci:cleanup:builds                                                                                                      # GitLab | CI | Clean running builds
+rake gitlab:cleanup:block_removed_ldap_users                                                                                # GitLab | Cleanup | Block users that have been removed in LDAP
+rake gitlab:cleanup:delete_orphan_job_artifact_final_objects                                                                # GitLab | Cleanup | Delete orphan job artifact objects stored in the @final directory based on the CSV file
+rake gitlab:cleanup:list_orphan_job_artifact_final_objects[provider]                                                        # GitLab | Cleanup | Generate a CSV file of orphan job artifact objects stored in the @final directory
+rake gitlab:cleanup:orphan_job_artifact_files                                                                               # GitLab | Cleanup | Clean orphan job artifact files in local storage
+rake gitlab:cleanup:orphan_lfs_file_references                                                                              # GitLab | Cleanup | Clean orphan LFS file references
+rake gitlab:cleanup:orphan_lfs_files                                                                                        # GitLab | Cleanup | Clean orphan LFS files
+rake gitlab:cleanup:project_uploads                                                                                         # GitLab | Cleanup | Clean orphaned project uploads
+rake gitlab:cleanup:remote_upload_files                                                                                     # GitLab | Cleanup | Clean orphan remote upload files that do not exist in the db
+rake gitlab:cleanup:remove_missed_source_branches                                                                           # GitLab | Cleanup | Clean missed source branches to be deleted
+rake gitlab:cleanup:rollback_deleted_orphan_job_artifact_final_objects                                                      # GitLab | Cleanup | Rollback deleted final orphan job artifact objects (GCP only)
+rake gitlab:cleanup:sessions:active_sessions_lookup_keys                                                                    # GitLab | Cleanup | Sessions | Clean ActiveSession lookup keys
+```
+
+
+如果想要通过Rails控制台强制删除项目：
+```bash
+# 进入 Rails 控制台
+gitlab-rails console -e production
+
+# 在控制台中执行
+Project.pending_delete.each { |p| p.destroy! }
+```
+
+确保在执行这些操作之前：
+1. GitLab 处于运行状态
+2. 有足够的系统资源
+3. 已经备份重要数据
+
+执行完清理命令后，可以检查磁盘空间使用情况：
+```bash
+du -sh /var/opt/gitlab/*
+```
 
 # show
 

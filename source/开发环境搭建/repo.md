@@ -17,6 +17,9 @@ repo sync docker.git
 repo sync manifest.git
 repo sync release.git
 
+# 同步除了0806-release.git的所有仓库的内容
+repo sync $(repo list | grep -v "0806-release.git" | cut -d' ' -f1)
+
 repo init -u git@gitee.com:leev2v1/manifest.git -m default.xml
 repo init -u ssh://git@192.168.1.168:1022/root/0806-manifest.git -m default-local.xml
 repo manifest

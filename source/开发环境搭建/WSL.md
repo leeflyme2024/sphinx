@@ -220,9 +220,10 @@ processors=4 # 设置为你需要的CPU核心数量（可选）
 
 1. **关闭所有 WSL 实例**：
    打开 Windows PowerShell 或 CMD，然后运行以下命令以确保所有 WSL 实例都关闭：
-   ```powershell
-   wsl --shutdown
-   ```
+```powershell
+wsl --shutdown
+wsl --list --verbose
+```
 
 2. **重新启动 WSL**：
    重新启动你的 WSL 终端（例如，Ubuntu），新的内存配置将生效。
@@ -232,4 +233,43 @@ processors=4 # 设置为你需要的CPU核心数量（可选）
 启动 WSL 后，你可以通过以下命令来检查当前的内存使用情况，确保新的配置已生效：
 ```bash
 free -h
+```
+
+### 清理虚拟磁盘空间
+#### 关闭WSL所有示例
+```powershell
+wsl --shutdown
+wsl --list --verbose
+```
+
+#### 分区
+```bash
+diskpart
+```
+
+#### 清理空间
+##### ubuntu 18.04
+```bash
+select vdisk file="C:\Users\leefly\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu18.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx"
+attach vdisk readonly
+compact vdisk
+detach vdisk
+```
+
+##### ubuntu 22.04
+![[企业微信截图_17322651818733.png]]
+![[企业微信截图_1732265189641.png]]
+```bash
+select vdisk file="C:\Users\leefly\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu22.04LTS_79rhkp1fndgsc\LocalState\ext4.vhdx"
+attach vdisk readonly
+compact vdisk
+detach vdisk
+```
+
+##### WSL
+```bash
+select vdisk file="C:\Users\leefly\AppData\Local\Docker\wsl\data\ext4.vhdx"
+attach vdisk readonly
+compact vdisk
+detach vdisk
 ```

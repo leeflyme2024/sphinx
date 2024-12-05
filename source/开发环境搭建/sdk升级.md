@@ -429,6 +429,283 @@ ll tools/binman/
 	ftest.py
 ```
 
+## lvds
+### 时钟确认
+![[Pasted image 20241129162518.png]]
+
+![[Pasted image 20241129162600.png]]
+
+![[Pasted image 20241129200228.png]]
+
+![[Pasted image 20241129162838.png]]
+
+![[Pasted image 20241129163014.png]]
+
+
+![[Pasted image 20241129161453.png]]
+![[Pasted image 20241129161436.png]]
+
+![[Pasted image 20241129195623.png]]
+
+![[Pasted image 20241129194748.png]]
+
+![[Pasted image 20241129195856.png]]
+
+[manual.zlg.cn/Public/Uploads/2024-02-18/65d1b3b2b8c3f.pdf](https://manual.zlg.cn/Public/Uploads/2024-02-18/65d1b3b2b8c3f.pdf)
+
+![[Pasted image 20241129162044.png]]
+![[Pasted image 20241129162107.png]]
+![[Pasted image 20241129161659.png]]
+![[Pasted image 20241129161543.png]]
+
+![[Pasted image 20241129161610.png]]
+
+
+### oldi
+```bash
+enum dss_oldi_modes {
+	OLDI_MODE_OFF,				/* OLDI turned off / tied off in IP. */
+	OLDI_SINGLE_LINK_SINGLE_MODE,		/* Single Output over OLDI 0. */
+	OLDI_SINGLE_LINK_DUPLICATE_MODE,	/* Duplicate Output over OLDI 0 and 1. */
+	OLDI_DUAL_LINK,				/* Combined Output over OLDI 0 and 1. */
+};
+
+
+struct tidss_drv_priv {
+
+	// priv->dev = dev;
+	struct udevice *dev;
+
+
+	// priv->base_common = dev_remap_addr_name(dev, priv->feat->common);
+	void __iomem *base_common; /* common register region of dss*/
+
+
+	// priv->base_vid[i] = dev_remap_addr_name(dev, priv->feat->vid_name[i]);
+	void __iomem *base_vid[TIDSS_MAX_PLANES]; /* plane register region of dss*/
+
+
+
+	// priv->base_ovr[i] = dev_remap_addr_name(dev, priv->feat->ovr_name[i]);
+	void __iomem *base_ovr[TIDSS_MAX_PORTS]; /* overlay register region of dss*/
+
+
+	// priv->base_vp[i] = dev_remap_addr_name(dev, priv->feat->vp_name[i]);
+	void __iomem *base_vp[TIDSS_MAX_PORTS]; /* video port register region of dss*/
+
+
+
+	struct regmap *oldi_io_ctrl;
+
+	// ret = clk_get_by_name(dev, "vp1", &priv->vp_clk[0]);
+	struct clk vp_clk[TIDSS_MAX_PORTS];
+
+
+	// priv->feat = &dss_am625_feats;
+	const struct dss_features *feat;
+
+
+	// ret = clk_get_by_name(dev, "fck", &priv->fclk);
+	struct clk fclk;
+
+
+	struct dss_vp_data vp_data[TIDSS_MAX_PORTS];
+
+
+	// priv->oldi_mode = OLDI_DUAL_LINK;
+	enum dss_oldi_modes oldi_mode;
+
+	// priv->bus_format = &dss_bus_formats[7];
+	struct dss_bus_format *bus_format;
+
+
+	// priv->pixel_format = DSS_FORMAT_XRGB8888;
+	u32 pixel_format;
+
+
+
+	u32 memory_bandwidth_limit;
+
+
+};
+
+
+struct video_uc_plat {
+	uint align;
+	uint size;
+	ulong base;
+	ulong copy_base;
+	ulong copy_size;
+	bool hide_logo;
+};
+
+
+struct video_priv {
+
+	// uc_priv->xsize = timings.hactive.typ;
+	ushort xsize;
+
+	// uc_priv->ysize = timings.vactive.typ;
+	ushort ysize;
+
+
+
+	ushort rot;
+
+	// uc_priv->bpix = VIDEO_BPP32;
+	enum video_log2_bpp bpix;
+
+
+	enum video_format format;
+	const char *vidconsole_drv_name;
+	int font_size;
+
+	/*
+	 * Things that are private to the uclass: don't use these in the
+	 * driver
+	 */
+	void *fb;
+	int fb_size;
+	void *copy_fb;
+	int line_length;
+	u32 colour_fg;
+	u32 colour_bg;
+	bool flush_dcache;
+	u8 fg_col_idx;
+	u8 bg_col_idx;
+};
+
+
+struct video_ops {
+	int (*video_sync)(struct udevice *vid);
+};
+
+
+dss_common_regmap = priv->feat->common_regs;
+
+
+struct display_timing timings;
+	ret = panel_get_display_timing(panel, &timings);
+	if (ret) {
+		ret = ofnode_decode_panel_timing(dev_ofnode(panel),
+						 &timings);
+		if (ret) {
+			dev_err(dev, "decode display timing error %d\n", ret);
+			return ret;
+		}
+	}
+
+	dss_vid_write(priv, 0, DSS_VID_BA_0, uc_plat->base & 0xffffffff);
+	dss_vid_write(priv, 0, DSS_VID_BA_EXT_0, (u64)uc_plat->base >> 32);
+	dss_vid_write(priv, 0, DSS_VID_BA_1, uc_plat->base & 0xffffffff);
+	dss_vid_write(priv, 0, DSS_VID_BA_EXT_1, (u64)uc_plat->base >> 32);
+
+dss_init_am65x_oldi_io_ctrl
+
+video_set_flush_dcache
+
+
+
+/* common */
+dss_write
+dss_read
+
+FLD_MASK
+FLD_VAL
+FLD_GET
+FLD_MOD
+
+
+
+/* read and modify common register region of DSS*/
+REG_GET
+REG_FLD_MOD
+
+
+
+
+/* read and modify planes vid1 and vid2 register of DSS*/
+VID_REG_GET
+VID_REG_FLD_MOD
+
+dss_vid_write
+dss_vid_read
+
+dss_plane_setup
+dss_plane_enable
+dss_plane_init
+
+
+
+/* read and modify overlay ovr1 and ovr2 registers of DSS*/
+OVR_REG_GET
+OVR_REG_FLD_MOD
+
+dss_ovr_write
+dss_ovr_read
+
+dss_ovr_set_plane
+dss_ovr_enable_layer
+
+
+
+/* read and modify port vp1 and vp2 registers of DSS*/
+VP_REG_GET
+VP_REG_FLD_MOD
+
+dss_vp_write
+dss_vp_read
+
+dss_vp_enable_clk
+dss_vp_set_clk_rate
+dss_vp_prepare
+dss_vp_enable
+dss_vp_init
+
+
+
+------------------------------------------------------------
+tidss_drv_probe
+	dss_vp_enable_clk
+
+	dss_vp_set_clk_rate
+
+	dss_init_am65x_oldi_io_ctrl
+
+	dss_vp_prepare
+		dss_oldi_tx_power
+		dss_enable_oldi
+
+	dss_vp_enable
+
+	dss_vp_init
+
+```
+![[Pasted image 20241129195054.png]]
+
+[PROCESSOR-SDK-AM62X: How to decide LCD parameters in panel-simple.c - Processors forum - Processors - TI E2E support forums](https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1387625/processor-sdk-am62x-how-to-decide-lcd-parameters-in-panel-simple-c?tisearch=e2e-sitesearch&keymatch=PROCESSOR-SDK-J722S)
+![[Pasted image 20241129162240.png]]
+
+#### 电源配置
+![[Pasted image 20241129163915.png]]
+![[Pasted image 20241129163930.png]]
+![[Pasted image 20241129164004.png]]
+
+![[Pasted image 20241129164210.png]]
+
+![[Pasted image 20241129164021.png]]
+
+#### 使能
+![[Pasted image 20241129170921.png]]
+![[Pasted image 20241129170940.png]]
+![[Pasted image 20241129170955.png]]
+
+![[Pasted image 20241129172016.png]]
+
+![[Pasted image 20241129194535.png]]
+
+![[Pasted image 20241129172031.png]]
+
 # 内核
 ## lvds
 ![[Pasted image 20241031161024.png]]

@@ -5,12 +5,12 @@
       "path": "source/开发环境搭建/转产验证.md"
     },
     {
-      "basename": "工作月报",
-      "path": "source/开发环境搭建/工作月报.md"
+      "basename": "Pasted image 20241202111754",
+      "path": "pic/Pasted image 20241202111754.png"
     },
     {
-      "basename": "Pasted image 20241125161943",
-      "path": "pic/Pasted image 20241125161943.png"
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
     },
     {
       "basename": "Repo",
@@ -21,20 +21,72 @@
       "path": "source/开发环境搭建/Git.md"
     },
     {
-      "basename": "sdk升级",
-      "path": "source/开发环境搭建/sdk升级.md"
+      "basename": "软著登记",
+      "path": "source/开发环境搭建/软著登记.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/11 多媒体/LCD/命令集.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/LCD/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/LCD/测试报告.md"
     },
     {
       "basename": "GitLab CE 部署",
       "path": "source/开发环境搭建/GitLab CE 部署.md"
     },
     {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
     },
     {
       "basename": "WSL",
       "path": "source/开发环境搭建/WSL.md"
+    },
+    {
+      "basename": "teraterm",
+      "path": "source/开发环境搭建/teraterm.md"
+    },
+    {
+      "basename": "工作月报",
+      "path": "source/开发环境搭建/工作月报.md"
+    },
+    {
+      "basename": "Python",
+      "path": "source/开发环境搭建/Python.md"
+    },
+    {
+      "basename": "webtest",
+      "path": "source/开发环境搭建/webtest.md"
+    },
+    {
+      "basename": "TF卡制卡工具",
+      "path": "source/开发环境搭建/TF卡制卡工具.md"
+    },
+    {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
+      "basename": "Windows",
+      "path": "source/开发环境搭建/Windows.md"
+    },
+    {
+      "basename": "Markdown",
+      "path": "source/开发环境搭建/Markdown.md"
+    },
+    {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "Pasted image 20241125161943",
+      "path": "pic/Pasted image 20241125161943.png"
     },
     {
       "basename": "知识库",
@@ -43,14 +95,6 @@
     {
       "basename": "efuse烧写工具",
       "path": "source/开发环境搭建/efuse烧写工具.md"
-    },
-    {
-      "basename": "webtest",
-      "path": "source/开发环境搭建/webtest.md"
-    },
-    {
-      "basename": "teraterm",
-      "path": "source/开发环境搭建/teraterm.md"
     },
     {
       "basename": "源码分析",
@@ -93,10 +137,6 @@
       "path": "source/内核驱动/01 时钟/RTC/测试报告.md"
     },
     {
-      "basename": "Python",
-      "path": "source/开发环境搭建/Python.md"
-    },
-    {
       "basename": "Pasted image 20241101192244",
       "path": "pic/Pasted image 20241101192244.png"
     },
@@ -109,28 +149,8 @@
       "path": "pic/Pasted image 20241031161120.png"
     },
     {
-      "basename": "TF卡制卡工具",
-      "path": "source/开发环境搭建/TF卡制卡工具.md"
-    },
-    {
-      "basename": "开发环境搭建",
-      "path": "source/开发环境搭建/开发环境搭建.md"
-    },
-    {
-      "basename": "Windows",
-      "path": "source/开发环境搭建/Windows.md"
-    },
-    {
       "basename": "Vim",
       "path": "source/开发环境搭建/Vim.md"
-    },
-    {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
-    },
-    {
-      "basename": "Markdown",
-      "path": "source/开发环境搭建/Markdown.md"
     },
     {
       "basename": "debian",
@@ -179,26 +199,6 @@
     {
       "basename": "Node.js",
       "path": "source/开发环境搭建/前端/Node.js.md"
-    },
-    {
-      "basename": "Pasted image 20240823132413",
-      "path": "pic/Pasted image 20240823132413.png"
-    },
-    {
-      "basename": "06 Ubuntu",
-      "path": "source/文件系统/06 Ubuntu.md"
-    },
-    {
-      "basename": "Pasted image 20240830171940",
-      "path": "pic/Pasted image 20240830171940.png"
-    },
-    {
-      "basename": "Pasted image 20240830110708",
-      "path": "pic/Pasted image 20240830110708.png"
-    },
-    {
-      "basename": "Pasted image 20240802170846",
-      "path": "pic/Pasted image 20240802170846.png"
     }
   ],
   "omittedPaths": []

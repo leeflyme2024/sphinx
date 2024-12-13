@@ -1,6 +1,22 @@
 {
   "recentFiles": [
     {
+      "basename": "DFT",
+      "path": "source/内核驱动/10 高速接口/以太网/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/10 高速接口/以太网/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/10 高速接口/以太网/命令集.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
       "basename": "转产验证",
       "path": "source/开发环境搭建/转产验证.md"
     },
@@ -11,10 +27,6 @@
     {
       "basename": "sdk升级",
       "path": "source/开发环境搭建/sdk升级.md"
-    },
-    {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
     },
     {
       "basename": "Git",
@@ -187,18 +199,6 @@
     {
       "basename": "Pasted image 20240911193541",
       "path": "pic/Pasted image 20240911193541.png"
-    },
-    {
-      "basename": "Electron",
-      "path": "source/开发环境搭建/前端/Electron.md"
-    },
-    {
-      "basename": "conda",
-      "path": "source/开发环境搭建/前端/conda.md"
-    },
-    {
-      "basename": "Node.js",
-      "path": "source/开发环境搭建/前端/Node.js.md"
     }
   ],
   "omittedPaths": []

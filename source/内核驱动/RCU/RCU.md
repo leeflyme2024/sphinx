@@ -1,3 +1,6 @@
+
+[RCU concepts — The Linux Kernel documentation](https://docs.kernel.org/RCU/index.html)
+
 # 函数调用
 ```bash
 // ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/linux-rt-5.10.168+gitAUTOINC+c1a1291911-gc1a1291911/kernel/rcu/tree_stall.h  
@@ -182,17 +185,12 @@ EXPORT_SYMBOL_GPL(sched_show_task);
 RCU stall是一种rcu宽限期内rcu相关内核线程没有得到调度的异常。
 
 - 原理
-    
     在RCU机制中，reader不用等待，可以任意读取数据，RCU记录reader的信息；writer更新数据时，先复制一份副本，在副本上完成修改，等待所有reader退出后，再一次性地替换旧数据。
-    
     writer需要等所有reader都停止引用“旧数据”才能替换旧数据。这相当于给了这些reader一个优雅退出的宽限期，这个等待的时间被称为grace-period，简称GP。
-    
     当reader长时间没有退出，writer等待的时间超过宽限期时，即上报RCU Stall。
     
 - 触发方法
-    
-    内核在Documentation/RCU/stallwarn.txt文档列出了可能触发RCU stall的场景：cpu在rcu reader临界区一直循环，cpu在关闭中断或关闭抢占场景中一直循环等。
-
+    内核在`Documentation/RCU/stallwarn.rst`文档列出了可能触发RCU stall的场景：cpu在rcu reader临界区一直循环，cpu在关闭中断或关闭抢占场景中一直循环等。
 
 ```bash
 RCU（Read-Copy Update）是一种用于提高并发读写效率的机制，它的设计使得读取操作可以非常快速且无需锁定。RCU reader临界区是指读操作在RCU机制中的一个保护范围，在此范围内，读操作能够安全地访问共享数据，而无需担心数据一致性问题。以下是对RCU reader临界区的详细解释：
@@ -796,6 +794,44 @@ root@am62xx:/# ps |grep irq
 
 #### 分类
 下面是根据模块名称进行分类的中断线程列表：
+```c
+// kernel/irq/manage.c
+static int
+setup_irq_thread(struct irqaction *new, unsigned int irq, bool secondary)
+{
+        struct task_struct *t;
+
+        if (!secondary) {
+                t = kthread_create(irq_thread, new, "irq/%d-%s", irq,
+                                   new->name);
+        } else {
+                t = kthread_create(irq_thread, new, "irq/%d-s-%s", irq,
+                                   new->name);
+        }
+
+        if (IS_ERR(t))
+                return PTR_ERR(t);
+
+        /*
+         * We keep the reference to the task struct even if
+         * the thread dies to avoid that the interrupt code
+         * references an already freed task_struct.
+         */
+        new->thread = get_task_struct(t);
+        /*
+         * Tell the thread to set its affinity. This is
+         * important for shared interrupt handlers as we do
+         * not invoke setup_affinity() for the secondary
+         * handlers as everything is already set up. Even for
+         * interrupts marked with IRQF_NO_BALANCE this is
+         * correct as we want the thread to move to the cpu(s)
+         * on which the requesting code placed the interrupt.
+         */
+        set_bit(IRQTF_AFFINITY, &new->thread_flags);
+        return 0;
+}
+```
+
 
 ##### `Mailbox`
 - setup_irq_thread:1363 `irq/21-4d000000.mailbox thr_012`
@@ -2020,11 +2056,538 @@ root@am62xx:/# cat ./sys/kernel/rcu_expedited
 
 ### panic_on_rcu_stall
 ```bash
-root@am62xx:/# cat ./proc/sys/kernel/panic_on_rcu_stall
+root@am62xx:/# cat /proc/sys/kernel/panic_on_rcu_stall
 0
 ```
 
 **/proc/sys/kernel/panic_on_rcu_stall (0)**: 在 RCU stall 时是否触发 panic。0 表示不触发 panic。
+
+```bash
+# /Documentation/admin-guide/sysctl/kernel.rst
+panic_on_rcu_stall
+==================
+
+When set to 1, calls panic() after RCU stall detection messages. This
+is useful to define the root cause of RCU stalls using a vmcore.
+
+= ============================================================
+0 Do not panic() when RCU stall takes place, default behavior.
+1 panic() after printing RCU stall messages.
+= ============================================================
+```
+
+```c
+// linux-rt-5.10.168+gitAUTOINC+c1a1291911-gc1a1291911/kernel/sysctl.c
+#if defined(CONFIG_TREE_RCU)
+        {
+                .procname       = "panic_on_rcu_stall",
+                .data           = &sysctl_panic_on_rcu_stall,
+                .maxlen         = sizeof(sysctl_panic_on_rcu_stall),
+                .mode           = 0644,
+                .proc_handler   = proc_dointvec_minmax,
+                .extra1         = SYSCTL_ZERO,
+                .extra2         = SYSCTL_ONE,
+        },
+#endif
+```
+
+#### 修改 panic_on_rcu_stall的值
+
+```bash
+cat /etc/init.d/S02sysctl
+
+
+root@AM62x:/# sysctl --help
+BusyBox v1.35.0 (2024-07-30 13:23:46 CST) multi-call binary.
+
+Usage: sysctl [-enq] { -a | -p [FILE]... | [-w] [KEY[=VALUE]]... }
+
+Show/set kernel parameters
+
+        -e      Don't warn about unknown keys
+        -n      Don't show key names
+        -q      Quiet
+        -a      Show all values
+        -p      Set values from FILEs (default /etc/sysctl.conf)
+        -w      Set values
+```
+
+##### 临时设置
+```bash
+echo 1 > /proc/sys/kernel/panic_on_rcu_stall
+sysctl -w kernel.panic_on_rcu_stall=1
+```
+
+##### 永久设置
+[What is the use of "kernel.panic\_on\_rcu\_stall" parameter? - Red Hat Customer Portal](https://access.redhat.com/solutions/3901121)
+```bash
+echo "kernel.panic_on_rcu_stall = 1" >> /etc/sysctl.conf 
+sysctl -p
+```
+
+## 内核参数
+```bash
+# /Documentation/admin-guide/kernel-parameters.txt
+	rcu_nocbs=	[KNL]
+			The argument is a cpu list, as described above,
+			except that the string "all" can be used to
+			specify every CPU on the system.
+
+			In kernels built with CONFIG_RCU_NOCB_CPU=y, set
+			the specified list of CPUs to be no-callback CPUs.
+			Invocation of these CPUs' RCU callbacks will be
+			offloaded to "rcuox/N" kthreads created for that
+			purpose, where "x" is "p" for RCU-preempt, and
+			"s" for RCU-sched, and "N" is the CPU number.
+			This reduces OS jitter on the offloaded CPUs,
+			which can be useful for HPC and real-time
+			workloads.  It can also improve energy efficiency
+			for asymmetric multiprocessors.
+
+	rcu_nocb_poll	[KNL]
+			Rather than requiring that offloaded CPUs
+			(specified by rcu_nocbs= above) explicitly
+			awaken the corresponding "rcuoN" kthreads,
+			make these kthreads poll for callbacks.
+			This improves the real-time response for the
+			offloaded CPUs by relieving them of the need to
+			wake up the corresponding kthread, but degrades
+			energy efficiency by requiring that the kthreads
+			periodically wake up to do the polling.
+
+	rcutree.blimit=	[KNL]
+			Set maximum number of finished RCU callbacks to
+			process in one batch.
+
+	rcutree.dump_tree=	[KNL]
+			Dump the structure of the rcu_node combining tree
+			out at early boot.  This is used for diagnostic
+			purposes, to verify correct tree setup.
+
+	rcutree.gp_cleanup_delay=	[KNL]
+			Set the number of jiffies to delay each step of
+			RCU grace-period cleanup.
+
+	rcutree.gp_init_delay=	[KNL]
+			Set the number of jiffies to delay each step of
+			RCU grace-period initialization.
+
+	rcutree.gp_preinit_delay=	[KNL]
+			Set the number of jiffies to delay each step of
+			RCU grace-period pre-initialization, that is,
+			the propagation of recent CPU-hotplug changes up
+			the rcu_node combining tree.
+
+	rcutree.use_softirq=	[KNL]
+			If set to zero, move all RCU_SOFTIRQ processing to
+			per-CPU rcuc kthreads.  Defaults to a non-zero
+			value, meaning that RCU_SOFTIRQ is used by default.
+			Specify rcutree.use_softirq=0 to use rcuc kthreads.
+
+			But note that CONFIG_PREEMPT_RT=y kernels disable
+			this kernel boot parameter, forcibly setting it
+			to zero.
+
+	rcutree.rcu_fanout_exact= [KNL]
+			Disable autobalancing of the rcu_node combining
+			tree.  This is used by rcutorture, and might
+			possibly be useful for architectures having high
+			cache-to-cache transfer latencies.
+
+	rcutree.rcu_fanout_leaf= [KNL]
+			Change the number of CPUs assigned to each
+			leaf rcu_node structure.  Useful for very
+			large systems, which will choose the value 64,
+			and for NUMA systems with large remote-access
+			latencies, which will choose a value aligned
+			with the appropriate hardware boundaries.
+
+	rcutree.rcu_min_cached_objs= [KNL]
+			Minimum number of objects which are cached and
+			maintained per one CPU. Object size is equal
+			to PAGE_SIZE. The cache allows to reduce the
+			pressure to page allocator, also it makes the
+			whole algorithm to behave better in low memory
+			condition.
+
+	rcutree.jiffies_till_first_fqs= [KNL]
+			Set delay from grace-period initialization to
+			first attempt to force quiescent states.
+			Units are jiffies, minimum value is zero,
+			and maximum value is HZ.
+
+	rcutree.jiffies_till_next_fqs= [KNL]
+			Set delay between subsequent attempts to force
+			quiescent states.  Units are jiffies, minimum
+			value is one, and maximum value is HZ.
+
+	rcutree.jiffies_till_sched_qs= [KNL]
+			Set required age in jiffies for a
+			given grace period before RCU starts
+			soliciting quiescent-state help from
+			rcu_note_context_switch() and cond_resched().
+			If not specified, the kernel will calculate
+			a value based on the most recent settings
+			of rcutree.jiffies_till_first_fqs
+			and rcutree.jiffies_till_next_fqs.
+			This calculated value may be viewed in
+			rcutree.jiffies_to_sched_qs.  Any attempt to set
+			rcutree.jiffies_to_sched_qs will be cheerfully
+			overwritten.
+
+	rcutree.kthread_prio= 	 [KNL,BOOT]
+			Set the SCHED_FIFO priority of the RCU per-CPU
+			kthreads (rcuc/N). This value is also used for
+			the priority of the RCU boost threads (rcub/N)
+			and for the RCU grace-period kthreads (rcu_bh,
+			rcu_preempt, and rcu_sched). If RCU_BOOST is
+			set, valid values are 1-99 and the default is 1
+			(the least-favored priority).  Otherwise, when
+			RCU_BOOST is not set, valid values are 0-99 and
+			the default is zero (non-realtime operation).
+
+	rcutree.rcu_nocb_gp_stride= [KNL]
+			Set the number of NOCB callback kthreads in
+			each group, which defaults to the square root
+			of the number of CPUs.	Larger numbers reduce
+			the wakeup overhead on the global grace-period
+			kthread, but increases that same overhead on
+			each group's NOCB grace-period kthread.
+
+	rcutree.qhimark= [KNL]
+			Set threshold of queued RCU callbacks beyond which
+			batch limiting is disabled.
+
+	rcutree.qlowmark= [KNL]
+			Set threshold of queued RCU callbacks below which
+			batch limiting is re-enabled.
+
+	rcutree.qovld= [KNL]
+			Set threshold of queued RCU callbacks beyond which
+			RCU's force-quiescent-state scan will aggressively
+			enlist help from cond_resched() and sched IPIs to
+			help CPUs more quickly reach quiescent states.
+			Set to less than zero to make this be set based
+			on rcutree.qhimark at boot time and to zero to
+			disable more aggressive help enlistment.
+
+	rcutree.rcu_idle_gp_delay= [KNL]
+			Set wakeup interval for idle CPUs that have
+			RCU callbacks (RCU_FAST_NO_HZ=y).
+
+	rcutree.rcu_idle_lazy_gp_delay= [KNL]
+			Set wakeup interval for idle CPUs that have
+			only "lazy" RCU callbacks (RCU_FAST_NO_HZ=y).
+			Lazy RCU callbacks are those which RCU can
+			prove do nothing more than free memory.
+
+	rcutree.rcu_kick_kthreads= [KNL]
+			Cause the grace-period kthread to get an extra
+			wake_up() if it sleeps three times longer than
+			it should at force-quiescent-state time.
+			This wake_up() will be accompanied by a
+			WARN_ONCE() splat and an ftrace_dump().
+
+	rcutree.rcu_unlock_delay= [KNL]
+			In CONFIG_RCU_STRICT_GRACE_PERIOD=y kernels,
+			this specifies an rcu_read_unlock()-time delay
+			in microseconds.  This defaults to zero.
+			Larger delays increase the probability of
+			catching RCU pointer leaks, that is, buggy use
+			of RCU-protected pointers after the relevant
+			rcu_read_unlock() has completed.
+
+	rcutree.sysrq_rcu= [KNL]
+			Commandeer a sysrq key to dump out Tree RCU's
+			rcu_node tree with an eye towards determining
+			why a new grace period has not yet started.
+
+	rcuscale.gp_async= [KNL]
+			Measure performance of asynchronous
+			grace-period primitives such as call_rcu().
+
+	rcuscale.gp_async_max= [KNL]
+			Specify the maximum number of outstanding
+			callbacks per writer thread.  When a writer
+			thread exceeds this limit, it invokes the
+			corresponding flavor of rcu_barrier() to allow
+			previously posted callbacks to drain.
+
+	rcuscale.gp_exp= [KNL]
+			Measure performance of expedited synchronous
+			grace-period primitives.
+
+	rcuscale.holdoff= [KNL]
+			Set test-start holdoff period.  The purpose of
+			this parameter is to delay the start of the
+			test until boot completes in order to avoid
+			interference.
+
+	rcuscale.kfree_rcu_test= [KNL]
+			Set to measure performance of kfree_rcu() flooding.
+
+	rcuscale.kfree_nthreads= [KNL]
+			The number of threads running loops of kfree_rcu().
+
+	rcuscale.kfree_alloc_num= [KNL]
+			Number of allocations and frees done in an iteration.
+
+	rcuscale.kfree_loops= [KNL]
+			Number of loops doing rcuscale.kfree_alloc_num number
+			of allocations and frees.
+
+	rcuscale.nreaders= [KNL]
+			Set number of RCU readers.  The value -1 selects
+			N, where N is the number of CPUs.  A value
+			"n" less than -1 selects N-n+1, where N is again
+			the number of CPUs.  For example, -2 selects N
+			(the number of CPUs), -3 selects N+1, and so on.
+			A value of "n" less than or equal to -N selects
+			a single reader.
+
+	rcuscale.nwriters= [KNL]
+			Set number of RCU writers.  The values operate
+			the same as for rcuscale.nreaders.
+			N, where N is the number of CPUs
+
+	rcuscale.perf_type= [KNL]
+			Specify the RCU implementation to test.
+
+	rcuscale.shutdown= [KNL]
+			Shut the system down after performance tests
+			complete.  This is useful for hands-off automated
+			testing.
+
+	rcuscale.verbose= [KNL]
+			Enable additional printk() statements.
+
+	rcuscale.writer_holdoff= [KNL]
+			Write-side holdoff between grace periods,
+			in microseconds.  The default of zero says
+			no holdoff.
+
+	rcutorture.fqs_duration= [KNL]
+			Set duration of force_quiescent_state bursts
+			in microseconds.
+
+	rcutorture.fqs_holdoff= [KNL]
+			Set holdoff time within force_quiescent_state bursts
+			in microseconds.
+
+	rcutorture.fqs_stutter= [KNL]
+			Set wait time between force_quiescent_state bursts
+			in seconds.
+
+	rcutorture.fwd_progress= [KNL]
+			Enable RCU grace-period forward-progress testing
+			for the types of RCU supporting this notion.
+
+	rcutorture.fwd_progress_div= [KNL]
+			Specify the fraction of a CPU-stall-warning
+			period to do tight-loop forward-progress testing.
+
+	rcutorture.fwd_progress_holdoff= [KNL]
+			Number of seconds to wait between successive
+			forward-progress tests.
+
+	rcutorture.fwd_progress_need_resched= [KNL]
+			Enclose cond_resched() calls within checks for
+			need_resched() during tight-loop forward-progress
+			testing.
+
+	rcutorture.gp_cond= [KNL]
+			Use conditional/asynchronous update-side
+			primitives, if available.
+
+	rcutorture.gp_exp= [KNL]
+			Use expedited update-side primitives, if available.
+
+	rcutorture.gp_normal= [KNL]
+			Use normal (non-expedited) asynchronous
+			update-side primitives, if available.
+
+	rcutorture.gp_sync= [KNL]
+			Use normal (non-expedited) synchronous
+			update-side primitives, if available.  If all
+			of rcutorture.gp_cond=, rcutorture.gp_exp=,
+			rcutorture.gp_normal=, and rcutorture.gp_sync=
+			are zero, rcutorture acts as if is interpreted
+			they are all non-zero.
+
+	rcutorture.irqreader= [KNL]
+			Run RCU readers from irq handlers, or, more
+			accurately, from a timer handler.  Not all RCU
+			flavors take kindly to this sort of thing.
+
+	rcutorture.leakpointer= [KNL]
+			Leak an RCU-protected pointer out of the reader.
+			This can of course result in splats, and is
+			intended to test the ability of things like
+			CONFIG_RCU_STRICT_GRACE_PERIOD=y to detect
+			such leaks.
+
+	rcutorture.n_barrier_cbs= [KNL]
+			Set callbacks/threads for rcu_barrier() testing.
+
+	rcutorture.nfakewriters= [KNL]
+			Set number of concurrent RCU writers.  These just
+			stress RCU, they don't participate in the actual
+			test, hence the "fake".
+
+	rcutorture.nreaders= [KNL]
+			Set number of RCU readers.  The value -1 selects
+			N-1, where N is the number of CPUs.  A value
+			"n" less than -1 selects N-n-2, where N is again
+			the number of CPUs.  For example, -2 selects N
+			(the number of CPUs), -3 selects N+1, and so on.
+
+	rcutorture.object_debug= [KNL]
+			Enable debug-object double-call_rcu() testing.
+
+	rcutorture.onoff_holdoff= [KNL]
+			Set time (s) after boot for CPU-hotplug testing.
+
+	rcutorture.onoff_interval= [KNL]
+			Set time (jiffies) between CPU-hotplug operations,
+			or zero to disable CPU-hotplug testing.
+
+	rcutorture.read_exit= [KNL]
+			Set the number of read-then-exit kthreads used
+			to test the interaction of RCU updaters and
+			task-exit processing.
+
+	rcutorture.read_exit_burst= [KNL]
+			The number of times in a given read-then-exit
+			episode that a set of read-then-exit kthreads
+			is spawned.
+
+	rcutorture.read_exit_delay= [KNL]
+			The delay, in seconds, between successive
+			read-then-exit testing episodes.
+
+	rcutorture.shuffle_interval= [KNL]
+			Set task-shuffle interval (s).  Shuffling tasks
+			allows some CPUs to go into dyntick-idle mode
+			during the rcutorture test.
+
+	rcutorture.shutdown_secs= [KNL]
+			Set time (s) after boot system shutdown.  This
+			is useful for hands-off automated testing.
+
+	rcutorture.stall_cpu= [KNL]
+			Duration of CPU stall (s) to test RCU CPU stall
+			warnings, zero to disable.
+
+	rcutorture.stall_cpu_block= [KNL]
+			Sleep while stalling if set.  This will result
+			in warnings from preemptible RCU in addition
+			to any other stall-related activity.
+
+	rcutorture.stall_cpu_holdoff= [KNL]
+			Time to wait (s) after boot before inducing stall.
+
+	rcutorture.stall_cpu_irqsoff= [KNL]
+			Disable interrupts while stalling if set.
+
+	rcutorture.stall_gp_kthread= [KNL]
+			Duration (s) of forced sleep within RCU
+			grace-period kthread to test RCU CPU stall
+			warnings, zero to disable.  If both stall_cpu
+			and stall_gp_kthread are specified, the
+			kthread is starved first, then the CPU.
+
+	rcutorture.stat_interval= [KNL]
+			Time (s) between statistics printk()s.
+
+	rcutorture.stutter= [KNL]
+			Time (s) to stutter testing, for example, specifying
+			five seconds causes the test to run for five seconds,
+			wait for five seconds, and so on.  This tests RCU's
+			ability to transition abruptly to and from idle.
+
+	rcutorture.test_boost= [KNL]
+			Test RCU priority boosting?  0=no, 1=maybe, 2=yes.
+			"Maybe" means test if the RCU implementation
+			under test support RCU priority boosting.
+
+	rcutorture.test_boost_duration= [KNL]
+			Duration (s) of each individual boost test.
+
+	rcutorture.test_boost_interval= [KNL]
+			Interval (s) between each boost test.
+
+	rcutorture.test_no_idle_hz= [KNL]
+			Test RCU's dyntick-idle handling.  See also the
+			rcutorture.shuffle_interval parameter.
+
+	rcutorture.torture_type= [KNL]
+			Specify the RCU implementation to test.
+
+	rcutorture.verbose= [KNL]
+			Enable additional printk() statements.
+
+	rcupdate.rcu_cpu_stall_ftrace_dump= [KNL]
+			Dump ftrace buffer after reporting RCU CPU
+			stall warning.
+
+	rcupdate.rcu_cpu_stall_suppress= [KNL]
+			Suppress RCU CPU stall warning messages.
+
+	rcupdate.rcu_cpu_stall_suppress_at_boot= [KNL]
+			Suppress RCU CPU stall warning messages and
+			rcutorture writer stall warnings that occur
+			during early boot, that is, during the time
+			before the init task is spawned.
+
+	rcupdate.rcu_cpu_stall_timeout= [KNL]
+			Set timeout for RCU CPU stall warning messages.
+
+	rcupdate.rcu_expedited= [KNL]
+			Use expedited grace-period primitives, for
+			example, synchronize_rcu_expedited() instead
+			of synchronize_rcu().  This reduces latency,
+			but can increase CPU utilization, degrade
+			real-time latency, and degrade energy efficiency.
+			No effect on CONFIG_TINY_RCU kernels.
+
+	rcupdate.rcu_normal= [KNL]
+			Use only normal grace-period primitives,
+			for example, synchronize_rcu() instead of
+			synchronize_rcu_expedited().  This improves
+			real-time latency, CPU utilization, and
+			energy efficiency, but can expose users to
+			increased grace-period latency.  This parameter
+			overrides rcupdate.rcu_expedited.  No effect on
+			CONFIG_TINY_RCU kernels.
+
+	rcupdate.rcu_normal_after_boot= [KNL]
+			Once boot has completed (that is, after
+			rcu_end_inkernel_boot() has been invoked), use
+			only normal grace-period primitives.  No effect
+			on CONFIG_TINY_RCU kernels.
+
+			But note that CONFIG_PREEMPT_RT=y kernels enables
+			this kernel boot parameter, forcibly setting
+			it to the value one, that is, converting any
+			post-boot attempt at an expedited RCU grace
+			period to instead use normal non-expedited
+			grace-period processing.
+
+	rcupdate.rcu_task_ipi_delay= [KNL]
+			Set time in jiffies during which RCU tasks will
+			avoid sending IPIs, starting with the beginning
+			of a given grace period.  Setting a large
+			number avoids disturbing real-time workloads,
+			but lengthens grace periods.
+
+	rcupdate.rcu_task_stall_timeout= [KNL]
+			Set timeout in jiffies for RCU task stall warning
+			messages.  Disable with a value less than or equal
+			to zero.
+
+	rcupdate.rcu_self_test= [KNL]
+			Run the RCU early boot self tests
+```
 
 # 常见错误
 
@@ -2214,7 +2777,7 @@ root@am62xx:/# ps |grep 485c010
 [117483.212726]  ret_from_fork+0x10/0x30
 ```
 
-### 错误3： irq/104-485c010
+### 错误3：irq/104-485c010
 ![[企业微信截图_17222147705706.png]]
 
 ### 错误4：irq/43-tidss

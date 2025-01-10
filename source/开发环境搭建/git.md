@@ -14,6 +14,15 @@ git push origin am62xx-sdk-v1.0.0.5
 git push origin am62xx-sdk-v1.0.0.5 --delete
 git push orgin master
 
+git tag --merged enplus
+git tag --merged master
+
+
+git for-each-ref --format='%(refname:short)|%(creatordate:short)|%(subject)|%(authorname)' --sort=-creatordate --merged master refs/tags | column -t -s '|'
+git for-each-ref --format='%(refname:short)|%(creatordate:short)|%(subject)|%(authorname)' --sort=-creatordate --merged enplus refs/tags | column -t -s '|'
+
+git branch --contains M62xx-T@1.0.6+20250109hsse,en-plus
+
 git tag am62xx-sdk-v1.0.0.6,en-plus 8b96f4a96ae21b5d45518b0ea57854f77bcd2c38
 git push gitee am62xx-sdk-v1.0.0.6,en-plus
 

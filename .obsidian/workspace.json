@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/内核驱动/10 高速接口/以太网/DFT.md",
+                "file": "source/开发环境搭建/Repo.md",
                 "mode": "preview",
                 "backlinks": false,
                 "source": false
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/内核驱动/10 高速接口/以太网/DFT.md",
+                "file": "source/开发环境搭建/Repo.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/内核驱动/10 高速接口/以太网/DFT.md",
+                "file": "source/开发环境搭建/Repo.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/内核驱动/10 高速接口/以太网/DFT.md"
+                "file": "source/开发环境搭建/Repo.md"
               }
             }
           },

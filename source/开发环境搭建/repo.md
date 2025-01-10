@@ -48,8 +48,13 @@ repo forall -c 'git commit -m "xxx"'
 repo forall -c 'git tag am62xx-sdk-v1.0.0.5'
 repo forall -c 'git tag M62xx-T@1.0.5+20241205hsse $(git rev-parse HEAD) && git push all M62xx-T@1.0.5+20241205hsse'
 
+repo forall -c 'git tag M62xx-T@1.0.6+20250109hsse'
+repo forall -c 'git push all M62xx-T@1.0.6+20250109hsse'
+
 repo forall -c 'git checkout am62xx-sdk-v1.0.0.6,en-plus'
 repo forall -c 'git checkout master'
+
+repo forall -c 'git checkout enplus'
 
 repo forall -c 'git remote add all ssh://git@gitee.com/leev2v1/manifest.git'
 repo forall -c 'git remote set-url --add all ssh://git@192.168.1.168:1022/root/0806-manifest.git'
@@ -63,6 +68,67 @@ repo upload
 
 repo list
 repo info
+```
+
+```bash
+#!/bin/bash
+
+# 定义一个函数，用于检查仓库中是否存在指定标签
+check_tag() {
+    repo_path=$1
+    tag_to_check=$2
+
+    echo "Checking repository: $repo_path for tag: $tag_to_check"
+
+    # 进入仓库目录
+    cd $repo_path || { echo "Failed to enter $repo_path"; return 1; }
+
+    # 获取所有标签
+    tags=$(git tag)
+
+    # 检查是否存在指定标签
+    if echo "$tags" | grep -Fxq "$tag_to_check"; then
+        echo "Tag $tag_to_check found in $repo_path"
+        # git checkout "$tag_to_check"
+    else
+        echo "Tag $tag_to_check NOT found in $repo_path"
+    fi
+    cd -
+}
+
+# 定义仓库及对应标签
+declare -A repos
+repos=(
+    ["build"]="build"
+    ["docker"]="build/release/docker"
+    ["doc"]="doc"
+    ["manifest"]="manifest"
+    ["release"]="release"
+    ["ti"]="src/ti"
+    ["zy"]="src/zy"
+    ["uboot"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/u-boot-2021.01+gitAUTOINC+2ee8efd654-g2ee8efd654"
+    ["app"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/example-applications"
+    ["factory"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/example-applications/factory"
+    ["filesystem"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem"
+    ["filesystem-yocto"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-buildroot-2022.02"
+    ["filesystem-buildroot-src"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-buildroot-2022.02/src"
+    ["filesystem-initramfs"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-initramfs-image-am62xx-evm"
+    ["filesystem-ubuntu"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-ubuntu-base-20.04.5-arm64"
+    ["opensrc"]="src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/opensrc"
+    ["mcu-sdk"]="src/zy/ti-processor-sdk-mcu-plus-am62x-evm-08.06.00.18"
+)
+
+# 定义要检查的标签
+tags_to_check=("M62xx-T@1.0.6+20250109hsse")
+
+# 遍历仓库和标签
+for repo_name in "${!repos[@]}"; do
+    repo_path="${repos[$repo_name]}"
+
+    for tag in "${tags_to_check[@]}"; do
+        check_tag "$repo_path" "$tag"
+    done
+done
 ```
 
 ```bash

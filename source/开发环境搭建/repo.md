@@ -51,10 +51,14 @@ repo forall -c 'git tag M62xx-T@1.0.5+20241205hsse $(git rev-parse HEAD) && git 
 repo forall -c 'git tag M62xx-T@1.0.6+20250109hsse'
 repo forall -c 'git push all M62xx-T@1.0.6+20250109hsse'
 
-repo forall -c 'git checkout am62xx-sdk-v1.0.0.6,en-plus'
-repo forall -c 'git checkout master'
+repo forall -c 'git checkout -b wbstar'
+repo forall -c 'git push all wbstar'
 
+repo forall -c 'git checkout am62xx-sdk-v1.0.0.6,en-plus'
+
+repo forall -c 'git checkout master'
 repo forall -c 'git checkout enplus'
+repo forall -c 'git checkout wbstar'
 
 repo forall -c 'git remote add all ssh://git@gitee.com/leev2v1/manifest.git'
 repo forall -c 'git remote set-url --add all ssh://git@192.168.1.168:1022/root/0806-manifest.git'
@@ -129,6 +133,108 @@ for repo_name in "${!repos[@]}"; do
         check_tag "$repo_path" "$tag"
     done
 done
+```
+
+```bash
+#!/bin/bash
+
+# 输出文件路径
+output_file="./git_commits.txt"
+
+# 初始化输出文件
+echo "Git repositories HEAD commit IDs:" | tee "$output_file"
+
+# 仓库列表（可以根据需要修改）
+repos=(
+  "build"
+  "build/release/docker"
+  "doc"
+  "manifest"
+  "release"
+  "src/ti"
+  "src/zy"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/u-boot-2021.01+gitAUTOINC+2ee8efd654-g2ee8efd654"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/example-applications"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/example-applications/factory"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-buildroot-2022.02"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-buildroot-2022.02/src"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-initramfs-image-am62xx-evm"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-ubuntu-base-20.04.5-arm64"
+  "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/opensrc"
+  "src/zy/ti-processor-sdk-mcu-plus-am62x-evm-08.06.00.18"
+)
+
+# 遍历仓库列表，获取每个仓库的 HEAD 提交 ID
+for repo in "${repos[@]}"; do
+  # 检查仓库目录是否存在
+  if [ -d "$repo" ]; then
+    # 进入仓库目录
+    cd "$repo" || continue
+
+    # 获取 HEAD 提交 ID
+    commit_id=$(git rev-parse HEAD)
+
+    # 将仓库路径和提交 ID 写入文件
+    echo "$repo : $commit_id" | tee -a "$output_file"
+
+    # 返回上一级目录
+    cd - > /dev/null || exit
+  else
+    echo "Directory $repo not found, skipping." | tee -a "$output_file"
+  fi
+done
+
+echo "All HEAD commit IDs have been saved to $output_file." | tee -a "$output_file"
+```
+
+```bash
+#!/bin/bash
+
+# 保存当前目录
+current_dir=$(pwd)
+
+# 从repo list输出中提取仓库路径
+repo_paths=(
+    "build"
+    "build/release/docker"
+    "doc"
+    "manifest"
+    "release"
+    "src/ti"
+    "src/zy"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/board-support/u-boot-2021.01+gitAUTOINC+2ee8efd654-g2ee8efd654"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/example-applications"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/example-applications/factory"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-buildroot-2022.02"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-buildroot-2022.02/src"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-initramfs-image-am62xx-evm"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/filesystem/tisdk-ubuntu-base-20.04.5-arm64"
+    "src/zy/ti-processor-sdk-linux-rt-am62xx-evm-08.06.00.42/opensrc"
+    "src/zy/ti-processor-sdk-mcu-plus-am62x-evm-08.06.00.18"
+)
+
+found_commits=false
+
+for repo in "${repo_paths[@]}"; do
+    if [ -d "$repo" ]; then
+        cd "$repo"
+        # 获取最近一天的提交记录
+        commits=$(git log --since="1 day ago" --pretty=format:"%h - %s (%cr) <%an>" --abbrev-commit)
+        if [ ! -z "$commits" ]; then
+            echo -e "\n=== Recent commits in $repo ==="
+            echo "$commits"
+            found_commits=true
+            echo
+        fi
+        cd "$current_dir"
+    fi
+done
+
+if [ "$found_commits" = false ]; then
+    echo "No commits found in the last 24 hours in any repository."
+fi
 ```
 
 ```bash

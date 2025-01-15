@@ -1,12 +1,80 @@
 {
   "recentFiles": [
     {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
+      "basename": "性能参数",
+      "path": "source/内核驱动/08 通信接口/WIFI/性能参数.md"
+    },
+    {
+      "basename": "性能参数",
+      "path": "source/内核驱动/08 通信接口/蓝牙/性能参数.md"
+    },
+    {
+      "basename": "背景知识",
+      "path": "source/内核驱动/08 通信接口/蓝牙/背景知识.md"
+    },
+    {
+      "basename": "Pasted image 20250115160455",
+      "path": "pic/Pasted image 20250115160455.png"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/08 通信接口/WIFI/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/08 通信接口/WIFI/命令集.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/WIFI/DFT.md"
     },
     {
       "basename": "Git",
       "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "Pasted image 20250115113502",
+      "path": "pic/Pasted image 20250115113502.png"
+    },
+    {
+      "basename": "Pasted image 20250115113559",
+      "path": "pic/Pasted image 20250115113559.png"
+    },
+    {
+      "basename": "Gitlab-runner",
+      "path": "source/开发环境搭建/Gitlab-runner.md"
+    },
+    {
+      "basename": "img_v3_02ii_c6a3678b-336d-450c-9a21-b7ee8d5778eg",
+      "path": "pic/img_v3_02ii_c6a3678b-336d-450c-9a21-b7ee8d5778eg.jpg"
+    },
+    {
+      "basename": "GitLab CE 部署",
+      "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
+      "basename": "Gitlab CI",
+      "path": "source/开发环境搭建/Gitlab CI.md"
+    },
+    {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "转产验证",
+      "path": "source/开发环境搭建/转产验证.md"
+    },
+    {
+      "basename": "工作月报",
+      "path": "source/开发环境搭建/工作月报.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
     },
     {
       "basename": "DFT",
@@ -15,14 +83,6 @@
     {
       "basename": "命令集",
       "path": "source/内核驱动/10 高速接口/以太网/命令集.md"
-    },
-    {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
-    },
-    {
-      "basename": "sdk升级",
-      "path": "source/开发环境搭建/sdk升级.md"
     },
     {
       "basename": "软著登记",
@@ -39,10 +99,6 @@
     {
       "basename": "开发环境搭建",
       "path": "source/开发环境搭建/开发环境搭建.md"
-    },
-    {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
     },
     {
       "basename": "efuse烧写工具",
@@ -101,10 +157,6 @@
       "path": "source/内核驱动/08 通信接口/蓝牙/测试报告.md"
     },
     {
-      "basename": "背景知识",
-      "path": "source/内核驱动/08 通信接口/蓝牙/背景知识.md"
-    },
-    {
       "basename": "命令集",
       "path": "source/内核驱动/08 通信接口/蓝牙/命令集.md"
     },
@@ -129,22 +181,6 @@
       "path": "source/开发环境搭建/teraterm.md"
     },
     {
-      "basename": "转产验证",
-      "path": "source/开发环境搭建/转产验证.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/08 通信接口/WIFI/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/08 通信接口/WIFI/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/08 通信接口/WIFI/DFT.md"
-    },
-    {
       "basename": "Markdown",
       "path": "source/开发环境搭建/Markdown.md"
     },
@@ -163,42 +199,6 @@
     {
       "basename": "命令集",
       "path": "source/内核驱动/11 多媒体/LCD/命令集.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/LCD/DFT.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/11 多媒体/LCD/测试报告.md"
-    },
-    {
-      "basename": "工作月报",
-      "path": "source/开发环境搭建/工作月报.md"
-    },
-    {
-      "basename": "Python",
-      "path": "source/开发环境搭建/Python.md"
-    },
-    {
-      "basename": "webtest",
-      "path": "source/开发环境搭建/webtest.md"
-    },
-    {
-      "basename": "Windows",
-      "path": "source/开发环境搭建/Windows.md"
-    },
-    {
-      "basename": "Pasted image 20241125161943",
-      "path": "pic/Pasted image 20241125161943.png"
-    },
-    {
-      "basename": "源码分析",
-      "path": "source/内核驱动/12 安全系统/OPTEE/源码分析.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/12 安全系统/OPTEE/DFT.md"
     }
   ],
   "omittedPaths": []

@@ -49,7 +49,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/内核驱动/08 通信接口/WIFI/性能参数.md",
+                "file": "source/开发环境搭建/ota.md",
                 "mode": "source",
                 "backlinks": false,
                 "source": false
@@ -131,7 +131,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/内核驱动/08 通信接口/WIFI/性能参数.md",
+                "file": "source/开发环境搭建/ota.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -148,7 +148,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/内核驱动/08 通信接口/WIFI/性能参数.md",
+                "file": "source/开发环境搭建/ota.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -171,7 +171,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/内核驱动/08 通信接口/WIFI/性能参数.md"
+                "file": "source/开发环境搭建/ota.md"
               }
             }
           },
@@ -231,33 +231,36 @@
       "copilot:Copilot Chat": false
     }
   },
-  "active": "c21d9c0855b6a674",
+  "active": "802503ceec5b2af7",
   "lastOpenFiles": [
-    "source/内核驱动/08 通信接口/蓝牙/性能参数.md",
+    "pic/Pasted image 20250122160304.png",
+    "source/开发环境搭建/ota.md",
+    "pic/Pasted image 20250122160113.png",
+    "pic/Pasted image 20250122141308.png",
+    "pic/img_v3_02ip_144bb4fd-fbe7-4040-85e2-76798b737deg.jpg",
+    "source/开发环境搭建/Git.md",
+    "source/开发环境搭建/Repo.md",
+    "source/开发环境搭建/Markdown.md",
+    "source/开发环境搭建/Docker.md",
+    "source/内核驱动/08 通信接口/蓝牙/DFT.md",
     "source/内核驱动/08 通信接口/蓝牙/背景知识.md",
-    "pic/Pasted image 20250115160455.png",
+    "source/开发环境搭建/sdk升级.md",
+    "source/开发环境搭建/GitLab CE 部署.md",
+    "source/开发环境搭建/Gitlab-runner.md",
     "source/内核驱动/08 通信接口/WIFI/性能参数.md",
+    "source/内核驱动/08 通信接口/蓝牙/性能参数.md",
+    "pic/Pasted image 20250115160455.png",
     "pic/Pasted image 20250115154938.png",
     "pic/Pasted image 20250115154922.png",
     "pic/Pasted image 20250115154830.png",
     "pic/Pasted image 20250115153549.png",
     "pic/Pasted image 20250115153533.png",
-    "pic/Pasted image 20250115150633.png",
-    "pic/Pasted image 20250115150613.png",
-    "pic/Pasted image 20250115150607.png",
-    "pic/Pasted image 20250115150554.png",
     "source/内核驱动/08 通信接口/WIFI/测试报告.md",
     "source/内核驱动/08 通信接口/WIFI/命令集.md",
     "source/内核驱动/08 通信接口/WIFI/DFT.md",
-    "source/开发环境搭建/Git.md",
-    "source/开发环境搭建/Gitlab-runner.md",
-    "source/开发环境搭建/GitLab CE 部署.md",
     "source/开发环境搭建/Gitlab CI.md",
-    "source/开发环境搭建/Docker.md",
     "source/开发环境搭建/转产验证.md",
     "source/开发环境搭建/工作月报.md",
-    "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/sdk升级.md",
     "source/内核驱动/10 高速接口/以太网/DFT.md",
     "source/内核驱动/10 高速接口/以太网/命令集.md",
     "source/开发环境搭建/软著登记.md",
@@ -265,10 +268,6 @@
     "source/内核驱动/RCU/中断.md",
     "source/开发环境搭建/开发环境搭建.md",
     "source/开发环境搭建/efuse烧写工具.md",
-    "source/开发环境搭建/TF卡制卡工具.md",
-    "source/内核驱动/调试方法/netlink.md",
-    "source/内核驱动/05 电源管理/Power supply.md",
-    "source/内核驱动/调试方法/ftrce.md",
     "source/内核驱动/调试方法",
     "source/内核驱动/esm",
     "未命名",

@@ -1,16 +1,56 @@
 {
   "recentFiles": [
     {
+      "basename": "ota",
+      "path": "source/开发环境搭建/ota.md"
+    },
+    {
+      "basename": "Pasted image 20250122160304",
+      "path": "pic/Pasted image 20250122160304.png"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "Markdown",
+      "path": "source/开发环境搭建/Markdown.md"
+    },
+    {
+      "basename": "Docker",
+      "path": "source/开发环境搭建/Docker.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/蓝牙/DFT.md"
+    },
+    {
+      "basename": "背景知识",
+      "path": "source/内核驱动/08 通信接口/蓝牙/背景知识.md"
+    },
+    {
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
+    },
+    {
+      "basename": "GitLab CE 部署",
+      "path": "source/开发环境搭建/GitLab CE 部署.md"
+    },
+    {
+      "basename": "Gitlab-runner",
+      "path": "source/开发环境搭建/Gitlab-runner.md"
+    },
+    {
       "basename": "性能参数",
       "path": "source/内核驱动/08 通信接口/WIFI/性能参数.md"
     },
     {
       "basename": "性能参数",
       "path": "source/内核驱动/08 通信接口/蓝牙/性能参数.md"
-    },
-    {
-      "basename": "背景知识",
-      "path": "source/内核驱动/08 通信接口/蓝牙/背景知识.md"
     },
     {
       "basename": "Pasted image 20250115160455",
@@ -29,10 +69,6 @@
       "path": "source/内核驱动/08 通信接口/WIFI/DFT.md"
     },
     {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
-    },
-    {
       "basename": "Pasted image 20250115113502",
       "path": "pic/Pasted image 20250115113502.png"
     },
@@ -41,24 +77,12 @@
       "path": "pic/Pasted image 20250115113559.png"
     },
     {
-      "basename": "Gitlab-runner",
-      "path": "source/开发环境搭建/Gitlab-runner.md"
-    },
-    {
       "basename": "img_v3_02ii_c6a3678b-336d-450c-9a21-b7ee8d5778eg",
       "path": "pic/img_v3_02ii_c6a3678b-336d-450c-9a21-b7ee8d5778eg.jpg"
     },
     {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
-    },
-    {
       "basename": "Gitlab CI",
       "path": "source/开发环境搭建/Gitlab CI.md"
-    },
-    {
-      "basename": "Docker",
-      "path": "source/开发环境搭建/Docker.md"
     },
     {
       "basename": "转产验证",
@@ -67,14 +91,6 @@
     {
       "basename": "工作月报",
       "path": "source/开发环境搭建/工作月报.md"
-    },
-    {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
-    },
-    {
-      "basename": "sdk升级",
-      "path": "source/开发环境搭建/sdk升级.md"
     },
     {
       "basename": "DFT",
@@ -161,10 +177,6 @@
       "path": "source/内核驱动/08 通信接口/蓝牙/命令集.md"
     },
     {
-      "basename": "DFT",
-      "path": "source/内核驱动/08 通信接口/蓝牙/DFT.md"
-    },
-    {
       "basename": "知识库",
       "path": "source/开发环境搭建/知识库.md"
     },
@@ -181,24 +193,12 @@
       "path": "source/开发环境搭建/teraterm.md"
     },
     {
-      "basename": "Markdown",
-      "path": "source/开发环境搭建/Markdown.md"
-    },
-    {
       "basename": "Vim",
       "path": "source/开发环境搭建/Vim.md"
     },
     {
       "basename": "测试报告",
       "path": "source/内核驱动/10 高速接口/以太网/测试报告.md"
-    },
-    {
-      "basename": "Pasted image 20241202111754",
-      "path": "pic/Pasted image 20241202111754.png"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/LCD/命令集.md"
     }
   ],
   "omittedPaths": []

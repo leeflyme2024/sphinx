@@ -44,6 +44,8 @@ git stash
 git reset --hard 197b42ea2afd3d2ed461512556e2a152578 
 # 恢复暂存的修改 
 git stash pop
+
+git add . ":(exclude)bak-factory_test/"
 ```
 
 

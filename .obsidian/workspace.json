@@ -11,12 +11,9 @@
             "id": "90412aae1862b884",
             "type": "leaf",
             "state": {
-              "type": "markdown",
+              "type": "image",
               "state": {
-                "file": "source/开发环境搭建/Repo.md",
-                "mode": "preview",
-                "backlinks": false,
-                "source": false
+                "file": "pic/Pasted image 20250208170727.png"
               }
             }
           }
@@ -49,7 +46,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "optee",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +91,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/Repo.md",
+                "file": "pic/Pasted image 20250208170727.png",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +108,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/Repo.md",
+                "file": "pic/Pasted image 20250208170727.png",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +131,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/Repo.md"
+                "file": "pic/Pasted image 20250208170727.png"
               }
             }
           },
@@ -194,13 +191,36 @@
       "copilot:Copilot Chat": false
     }
   },
-  "active": "90412aae1862b884",
+  "active": "802503ceec5b2af7",
   "lastOpenFiles": [
+    "source/开发环境搭建/sdk升级.md",
+    "pic/Pasted image 20250208170727.png",
+    "pic/Pasted image 20250208170659.png",
+    "source/内核驱动/11 多媒体/音频/DFT.md",
+    "source/内核驱动/11 多媒体/音频/测试报告.md",
+    "source/内核驱动/11 多媒体/音频/命令集.md",
+    "source/内核驱动/11 多媒体/摄像头/测试报告.md",
+    "source/内核驱动/13 设备树/DFT.md",
+    "source/内核驱动/13 设备树/命令集.md",
+    "pic/img_v3_02j7_e4441243-24f8-4179-8d7f-cc4a05aacceg.jpg",
+    "source/内核驱动/11 多媒体/摄像头/DFT.md",
+    "pic/img_v3_02j7_2f109254-25f4-4846-b71f-bf3685fef6ag.jpg",
+    "pic/2vPTfIIH2r.jpg",
+    "source/开发环境搭建/ota.md",
+    "source/内核驱动/12 安全系统/OPTEE/DFT.md",
+    "source/内核驱动/12 安全系统/OPTEE/源码分析.md",
+    "pic/Pasted image 20250124135804.png",
+    "pic/Pasted image 20250124135715.png",
     "source/内核驱动/01 时钟/RTC/测试报告.md",
-    "source/内核驱动/01 时钟/RTC/DFT.md",
-    "source/文件系统/04 Systemd.md",
+    "pic/Pasted image 20250124113123.png",
+    "pic/Pasted image 20250124113108.png",
+    "pic/Pasted image 20250124113058.png",
+    "source/开发环境搭建/Gitlab CI.md",
     "source/内核驱动/01 时钟/RTC/命令集.md",
+    "source/内核驱动/01 时钟/RTC/DFT.md",
     "source/内核驱动/01 时钟/RTC/背景知识.md",
+    "source/开发环境搭建/Repo.md",
+    "source/文件系统/04 Systemd.md",
     "source/开发环境搭建/Git.md",
     "source/开发环境搭建/GitLab CE 部署.md",
     "source/内核驱动/08 通信接口/蓝牙/测试报告.md",
@@ -208,30 +228,6 @@
     "source/开发环境搭建/开发环境搭建.md",
     "source/开发环境搭建/Docker.md",
     "source/开发环境搭建/知识库.md",
-    "Pasted image 20250123103006.png",
-    "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/ota.md",
-    "pic/Pasted image 20250115113559.png",
-    "pic/Pasted image 20250122160304.png",
-    "pic/Pasted image 20250122160113.png",
-    "pic/Pasted image 20250122141308.png",
-    "pic/img_v3_02ip_144bb4fd-fbe7-4040-85e2-76798b737deg.jpg",
-    "source/开发环境搭建/Markdown.md",
-    "source/内核驱动/08 通信接口/蓝牙/DFT.md",
-    "source/内核驱动/08 通信接口/蓝牙/背景知识.md",
-    "source/开发环境搭建/sdk升级.md",
-    "source/内核驱动/08 通信接口/WIFI/性能参数.md",
-    "source/内核驱动/08 通信接口/蓝牙/性能参数.md",
-    "pic/Pasted image 20250115160455.png",
-    "pic/Pasted image 20250115154938.png",
-    "pic/Pasted image 20250115154922.png",
-    "pic/Pasted image 20250115154830.png",
-    "source/内核驱动/08 通信接口/WIFI/测试报告.md",
-    "source/内核驱动/08 通信接口/WIFI/命令集.md",
-    "source/内核驱动/08 通信接口/WIFI/DFT.md",
-    "source/开发环境搭建/Gitlab CI.md",
-    "source/开发环境搭建/转产验证.md",
-    "source/开发环境搭建/工作月报.md",
     "source/内核驱动/调试方法",
     "source/内核驱动/esm",
     "未命名",

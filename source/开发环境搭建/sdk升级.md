@@ -1,3 +1,887 @@
+# 万帮原理图
+## 指示灯
+### 运行状态
+### 错误状态
+
+## 启动模式
+### 主MMCSD
+### 主QSPI
+### 主USB
+
+## RTC
+PCF8563T/5
+
+## CAN
+
+## 4G
+
+## 音频
+
+
+# 20250123
+
+## 仓库
+```bash
+
+
+```
+
+## 配置文件
+```bash
+
+{
+    "soc_vars": {
+        "sdk": [
+            {
+                "model": "M62xx-T@1.0.7+20250110hsse",
+                "info": {
+                     "in_used":        "y", // options: "y","n"
+                     "uboot":          "u-boot-2021.01+gitAUTOINC+2ee8efd654-g2ee8efd654",
+                     "kernel":         "linux-rt-5.10.168+gitAUTOINC+c1a1291911-gc1a1291911",
+                     "atf":            "trusted-firmware-a-2.8+gitAUTOINC+2fcd408bb3",
+                     "tee":            "optee_os-3.20.0",
+                     "dtb":            "k3-am62x-sk.dtb",
+                     "ab_partition":   "a", // options: "a","b","ab"
+                     "filesystem":     "buildroot", // options: "buildroot", "yocto", "ubuntu", "debian"
+                     "device_type":    "hs" // options: "gp","hs-fs","hs"
+                }
+            }
+        ],
+        "board": [
+            {
+                "model": "M62xx-T Rev.E",
+                "info": {
+                    "in_used":         "y", // options: "y","n"
+                    "evm_model":       "M62xx-EV-Board Rev.C",
+                    "client":          "demo"
+                }
+            }
+        ],
+        "oldi": [
+            {
+                "model": "LCD-1280800W101TC,ZY",
+                "info": {
+                    "in_used":          "y",
+                    "peripheral_dtbo":  "k3-am62-oldi.dtbo",
+                    "resolution":       "1280x800"
+                }
+            },
+            {
+                "model": "LI10600T101C2504,DWIN",
+                "info": {
+                    "in_used":          "n",
+                    "peripheral_dtbo":  "k3-am62-oldi-lvds.dtbo",
+                    "resolution":       "1024x600"
+                }
+            },
+            {
+                "model": "HW480272F-0B-0A,ZY",
+                "info": {
+                    "in_used":          "n",
+                    "peripheral_dtbo":  "k3-am62-oldi-core-test.dtbo",
+                    "resolution":       "480x272"
+                }
+            }
+        ],
+        "ethernet": [
+            {
+                "model": "YT8531SH,QFN-48,motorcomm",
+                "info": {
+                    "in_used":          "y",
+                    "peripheral_dtbo":  "k3-am62-ethernet.dtbo"
+                }
+            },
+            {
+                "model": "ip179n",
+                "info": {
+                    "in_used":           "n",
+                    "peripheral_dtbo":  "k3-am62-ethernet-switch.dtbo"
+                }
+            }
+        ],
+        "audio": [
+            {
+                "model": "TLV320AIC3101IRHBT,QFN-32,TI",
+                "info": {
+                    "in_used":          "y",
+                    "peripheral_dtbo":  "k3-am62-audio.dtbo"
+                }
+            },
+            {
+                "model": "TLV320AIC3101IRHBT,QFN-32,TI",
+                "info": {
+                    "in_used":          "n",
+                    "peripheral_dtbo":  "k3-am62-audio-master.dtbo"
+                }
+            },
+            {
+                "model": "TAS2780RYAR,TI",
+                "info": {
+                    "in_used":          "n",
+                    "peripheral_dtbo":  "k3-am62-audio-master-tas2780.dtbo"
+                }
+            }
+        ],
+        "camera": [
+            {
+                "model": "NVP6188,TQFP-128,NEXTCHIP",
+                "info": {
+                    "in_used":          "y",
+                    "peripheral_dtbo":  "k3-am62-csi-camera.dtbo"
+                }
+            }
+        ],
+        "mcan": [
+            {
+                "model": "CTM1051AMG,ZY",
+                "info": {
+                    "in_used":          "y",
+                    "peripheral_dtbo":  "k3-am62-mcan.dtbo"
+                }
+            }
+        ],
+        "wifibt": [
+            {
+                "model": "AW-NM372SM,SMT,AzureWAVE",
+                "info": {
+                    "in_used":          "n",
+                    "peripheral_dtbo":  "k3-am62-wifibt.dtbo"
+                }
+            }
+        ],
+        "bus_spi": [
+            {
+                "model": "AP-283",
+                "info": {
+                    "in_used":          "n",
+                    "peripheral_dtbo":  "k3-am62-spi-ap283.dtbo"
+                }
+            }
+        ],
+        "factory_core": [
+            {
+                "model": "FACTORY,ZY",
+                "info": {
+                    "in_used":            "n",
+                    "peripheral_dtbo":    "k3-am62-factory-core.dtbo"
+                }
+            }
+        ],
+        "factory_evm": [
+            {
+                "model": "FACTORY,ZY",
+                "info": {
+                    "in_used":           "n",
+                    "peripheral_dtbo":   "k3-am62-factory-evm.dtbo"
+                }
+            }
+        ],
+        "production": [
+            {
+                "model": "PRODUCT,ZY",
+                "info": {
+                    "in_used":           "n",
+                    "peripheral_dtbo":   "k3-am62-production.dtbo"
+                }
+            }
+        ],
+        "sdram": [
+            {
+                "model": "H5AN8G6NCJR-XNI,FBGA-96,HYNIX",
+                "info": {
+                    "in_used":    "y",
+                    "density":    "1GB"
+                }
+            },
+            {
+                "model": "H5ANAGG6NCJR-XNI,FBGA-96,HYNIX",
+                "info": {
+                    "in_used":    "n",
+                    "density":    "2GB"
+                }
+            }
+        ],
+        "mmcsd": [
+            {
+                "model": "S40FC004C1B1I00000,BGA-153,SkyHigh",
+                "info": {
+                    "in_used":    "y",
+                    "density":    "4GB",
+                    "dtsi":       "k3-am62-mmcsd.dtsi"
+                }
+            }
+        ],
+        "usb": [
+            {
+                "model": "USB,TI",
+                "info": {
+                    "in_used":    "y",
+                    "dtsi":       "k3-am62-usb.dtsi"
+                }
+            }
+        ],
+        "ospi": [
+            {
+                "model": "IS25LP064D-JKLE,WSON-8,ISSI",
+                "info": {
+                    "in_used":    "y",
+                    "density":    "8MB",
+                    "dtsi":       "k3-am62-ospi.dtsi"
+                }
+            }
+        ],
+        "uart": [
+            {
+                "model": "UART,TI",
+                "info": {
+                    "in_used":    "y",
+                    "dtsi":       "k3-am62-uart.dtsi"
+                }
+            }
+        ],
+        "i2c": [
+            {
+                "model": "I2C,TI",
+                "info": {
+                    "in_used":    "y",
+                    "dtsi":       "k3-am62-i2c.dtsi"
+                }
+            }
+        ],
+        "spi": [
+            {
+                "model": "SPI,TI",
+                "info": {
+                    "in_used":    "y",
+                    "dtsi":       "k3-am62-spi.dtsi"
+                }
+            }
+        ],
+        "ecap_capture": [
+            {
+                "model": "ECAP-CAPTURE,TI",
+                "info": {
+                    "in_used":    "y",
+                    "dtsi":       "k3-am62-ecap-capture.dtsi"
+                }
+            }
+        ],
+        "ecap_pwm": [
+            {
+                "model": "ECAP-PWM,TI",
+                "info": {
+                    "in_used":    "y",
+                    "dtsi":       "k3-am62-ecap-pwm.dtsi"
+                }
+            }
+        ],
+        "epwm": [
+            {
+                "model": "EPWM,TI",
+                "info": {
+                    "in_used":    "y",
+                    "dtsi":       "k3-am62-epwm.dtsi"
+                }
+            }
+        ],
+        "misc": [
+            {
+                "model": "MISC,ZY",
+                "info": {
+                    "in_used":    "y",
+                    "dtsi":       "k3-am62-misc.dtsi"
+                }
+            }
+        ],
+        "set": [
+            {
+                "model": "dtsi",
+                "info": {
+                    "in_used": "y",
+                    "dtsi1": "dtsi/$mmcsd_dtsi",
+                    "dtsi2": "dtsi/$usb_dtsi",
+                    "dtsi3": "dtsi/$ospi_dtsi",
+                    "dtsi4": "dtsi/$uart_dtsi",
+                    "dtsi5": "dtsi/$i2c_dtsi",
+                    "dtsi6": "dtsi/$spi_dtsi",
+                    "dtsi7": "dtsi/$ecap_capture_dtsi",
+                    "dtsi8": "dtsi/$ecap_pwm_dtsi",
+                    "dtsi9": "dtsi/$epwm_dtsi",
+                    "dtsi10": "dtsi/$misc_dtsi"
+                }
+            }
+        ],
+        "dtsi": [
+            {
+                "model": "zy",
+                "info": {
+                    "in_used": "y",
+                    "include": "$set_dtsi1 $set_dtsi2 $set_dtsi3 $set_dtsi4 $set_dtsi5 $set_dtsi6 $set_dtsi7 $set_dtsi8 $set_dtsi9 $set_dtsi10"
+                }
+            }
+        ]
+    },
+    "combo_vars": {
+        "its_input": {
+            "kernel_0":  "Image.gz",
+            "ramdisk_0": "rootfs.cpio.gz",
+            "fdt_0":     "$sdk_dtb"
+        },
+        "sec_its_input": {
+            "kernel_0":  "linux.bin.sec",
+            "ramdisk_0": "ramdisk.sec",
+            "fdt_0":     "${sdk_dtb}.sec"
+        }
+    },
+    "bool_vars": {
+        "build_atf":                         {"value": "y"}, // options: "y","n"
+        "build_tee":                         {"value": "y"},
+        "build_dm":                          {"value": "y"},
+        "build_uboot":                       {"value": "y"},
+        "build_patch":                       {"value": "y"},
+        "build_kernel":                      {"value": "y"},
+        "build_dts":                         {"value": "y"},
+        "build_gpu":                         {"value": "y"},
+        "build_fit":                         {"value": "y"},
+        "build_boot":                        {"value": "y"},
+        "build_opt":                         {"value": "y"},
+        "build_pack":                        {"value": "y"},
+        "build_docker":                      {"value": "n"},
+        "build_usb_msc":                     {"value": "n"},
+        "build_usb_dfu": {
+                                              "value": "n",
+            "build_usb_dfu_qspi":            {"value": "y"},
+            "build_usb_dfu_emmc":            {"value": "n"},
+            "build_usb_dfu_sdcard":          {"value": "n"}
+        },
+        "build_fastboot":                    {"value": "n"},
+        "build_third_party_cert":            {"value": "n"}
+    },
+    "misc_vars": {
+        "info_cross_compile": {
+            "value": "$ti_toolchain_usr_bin_dir/aarch64-none-linux-gnu-"
+        },
+        "info_external_cross_compile_aarch64": {
+            "value": "$ti_toolchain_aarch64_bin_dir/aarch64-none-linux-gnu-"
+        },
+        "info_external_cross_compile_aarch32": {
+            "value": "$ti_toolchain_aarch32_bin/arm-none-linux-gnueabihf-"
+        },
+        "info_release_archive_dir": {
+            "value": "/Volumes/ti/client/$board_client"
+        },
+        "info_opt_dir": {
+            "value": "/opt"
+        },
+        "info_tslib_install_dir": {
+            "value": "$info_opt_dir/tslib"
+        },
+        "info_patch_file": {
+            "value": "$ti_build_script_dir/patching"
+        },
+        "info_sd_boot_dir": {
+            "value": "/Volumes/boot"
+        },
+        "info_sd_roofs_dir": {
+            "value": "/Volumes/rootfs"
+        },
+        "info_update_file": {
+            "value": "update-img.txt"
+        },
+        "info_img_split_size": {
+            "value": "980M"
+        },
+        "ota_hash_file": {
+            "value": "hash.txt"
+        },
+        "rootfs_crop_level": {
+            "value": "level_1" // options: "level_1". "level_2", "level_3"
+        },
+        "remove_packages_file": {
+            "value": "remove_packages_file"
+        },
+        "fastboot_type": {
+            "value": "backup_emmc_uda_fs" // options: "emmc_uda_raw", "emmc_uda_fs", "backup_emmc_uda_fs", "sd", "qspi", "usbdfu"
+        },
+        "fastboot_uda_raw_boot_a_sector": {
+            "value": "1" // 1MB
+        },
+        "fastboot_uda_raw_boot_fit_max_size": {
+            "value": "48" // 48MB
+        }
+    },
+    "code_tree_vars": {
+        "$root": {
+            "build": {
+                "alias": "ti_build_script",
+                "compile.sh": {
+                    "type": "file", // options: "file"
+                    "alias": "compile"
+                },
+                "env.py": {
+                    "type": "file"
+                },
+                "env.json": {
+                    "type": "file",
+                    "alias": "env_json"
+                },
+                "env.sh": {
+                    "type": "file",
+                    "alias": "env_script"
+                },
+                "00_common.sh": {
+                    "type": "file",
+                    "alias": "common_script"   
+                },
+                "51_rootfs_ubuntu.sh": {
+                    "type": "file",
+                    "alias": "ubuntu_build_script"   
+                },
+                "52_roofs_initramfs.sh": {
+                    "type": "file",
+                    "alias": "initramfs_build_script"   
+                },
+                "53_roofs_buildroot.sh": {
+                    "type": "file",
+                    "alias": "buildroot_build_script"   
+                },
+                "54_roofs_crop.sh": {
+                    "type": "file",
+                    "alias": "rootfs_crop_script"
+                },
+                "gen-img": {
+                    "itb": {
+                        "input": {
+                            "alias": "itb_input",
+                            "rootfs": {
+                                "alias": "initramfs_rootfs",
+                                "scripts": {
+                                    "alias": "initramfs_rootfs_scripts",
+                                    "fastboot_env.sh": {
+                                        "type": "file",
+                                        "alias": "initramfs_fastboot_env"
+                                    }
+                                }
+                            },
+                            "rootfs.cpio.gz": {
+                                "type": "file",
+                                "alias": "initramfs_rootfs_tar"
+                            }
+                        },
+                        "output": {
+                            "fitImage": {
+                                "type": "file",
+                                "alias": "itb_fitimage"
+                            }
+                        },
+                        "am62xx-kernel-image.its": {
+                            "type": "file",
+                            "alias": "itb"
+                        },
+                        "fitImage-sec.its": {
+                            "type": "file",
+                            "alias": "itb_sec"
+                        },
+                        "am62xx-kernel-image-template.its": {
+                            "type": "file",
+                            "alias": "itb_template"
+                        },
+                        "fitImage-sec-template.its": {
+                            "type": "file",
+                            "alias": "itb_sec_template"
+                        }
+                    }
+                }
+            },
+            "output": {
+                "alias": "ti_linux_output",
+                "tiboot3.bin": {
+                    "type": "file",
+                    "alias": "r5_spl"
+                },
+                "tispl.bin": {
+                    "type": "file",
+                    "alias": "a53_spl"
+                },
+                "u-boot.img": {
+                    "type": "file",
+                    "alias": "a53_uboot"
+                },
+                "uEnv.txt": {
+                    "type": "file",
+                    "alias": "uboot_uenv"
+                },
+                "atf-tee-dm-kernel-fdt.bin": {
+                    "type": "file",
+                    "alias": "fastboot"
+                },
+                "dtbo": {
+                    "alias": "ti_linux_output_dtbo",
+                    "dtbos": {
+                        "type": "file",
+                        "alias": "loaded_dtbo_file_list"
+                    }
+                },
+                "boot": {
+                    "alias": "boot_root",
+                    "boot": {
+                        "alias": "boot_install",
+                        "tiboot3.bin": {
+                            "type": "file",
+                            "alias": "boot_r5_spl"
+                        },
+                        "tispl.bin": {
+                            "type": "file",
+                            "alias": "boot_a53_spl"
+                        },
+                        "u-boot.img": {
+                            "type": "file",
+                            "alias": "boot_a53_uboot"
+                        },
+                        "run": {
+                            "alias": "boot_run_install"
+                        }
+                    }
+                },
+                "usbmsc": {
+                    "alias": "ti_output_usbmsc"
+                }, 
+                "DFU_flash": {
+                    "alias": "dfu_flash_script",
+                    "dfu_cmd.sh": {
+                        "type": "file",
+                        "alias": "dfu_cmd_script"
+                    },
+                    "am62xx-evm": {
+                        "alias": "dfu_am62xx_evm",
+                        "uEnv_dfu_ospi-nor.txt": {
+                            "type": "file",
+                            "alias": "uenv_dfu_ospi"
+                        },
+                        "uEnv_dfu_emmc.txt": {
+                            "type": "file",
+                            "alias": "uenv_dfu_emmc"
+                        },
+                        "uEnv_dfu_sdcard.txt": {
+                            "type": "file",
+                            "alias": "uenv_dfu_sdcard"
+                        }
+                    },
+                    "img": {
+                        "alias": "dfu_img",
+                        "loader": {
+                            "alias": "dfu_loader_img",
+                            "uEnv.txt": {
+                                "type": "file",
+                                "alias": "dfu_loader_uenv"
+                            }
+                        },
+                        "raw": {
+                            "alias": "dfu_raw_img"
+                        }
+                    }
+                },
+                "logo.png": {
+                    "type": "file",
+                    "alias": "weston_bgd"
+                },
+                "backup.tar": {
+                    "type": "file",
+                    "alias": "backup_tar"
+                },
+                "boot.tar": {
+                    "type": "file",
+                    "alias": "boot_tar"
+                },
+                "boot.img": {
+                    "type": "file",
+                    "alias": "boot_img"
+                },
+                "mac.txt": {
+                    "type": "file",
+                    "alias": "eth_mac_addr"
+                }
+            },
+            "bin": {
+                "alias": "ti_bin",
+                "DFU_flash": {
+                    "alias": "bin_dfu_flash_script"
+                }
+            },
+            "external-toolchain": {
+                "alias": "ti_external_toolchain",
+                "gcc-arm-9.2-2019.12-x86_64-aarch64-none-linux-gnu": {
+                    "bin": {
+                        "alias": "ti_toolchain_aarch64_bin"
+                    }
+                },
+                "gcc-arm-9.2-2019.12-x86_64-arm-none-linux-gnueabihf": {
+                    "bin": {
+                        "alias": "ti_toolchain_aarch32_bin"
+                    }
+                }
+            },
+            "linux-devkit": {
+                "alias": "ti_toolchain",
+                "sysroots": {
+                    "x86_64-arago-linux": {
+                        "usr": {
+                            "bin": {
+                                "alias": "ti_toolchain_usr_bin"
+                            }
+                        }
+                    }
+                }
+            },
+            "board-support": {
+                "prebuilt-images": {
+                    "alias": "ti_prebuilt_img",
+                    "ipc_echo_testb_mcu1_0_release_strip.xer5f": {
+                        "type": "file",
+                        "alias": "ti_r5_ipc_fw"
+                    },
+                    "ipc_echo_baremetal_test_mcu2_0_release_strip.xer5f": {
+                        "type": "file",
+                        "alias": "ti_m4_ipc_fw"
+                    },
+                    "uEnv.txt": {
+                        "type": "file",
+                        "alias": "uenv"
+                    },
+                    "wificfg": {
+                        "type": "file",
+                        "alias": "wificfg"
+                    },
+                    "zy_uboot.tar.xz": {
+                        "type": "file",
+                        "alias": "zy_prebuilt_uboot_img"
+                    }
+                },
+                "k3-image-gen-2022.01": {
+                    "alias": "k3_img_gen",
+                    "tiboot3-am62x-${sdk_device_type}-evm.bin": {
+                        "type": "file",
+                        "alias": "r5_spl_img"
+                    }
+                },
+                "u-boot-2021.01+gitAUTOINC+2ee8efd654-g2ee8efd654": {
+                    "alias": "ti_uboot",
+                    "configs": {
+                        "alias": "ti_uboot_configs",
+                        "am62x_evm_a53_defconfig":{
+                            "type": "file",
+                            "alias": "ti_uboot_a53_config"
+                        },
+                        "am62x_evm_r5_defconfig":{
+                            "type": "file",
+                            "alias": "ti_uboot_r5_config"
+                        },
+                        "am62x_evm_a53_default_config":{
+                            "type": "file",
+                            "alias": "ti_uboot_a53_default_config"
+                        },
+                        "am62x_evm_r5_default_config":{
+                            "type": "file",
+                            "alias": "ti_uboot_r5_default_config"
+                        },
+                        "am62x_evm_r5_fastboot_default_config":{
+                            "type": "file",
+                            "alias": "ti_uboot_r5_fastboot_default_config"
+                        },
+                        "am62x_evm_a53_usbdfu_defconfig":{
+                            "type": "file",
+                            "alias": "ti_uboot_a53_usbdfu_config"
+                        },
+                        "am62x_evm_r5_usbdfu_defconfig":{
+                            "type": "file",
+                            "alias": "ti_uboot_r5_usbdfu_config"
+                        },
+                        "am62x_evm_r5_usbdfu_fastboot_defconfig":{
+                            "type": "file",
+                            "alias": "ti_uboot_r5_usbdfu_fastboot_config"
+                        },
+                        "am62x_evm_a53_usbmsc_defconfig":{
+                            "type": "file",
+                            "alias": "ti_uboot_a53_usbmsc_config"
+                        },
+                        "am62x_evm_r5_usbmsc_defconfig":{
+                            "type": "file",
+                            "alias": "ti_uboot_r5_usbmsc_config"
+                        }
+                    }
+                },
+                "linux-rt-5.10.168+gitAUTOINC+c1a1291911-gc1a1291911": {
+                    "alias": "ti_linux",
+                    "tools": {
+                        "spi":{
+                            "alias": "ti_linux_spi_tool"
+                        },
+                        "testing":{
+                            "alias": "ti_linux_testing",
+                            "selftests":{
+                                "alias": "ti_linux_selftests",
+                                "ptp":{
+                                    "alias": "ti_linux_testptp",
+                                    "testptp":{
+                                        "type": "file",
+                                        "alias": "ti_linux_selftests_testptp"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "fitImage": {
+                        "type": "file",
+                        "alias": "ti_fitimage"
+                    },
+                    "arch": {
+                        "arm64": {
+                            "boot": {
+                                "Image.gz": {
+                                    "type": "file",
+                                    "alias": "ti_image"
+                                },
+                                "dts": {
+                                    "ti": {
+                                        "alias": "ti_dts",
+                                        "k3-am62x.h": {
+                                            "type": "file",
+                                            "alias": "dtsi_include"
+                                        },
+                                        "dtsi": {
+                                            "alias": "ti_dtsi"
+                                        },
+                                        "dtso": {
+                                            "alias": "ti_dtso"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "drivers": {
+                        "alias": "ti_linux_drivers",
+                        "zy": {
+                            "alias": "ti_linux_drivers_zy",
+                            "media": {
+                                "alias": "ti_linux_drivers_zy_media",
+                                "i2c": {
+                                    "alias": "ti_linux_drivers_zy_i2c",
+                                    "nvp6188.ko": {
+                                        "type": "file",
+                                        "alias": "ti_linux_drivers_camera"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "u-boot_build": {
+                    "alias": "ti_uboot_build_output",
+                    "a53": {
+                        "alias": "uboot_a53_img",
+                        "tispl.bin": {
+                            "type": "file",
+                            "alias": "a53_spl_img"
+                        },
+                        "tispl.bin_HS": {
+                            "type": "file",
+                            "alias": "a53_spl_hs_img"
+                        },
+                        "u-boot.img": {
+                            "type": "file",
+                            "alias": "a53_uboot_img"
+                        },
+                        "u-boot.img_HS": {
+                            "type": "file",
+                            "alias": "a53_uboot_hs_img"
+                        }
+                    },
+                    "r5": {
+                        "alias": "uboot_r5_img"
+                    }
+                }
+            },
+            "targetNFS": {
+                "alias": "ti_rootfs",
+                "boot": {
+                    "alias": "ti_rootfs_boot"
+                },
+                "opt": {
+                    "alias": "ti_rootfs_opt"
+                }
+            }
+        }
+    }
+}
+```
+
+## uboot
+- TF卡启动、qspi启动已经适配完成；
+- usb msc启动，已经能正常启动到文件系统
+	- 遗留问题：
+		- 从usb msc启动升级系统后，将系统切换为qspi启动，无法启动
+			- 原因：在升级的过程中，写入的是usb msc的uboot，故无法正常启动，需要写入非usb msc专用的uboot
+![[Pasted image 20250208170727.png]]
+		- u盘要加延时才初始化完成
+![[Pasted image 20250208170659.png]]
+-
+
+
+## linux
+- spi nor 提高频率失败，无法识别到ID
+![[Pasted image 20250124113123.png]]
+![[Pasted image 20250124113058.png]]
+![[Pasted image 20250124113108.png]]
+
+
+## atf
+- 已全部适配完成
+![[Pasted image 20250124103358.png]]
+## optee
+- 已全部适配完成
+![[Pasted image 20250123175455.png]]
+
+## ti
+- 已全部适配完成
+![[Pasted image 20250123172346.png]]
+## opensrc
+- 已全部适配完成
+![[Pasted image 20250123172401.png]]
+## app
+
+除了下面的内容，其余全部适配完成
+
+- 编译选项
+![[Pasted image 20250123165205.png]]
+
+- 蓝牙测试项
+![[Pasted image 20250123163902.png]]
+
+- 蓝牙波特率
+![[Pasted image 20250123165629.png]]
+
+- 摄像头不适配
+![[Pasted image 20250123164010.png]]
+
+
+
+
+## 文件系统
+- 编译脚本已经全部完成适配
+![[Pasted image 20250123163453.png]]
+
+- 只有buildroot和ramdisk适配完成，其他的都没适配
+![[Pasted image 20250124105743.png]]
+
+- cfg报错
+![[Pasted image 20250124135715.png]]
+
+加了下面代码后，没有报错，这里待分析
+![[Pasted image 20250124135804.png]]
+
+
+
 # 问题
 #  工具链的c库版本不匹配
 ```bash

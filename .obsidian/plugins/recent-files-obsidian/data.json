@@ -1,28 +1,88 @@
 {
   "recentFiles": [
     {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
+      "basename": "Pasted image 20250208170727",
+      "path": "pic/Pasted image 20250208170727.png"
+    },
+    {
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/音频/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/音频/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/11 多媒体/音频/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/摄像头/测试报告.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/13 设备树/DFT.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/13 设备树/命令集.md"
+    },
+    {
+      "basename": "img_v3_02j7_e4441243-24f8-4179-8d7f-cc4a05aacceg",
+      "path": "pic/img_v3_02j7_e4441243-24f8-4179-8d7f-cc4a05aacceg.jpg"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
+    },
+    {
+      "basename": "ota",
+      "path": "source/开发环境搭建/ota.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/12 安全系统/OPTEE/DFT.md"
+    },
+    {
+      "basename": "源码分析",
+      "path": "source/内核驱动/12 安全系统/OPTEE/源码分析.md"
+    },
+    {
+      "basename": "Pasted image 20250124135804",
+      "path": "pic/Pasted image 20250124135804.png"
     },
     {
       "basename": "测试报告",
       "path": "source/内核驱动/01 时钟/RTC/测试报告.md"
     },
     {
-      "basename": "DFT",
-      "path": "source/内核驱动/01 时钟/RTC/DFT.md"
-    },
-    {
-      "basename": "04 Systemd",
-      "path": "source/文件系统/04 Systemd.md"
+      "basename": "Gitlab CI",
+      "path": "source/开发环境搭建/Gitlab CI.md"
     },
     {
       "basename": "命令集",
       "path": "source/内核驱动/01 时钟/RTC/命令集.md"
     },
     {
+      "basename": "DFT",
+      "path": "source/内核驱动/01 时钟/RTC/DFT.md"
+    },
+    {
       "basename": "背景知识",
       "path": "source/内核驱动/01 时钟/RTC/背景知识.md"
+    },
+    {
+      "basename": "Repo",
+      "path": "source/开发环境搭建/Repo.md"
+    },
+    {
+      "basename": "04 Systemd",
+      "path": "source/文件系统/04 Systemd.md"
     },
     {
       "basename": "Git",
@@ -53,10 +113,6 @@
       "path": "source/开发环境搭建/知识库.md"
     },
     {
-      "basename": "ota",
-      "path": "source/开发环境搭建/ota.md"
-    },
-    {
       "basename": "Pasted image 20250115113559",
       "path": "pic/Pasted image 20250115113559.png"
     },
@@ -75,10 +131,6 @@
     {
       "basename": "背景知识",
       "path": "source/内核驱动/08 通信接口/蓝牙/背景知识.md"
-    },
-    {
-      "basename": "sdk升级",
-      "path": "source/开发环境搭建/sdk升级.md"
     },
     {
       "basename": "性能参数",
@@ -111,10 +163,6 @@
     {
       "basename": "img_v3_02ii_c6a3678b-336d-450c-9a21-b7ee8d5778eg",
       "path": "pic/img_v3_02ii_c6a3678b-336d-450c-9a21-b7ee8d5778eg.jpg"
-    },
-    {
-      "basename": "Gitlab CI",
-      "path": "source/开发环境搭建/Gitlab CI.md"
     },
     {
       "basename": "转产验证",
@@ -151,54 +199,6 @@
     {
       "basename": "TF卡制卡工具",
       "path": "source/开发环境搭建/TF卡制卡工具.md"
-    },
-    {
-      "basename": "netlink",
-      "path": "source/内核驱动/调试方法/netlink.md"
-    },
-    {
-      "basename": "Power supply",
-      "path": "source/内核驱动/05 电源管理/Power supply.md"
-    },
-    {
-      "basename": "ftrce",
-      "path": "source/内核驱动/调试方法/ftrce.md"
-    },
-    {
-      "basename": "Pasted image 20241218162551",
-      "path": "pic/Pasted image 20241218162551.png"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/04 存储管理/MMCSD/DFT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/04 存储管理/MMCSD/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/04 存储管理/MMCSD/测试报告.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/04 存储管理/FLASH/命令集.md"
-    },
-    {
-      "basename": "企业微信截图_17344847457424",
-      "path": "pic/企业微信截图_17344847457424.png"
-    },
-    {
-      "basename": "esm",
-      "path": "source/内核驱动/esm/esm.md"
-    },
-    {
-      "basename": "WWDT",
-      "path": "source/内核驱动/02 复位/WWDT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/08 通信接口/蓝牙/命令集.md"
     }
   ],
   "omittedPaths": []

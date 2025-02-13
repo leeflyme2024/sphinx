@@ -825,15 +825,127 @@ PCF8563T/5
 ![[Pasted image 20250208170727.png]]
 		- u盘要加延时才初始化完成
 ![[Pasted image 20250208170659.png]]
--
+- 剩余usb dfu没适配
+- 下面的不能加
+![[Pasted image 20250211113120.png]]
+
+- 安全启动
+	- 固件校验如果有问题，则触发软复位（这里先不合入）
+![[Pasted image 20250210153100.png]]
+
+- 以下文件已完成适配
+```bash
+arch/arm/mach-k3/common.c
+arch/arm/mach-k3/security.c
+cmd/ti/Kconfig
+cmd/ti/Makefile
+cmd/ti/tisci.c
+drivers/firmware/ti_sci.c
+drivers/firmware/ti_sci.h
+include/linux/soc/ti/ti_sci_protocol.h
+tools/binman/btool/openssl.py
+```
+
+- 以太网适配完成
+![[Pasted image 20250210175952.png]]
 
 
+- 文件系统
+	- 以下文件已完成适配
+```bash
+cmd/fs.c
+fs/fs.c
+fs/ext4/ext4_common.c
+```
+
+- “zy”启动停止字符串
+	- 以下文件已完成适配
+```bash
+common/autoboot.c
+include/asm-generic/global_data.h
+```
+
+- 看门狗
+	- 以下文件已完成适配
+```bash
+boot/bootm.c
+```
+
+- 设备树
+	- 以下文件已完成适配
+```bash
+boot/image-fdt.c
+```
+
+- mmcsd
+	- 以下文件已完成适配
+```bash
+drivers/mmc/am654_sdhci.c
+drivers/mmc/mmc.c
+```
+
+- 环境变量
+	- 环境变量保存到 emmc 的分区1中，名字为uboot.env
+```bash
+root@DESKTOP-GC4LAR7:/home/liweiyu/am62x/src/zy/ti-processor-sdk-linux-rt-am62xx-evm-10.01.10.04/board-support/ti-u-boot-2024.04+git# git diff
+diff --git a/configs/am62x_evm_a53_default_config b/configs/am62x_evm_a53_default_config
+index 7cf5708..5fac4e0 100755
+--- a/configs/am62x_evm_a53_default_config
++++ b/configs/am62x_evm_a53_default_config
+@@ -58,8 +58,11 @@ CONFIG_SYS_SPL_MALLOC=y
+ CONFIG_SPL_DMA=y
+ CONFIG_SPL_ENV_SUPPORT=y
+ CONFIG_ENV_SIZE=0x1f000
+-CONFIG_ENV_OFFSET=0x680000
+-CONFIG_ENV_IS_IN_MMC=y
++CONFIG_ENV_IS_IN_FAT=y
++CONFIG_SPL_ENV_IS_IN_FAT=y
++CONFIG_ENV_FAT_INTERFACE="mmc"
++CONFIG_ENV_FAT_DEVICE_AND_PART="0:1"
++CONFIG_ENV_FAT_FILE="uboot.env"
+ CONFIG_SYS_MMC_ENV_PART=2
+ CONFIG_SPL_ETH=y
+ CONFIG_SPL_FS_LOAD_PAYLOAD_NAME="u-boot.img"
+```
+```bash
+U-Boot 2024.04-dirty (Feb 11 2025 - 15:55:23 +0800)
+
+SoC:   AM62X SR1.0 HS-SE
+Model: ZHIYUAN Electronics AM625
+DRAM:  1 GiB
+Core:  94 devices, 32 uclasses, devicetree: separate
+WDT:   Started hw_watchdog with servicing every 250ms (2s timeout)
+MMC:   mmc@fa10000: 0, mmc@fa00000: 1
+Loading Environment from FAT... Unable to read "uboot.env" from mmc0:1...
+
+
+=> saveenv
+Saving Environment to FAT... OK
+=> ls mmc 0:1
+            boot/
+   126976   uboot.env
+
+1 file(s), 1 dir(s)
+
+
+root@AM62x:~# ll /run/media/mmcblk0p1
+total 126
+drwxr-xr-x 2 root root   2048 10月 28 04:13 boot
+-rwxr-xr-x 1 root root 126976  1月  1  1980 uboot.env
+```
+
+- cfg
+	- 剩余fastboot的cfg没适配
 ## linux
 - spi nor 提高频率失败，无法识别到ID
 ![[Pasted image 20250124113123.png]]
 ![[Pasted image 20250124113058.png]]
 ![[Pasted image 20250124113108.png]]
 
+
+- 音频
+	- 目前不行，有可能是下面使能的原因
+![[Pasted image 20250211134530.png]]
 
 ## atf
 - 已全部适配完成
@@ -864,8 +976,12 @@ PCF8563T/5
 - 摄像头不适配
 ![[Pasted image 20250123164010.png]]
 
-
-
+- awtk
+-工具栏没有drm库，
+![[Pasted image 20250211180632.png]]
+[解决方案在线文档](https://manual.zlg.cn/web/#/235/10450)
+- 改了下面的地方
+![[Pasted image 20250211180712.png]]
 
 ## 文件系统
 - 编译脚本已经全部完成适配

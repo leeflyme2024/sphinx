@@ -1,4 +1,74 @@
 # U-Boot
+## 查看网卡信息
+```bash
+=> net list
+eth0 : ethernet@8000000port@1 28:b5:e8:e3:18:22
+eth1 : ethernet@8000000port@2 5e:1f:54:25:5e:2a active
+
+=> printenv ethact
+ethact=ethernet@8000000port@2
+```
+
+## 设置网卡信息
+```bash
+=> setenv ipaddr 192.168.1.136
+=> setenv serverip 192.168.1.168
+=> setenv netmask 255.255.255.0
+=> setenv gatewayip 192.168.1.1
+
+=> printenv ethact
+ethact=ethernet@8000000port@2
+
+=> ping 192.168.1.168
+link up on port 2, speed 1000, full duplex
+Using ethernet@8000000port@2 device
+host 192.168.1.168 is alive
+
+=> setenv ethact ethernet@8000000port@1
+
+=> ping 192.168.1.168
+link up on port 1, speed 1000, full duplex
+Using ethernet@8000000port@1 device
+host 192.168.1.168 is alive
+```
+
+## tftp
+![[Pasted image 20250210174930.png]]
+
+```bash
+=> tftpboot 0x82000000 tiboot3.bin
+link up on port 1, speed 1000, full duplex
+Using ethernet@8000000port@1 device
+TFTP from server 192.168.1.168; our IP address is 192.168.1.136
+Filename 'tiboot3.bin'.
+Load address: 0x82000000
+Loading: ##################################################  308.1 KiB
+         2.3 MiB/s
+done
+Bytes transferred = 315499 (4d06b hex)
+```
+
+## 查看网络设备列表
+```bash
+=> mii device
+MII devices: 'mdio@f00'
+Current device: 'mdio@f00'
+```
+
+## 查看PHY的状态
+```bash
+=> mii info f00
+PHY 0x00: OUI = 0x13D47A, Model = 0x11, Rev = 0x0A, 100baseT, FDX
+```
+
+## 列出所有 MDIO 总线
+```bash
+=> mdio list
+mdio@f00:
+5 - Generic PHY <--> ethernet@8000000port@1
+7 - Generic PHY <--> ethernet@8000000port@2
+```
+
 
 # Kernel
 ## 静态IP和动态IP配置

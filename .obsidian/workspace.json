@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/内核驱动/11 多媒体/音频/测试报告.md",
-                "mode": "preview",
+                "file": "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "optee",
+                "query": "4G",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/内核驱动/11 多媒体/音频/测试报告.md",
+                "file": "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/内核驱动/11 多媒体/音频/测试报告.md",
+                "file": "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/内核驱动/11 多媒体/音频/测试报告.md"
+                "file": "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md"
               }
             }
           },
@@ -196,8 +196,23 @@
   },
   "active": "90412aae1862b884",
   "lastOpenFiles": [
-    "source/内核驱动/11 多媒体/音频/DFT.md",
+    "source/内核驱动/10 高速接口/USB/4G模块/命令集.md",
+    "source/内核驱动/10 高速接口/USB/命令集.md",
+    "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md",
+    "source/内核驱动/10 高速接口/USB/测试报告.md",
+    "source/内核驱动/10 高速接口/USB/4G模块/DFT.md",
+    "source/内核驱动/10 高速接口/USB/DFT.md",
+    "source/内核驱动/10 高速接口/USB/4G模块",
+    "pic/Pasted image 20250214152106.png",
     "source/开发环境搭建/sdk升级.md",
+    "pic/Pasted image 20250214151301.png",
+    "source/内核驱动/11 多媒体/摄像头/DFT.md",
+    "source/内核驱动/11 多媒体/摄像头/命令集.md",
+    "source/内核驱动/11 多媒体/摄像头/测试报告.md",
+    "pic/Pasted image 20250213135701.png",
+    "pic/Pasted image 20250213135639.png",
+    "source/内核驱动/11 多媒体/音频/测试报告.md",
+    "source/内核驱动/11 多媒体/音频/DFT.md",
     "source/内核驱动/08 通信接口/蓝牙/DFT.md",
     "source/内核驱动/08 通信接口/蓝牙/测试报告.md",
     "source/内核驱动/08 通信接口/蓝牙/命令集.md",
@@ -208,8 +223,6 @@
     "source/内核驱动/11 多媒体/触摸/DFT.md",
     "source/内核驱动/11 多媒体/触摸/命令集.md",
     "source/内核驱动/11 多媒体/触摸/测试报告.md",
-    "source/内核驱动/11 多媒体/摄像头/命令集.md",
-    "source/内核驱动/11 多媒体/摄像头/DFT.md",
     "source/内核驱动/11 多媒体/LCD/命令集.md",
     "source/内核驱动/11 多媒体/LCD/测试报告.md",
     "source/内核驱动/11 多媒体/LCD/DFT.md",
@@ -219,20 +232,8 @@
     "source/开发环境搭建/工作月报.md",
     "source/开发环境搭建/Vim.md",
     "source/开发环境搭建/webtest.md",
-    "source/开发环境搭建/TF卡制卡工具.md",
-    "source/开发环境搭建/Git.md",
-    "source/开发环境搭建/Python.md",
-    "source/开发环境搭建/ota.md",
-    "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/转产验证.md",
-    "source/开发环境搭建/知识库.md",
-    "source/开发环境搭建/Windows.md",
     "pic/Pasted image 20250211113120.png",
     "pic/Pasted image 20250210175952.png",
-    "pic/Pasted image 20250210174930.png",
-    "pic/Pasted image 20250210153100.png",
-    "pic/Pasted image 20250208170727.png",
-    "pic/Pasted image 20250208170659.png",
     "source/内核驱动/调试方法",
     "source/内核驱动/esm",
     "未命名",
@@ -241,7 +242,6 @@
     "[com COM4]  (2024-10-22_142916)  COM4  (USB Serial Port (COM4)).log",
     "[com COM4]  (2024-10-22_141427)  COM4  (USB Serial Port (COM4)).log",
     "source/开发环境搭建/rust",
-    "source/开发环境搭建/前端",
     "未命名.canvas"
   ]
 }

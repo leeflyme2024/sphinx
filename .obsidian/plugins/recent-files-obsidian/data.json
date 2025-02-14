@@ -2,15 +2,59 @@
   "recentFiles": [
     {
       "basename": "测试报告",
+      "path": "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/10 高速接口/USB/4G模块/命令集.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/10 高速接口/USB/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/10 高速接口/USB/测试报告.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/10 高速接口/USB/4G模块/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/10 高速接口/USB/DFT.md"
+    },
+    {
+      "basename": "Pasted image 20250214152106",
+      "path": "pic/Pasted image 20250214152106.png"
+    },
+    {
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/11 多媒体/摄像头/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/摄像头/测试报告.md"
+    },
+    {
+      "basename": "Pasted image 20250213135701",
+      "path": "pic/Pasted image 20250213135701.png"
+    },
+    {
+      "basename": "测试报告",
       "path": "source/内核驱动/11 多媒体/音频/测试报告.md"
     },
     {
       "basename": "DFT",
       "path": "source/内核驱动/11 多媒体/音频/DFT.md"
-    },
-    {
-      "basename": "sdk升级",
-      "path": "source/开发环境搭建/sdk升级.md"
     },
     {
       "basename": "DFT",
@@ -43,14 +87,6 @@
     {
       "basename": "测试报告",
       "path": "source/内核驱动/11 多媒体/触摸/测试报告.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/摄像头/命令集.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
     },
     {
       "basename": "命令集",
@@ -145,10 +181,6 @@
       "path": "source/内核驱动/11 多媒体/音频/命令集.md"
     },
     {
-      "basename": "测试报告",
-      "path": "source/内核驱动/11 多媒体/摄像头/测试报告.md"
-    },
-    {
       "basename": "DFT",
       "path": "source/内核驱动/13 设备树/DFT.md"
     },
@@ -167,38 +199,6 @@
     {
       "basename": "源码分析",
       "path": "source/内核驱动/12 安全系统/OPTEE/源码分析.md"
-    },
-    {
-      "basename": "Pasted image 20250124135804",
-      "path": "pic/Pasted image 20250124135804.png"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/01 时钟/RTC/测试报告.md"
-    },
-    {
-      "basename": "Gitlab CI",
-      "path": "source/开发环境搭建/Gitlab CI.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/01 时钟/RTC/命令集.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/01 时钟/RTC/DFT.md"
-    },
-    {
-      "basename": "背景知识",
-      "path": "source/内核驱动/01 时钟/RTC/背景知识.md"
-    },
-    {
-      "basename": "04 Systemd",
-      "path": "source/文件系统/04 Systemd.md"
-    },
-    {
-      "basename": "GitLab CE 部署",
-      "path": "source/开发环境搭建/GitLab CE 部署.md"
     }
   ],
   "omittedPaths": []

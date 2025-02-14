@@ -947,6 +947,18 @@ drwxr-xr-x 2 root root   2048 10月 28 04:13 boot
 	- 目前不行，有可能是下面使能的原因
 ![[Pasted image 20250211134530.png]]
 
+- 摄像头
+	- 以下代码待评审
+![[Pasted image 20250213135639.png]]
+![[Pasted image 20250213135701.png]]
+
+- 4G模块
+	- 以下内容待确认，看是不是移远的修改
+![[Pasted image 20250214151301.png]]
+
+![[Pasted image 20250214152106.png]]
+
+
 ## atf
 - 已全部适配完成
 ![[Pasted image 20250124103358.png]]

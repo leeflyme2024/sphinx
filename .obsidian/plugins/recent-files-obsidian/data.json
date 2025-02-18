@@ -1,8 +1,56 @@
 {
   "recentFiles": [
     {
+      "basename": "TF卡制卡工具",
+      "path": "source/开发环境搭建/TF卡制卡工具.md"
+    },
+    {
+      "basename": "交叉编译工具链",
+      "path": "source/开发环境搭建/交叉编译工具链.md"
+    },
+    {
+      "basename": "rust入门",
+      "path": "source/开发环境搭建/rust/rust入门.md"
+    },
+    {
+      "basename": "WWDT",
+      "path": "source/内核驱动/02 复位/WWDT.md"
+    },
+    {
+      "basename": "html",
+      "path": "source/开发环境搭建/前端/html.md"
+    },
+    {
+      "basename": "Electron",
+      "path": "source/开发环境搭建/前端/Electron.md"
+    },
+    {
+      "basename": "1688",
+      "path": "source/开发环境搭建/前端/1688.md"
+    },
+    {
+      "basename": "element-plus",
+      "path": "source/开发环境搭建/前端/element-plus.md"
+    },
+    {
+      "basename": "购车",
+      "path": "source/成本核算/购车.md"
+    },
+    {
+      "basename": "开发环境搭建",
+      "path": "source/开发环境搭建/开发环境搭建.md"
+    },
+    {
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
+    },
+    {
       "basename": "测试报告",
       "path": "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/10 高速接口/USB/4G模块/DFT.md"
     },
     {
       "basename": "命令集",
@@ -18,19 +66,11 @@
     },
     {
       "basename": "DFT",
-      "path": "source/内核驱动/10 高速接口/USB/4G模块/DFT.md"
-    },
-    {
-      "basename": "DFT",
       "path": "source/内核驱动/10 高速接口/USB/DFT.md"
     },
     {
       "basename": "Pasted image 20250214152106",
       "path": "pic/Pasted image 20250214152106.png"
-    },
-    {
-      "basename": "sdk升级",
-      "path": "source/开发环境搭建/sdk升级.md"
     },
     {
       "basename": "DFT",
@@ -121,10 +161,6 @@
       "path": "source/开发环境搭建/webtest.md"
     },
     {
-      "basename": "TF卡制卡工具",
-      "path": "source/开发环境搭建/TF卡制卡工具.md"
-    },
-    {
       "basename": "Git",
       "path": "source/开发环境搭建/Git.md"
     },
@@ -155,50 +191,6 @@
     {
       "basename": "AutoHotkey",
       "path": "source/开发环境搭建/AutoHotkey.md"
-    },
-    {
-      "basename": "efuse烧写工具",
-      "path": "source/开发环境搭建/efuse烧写工具.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/10 高速接口/以太网/DFT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/10 高速接口/以太网/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/10 高速接口/以太网/测试报告.md"
-    },
-    {
-      "basename": "Pasted image 20250208170727",
-      "path": "pic/Pasted image 20250208170727.png"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/音频/命令集.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/13 设备树/DFT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/13 设备树/命令集.md"
-    },
-    {
-      "basename": "img_v3_02j7_e4441243-24f8-4179-8d7f-cc4a05aacceg",
-      "path": "pic/img_v3_02j7_e4441243-24f8-4179-8d7f-cc4a05aacceg.jpg"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/12 安全系统/OPTEE/DFT.md"
-    },
-    {
-      "basename": "源码分析",
-      "path": "source/内核驱动/12 安全系统/OPTEE/源码分析.md"
     }
   ],
   "omittedPaths": []

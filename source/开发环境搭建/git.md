@@ -46,6 +46,9 @@ git reset --hard 197b42ea2afd3d2ed461512556e2a152578
 git stash pop
 
 git add . ":(exclude)bak-factory_test/"
+
+# 查看某个commit中某个文件的完整代码
+git show 8646b1ffd218f6a0855d63cbed6b37215bb2b22c:build/01_app.sh
 ```
 
 

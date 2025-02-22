@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/开发环境搭建/TF卡制卡工具.md",
-                "mode": "preview",
+                "file": "source/内核驱动/08 通信接口/WIFI/DFT.md",
+                "mode": "source",
                 "backlinks": false,
                 "source": false
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "ExecuteScript.py",
+                "query": "weston",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/开发环境搭建/TF卡制卡工具.md",
+                "file": "source/内核驱动/08 通信接口/WIFI/DFT.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/开发环境搭建/TF卡制卡工具.md",
+                "file": "source/内核驱动/08 通信接口/WIFI/DFT.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/开发环境搭建/TF卡制卡工具.md"
+                "file": "source/内核驱动/08 通信接口/WIFI/DFT.md"
               }
             }
           },
@@ -196,52 +196,52 @@
   },
   "active": "e4c611608a2470c6",
   "lastOpenFiles": [
-    "source/开发环境搭建/交叉编译工具链.md",
-    "source/开发环境搭建/rust/rust入门.md",
-    "source/开发环境搭建/rust/未命名.md",
-    "source/内核驱动/02 复位/WWDT.md",
-    "ExecuteScript.py.md",
-    "source/开发环境搭建/前端/html.md",
-    "source/开发环境搭建/前端/Electron.md",
-    "source/开发环境搭建/前端/1688.md",
-    "source/开发环境搭建/前端/element-plus.md",
-    "source/成本核算/购车.md",
-    "source/开发环境搭建/开发环境搭建.md",
-    "source/成本核算",
+    "source/内核驱动/08 通信接口/WIFI/测试报告.md",
+    "source/内核驱动/08 通信接口/WIFI/DFT.md",
     "source/开发环境搭建/sdk升级.md",
-    "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md",
-    "source/内核驱动/10 高速接口/USB/4G模块/DFT.md",
-    "source/内核驱动/10 高速接口/USB/4G模块/命令集.md",
-    "source/内核驱动/10 高速接口/USB/命令集.md",
-    "source/内核驱动/10 高速接口/USB/测试报告.md",
-    "source/内核驱动/10 高速接口/USB/DFT.md",
+    "source/内核驱动/08 通信接口/蓝牙/DFT.md",
+    "source/内核驱动/11 多媒体/GPU/DFT.md",
+    "source/内核驱动/11 多媒体/摄像头/DFT.md",
+    "source/内核驱动/11 多媒体/音频/DFT.md",
+    "source/内核驱动/11 多媒体/触摸/DFT.md",
+    "source/内核驱动/11 多媒体/GPU/测试报告.md",
+    "source/内核驱动/11 多媒体/GPU/命令集.md",
+    "source/内核驱动/11 多媒体/摄像头/测试报告.md",
+    "source/土地经营权流转/永久基本农田.md",
+    "source/土地经营权流转/补贴政策.md",
+    "source/土地经营权流转/流转平台.md",
+    "source/土地经营权流转/政策法规.md",
+    "source/土地经营权流转/流转合同.md",
+    "pic/Pasted image 20250222101803.png",
+    "pic/Pasted image 20250222101313.png",
+    "pic/Pasted image 20250222095450.png",
+    "source/土地经营权流转",
+    "source/开发环境搭建/交叉编译工具链.md",
+    "source/开发环境搭建/AutoHotkey.md",
+    "source/文件系统/01 Buildroot.md",
+    "source/开发环境搭建/WSL.md",
+    "source/文件系统/04 Systemd.md",
+    "source/文件系统/03 System V.md",
+    "source/文件系统/06 Ubuntu.md",
+    "source/文件系统/05 Debian/debian.md",
+    "source/文件系统/02 Yocto.md",
+    "source/开发环境搭建/efuse烧写工具.md",
+    "source/成本核算",
     "source/内核驱动/10 高速接口/USB/4G模块",
     "pic/Pasted image 20250214152106.png",
     "pic/Pasted image 20250214151301.png",
-    "source/内核驱动/11 多媒体/摄像头/DFT.md",
-    "source/内核驱动/11 多媒体/摄像头/命令集.md",
-    "source/内核驱动/11 多媒体/摄像头/测试报告.md",
     "pic/Pasted image 20250213135701.png",
     "pic/Pasted image 20250213135639.png",
-    "source/内核驱动/11 多媒体/音频/测试报告.md",
-    "source/内核驱动/11 多媒体/音频/DFT.md",
-    "source/内核驱动/08 通信接口/蓝牙/DFT.md",
-    "source/内核驱动/08 通信接口/蓝牙/测试报告.md",
-    "source/内核驱动/08 通信接口/蓝牙/命令集.md",
     "pic/Pasted image 20250211180712.png",
     "pic/Pasted image 20250211134530.png",
     "pic/Pasted image 20250211180632.png",
-    "pic/Pasted image 20250211180630.png",
     "source/内核驱动/11 多媒体/触摸",
-    "pic/Pasted image 20250211113120.png",
-    "pic/Pasted image 20250210175952.png",
     "source/内核驱动/调试方法",
     "source/内核驱动/esm",
     "未命名",
     "source/内核驱动/12 安全系统/OPTEE",
     "source/内核驱动/12 安全系统/ATF",
     "[com COM4]  (2024-10-22_142916)  COM4  (USB Serial Port (COM4)).log",
-    "[com COM4]  (2024-10-22_141427)  COM4  (USB Serial Port (COM4)).log",
     "未命名.canvas"
   ]
 }

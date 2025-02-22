@@ -1,12 +1,116 @@
 {
   "recentFiles": [
     {
-      "basename": "TF卡制卡工具",
-      "path": "source/开发环境搭建/TF卡制卡工具.md"
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/WIFI/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/08 通信接口/WIFI/测试报告.md"
+    },
+    {
+      "basename": "sdk升级",
+      "path": "source/开发环境搭建/sdk升级.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/08 通信接口/蓝牙/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/GPU/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/音频/DFT.md"
+    },
+    {
+      "basename": "DFT",
+      "path": "source/内核驱动/11 多媒体/触摸/DFT.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/GPU/测试报告.md"
+    },
+    {
+      "basename": "命令集",
+      "path": "source/内核驱动/11 多媒体/GPU/命令集.md"
+    },
+    {
+      "basename": "测试报告",
+      "path": "source/内核驱动/11 多媒体/摄像头/测试报告.md"
+    },
+    {
+      "basename": "永久基本农田",
+      "path": "source/土地经营权流转/永久基本农田.md"
+    },
+    {
+      "basename": "补贴政策",
+      "path": "source/土地经营权流转/补贴政策.md"
+    },
+    {
+      "basename": "流转平台",
+      "path": "source/土地经营权流转/流转平台.md"
+    },
+    {
+      "basename": "政策法规",
+      "path": "source/土地经营权流转/政策法规.md"
+    },
+    {
+      "basename": "流转合同",
+      "path": "source/土地经营权流转/流转合同.md"
     },
     {
       "basename": "交叉编译工具链",
       "path": "source/开发环境搭建/交叉编译工具链.md"
+    },
+    {
+      "basename": "AutoHotkey",
+      "path": "source/开发环境搭建/AutoHotkey.md"
+    },
+    {
+      "basename": "01 Buildroot",
+      "path": "source/文件系统/01 Buildroot.md"
+    },
+    {
+      "basename": "WSL",
+      "path": "source/开发环境搭建/WSL.md"
+    },
+    {
+      "basename": "04 Systemd",
+      "path": "source/文件系统/04 Systemd.md"
+    },
+    {
+      "basename": "03 System V",
+      "path": "source/文件系统/03 System V.md"
+    },
+    {
+      "basename": "06 Ubuntu",
+      "path": "source/文件系统/06 Ubuntu.md"
+    },
+    {
+      "basename": "debian",
+      "path": "source/文件系统/05 Debian/debian.md"
+    },
+    {
+      "basename": "02 Yocto",
+      "path": "source/文件系统/02 Yocto.md"
+    },
+    {
+      "basename": "efuse烧写工具",
+      "path": "source/开发环境搭建/efuse烧写工具.md"
+    },
+    {
+      "basename": "Git",
+      "path": "source/开发环境搭建/Git.md"
+    },
+    {
+      "basename": "TF卡制卡工具",
+      "path": "source/开发环境搭建/TF卡制卡工具.md"
     },
     {
       "basename": "rust入门",
@@ -41,10 +145,6 @@
       "path": "source/开发环境搭建/开发环境搭建.md"
     },
     {
-      "basename": "sdk升级",
-      "path": "source/开发环境搭建/sdk升级.md"
-    },
-    {
       "basename": "测试报告",
       "path": "source/内核驱动/10 高速接口/USB/4G模块/测试报告.md"
     },
@@ -73,16 +173,8 @@
       "path": "pic/Pasted image 20250214152106.png"
     },
     {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/摄像头/DFT.md"
-    },
-    {
       "basename": "命令集",
       "path": "source/内核驱动/11 多媒体/摄像头/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/11 多媒体/摄像头/测试报告.md"
     },
     {
       "basename": "Pasted image 20250213135701",
@@ -91,14 +183,6 @@
     {
       "basename": "测试报告",
       "path": "source/内核驱动/11 多媒体/音频/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/音频/DFT.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/08 通信接口/蓝牙/DFT.md"
     },
     {
       "basename": "测试报告",
@@ -115,82 +199,6 @@
     {
       "basename": "Pasted image 20250211134530",
       "path": "pic/Pasted image 20250211134530.png"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/触摸/DFT.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/触摸/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/11 多媒体/触摸/测试报告.md"
-    },
-    {
-      "basename": "命令集",
-      "path": "source/内核驱动/11 多媒体/LCD/命令集.md"
-    },
-    {
-      "basename": "测试报告",
-      "path": "source/内核驱动/11 多媒体/LCD/测试报告.md"
-    },
-    {
-      "basename": "DFT",
-      "path": "source/内核驱动/11 多媒体/LCD/DFT.md"
-    },
-    {
-      "basename": "WSL",
-      "path": "source/开发环境搭建/WSL.md"
-    },
-    {
-      "basename": "Gitlab-runner",
-      "path": "source/开发环境搭建/Gitlab-runner.md"
-    },
-    {
-      "basename": "工作月报",
-      "path": "source/开发环境搭建/工作月报.md"
-    },
-    {
-      "basename": "Vim",
-      "path": "source/开发环境搭建/Vim.md"
-    },
-    {
-      "basename": "webtest",
-      "path": "source/开发环境搭建/webtest.md"
-    },
-    {
-      "basename": "Git",
-      "path": "source/开发环境搭建/Git.md"
-    },
-    {
-      "basename": "Python",
-      "path": "source/开发环境搭建/Python.md"
-    },
-    {
-      "basename": "ota",
-      "path": "source/开发环境搭建/ota.md"
-    },
-    {
-      "basename": "Repo",
-      "path": "source/开发环境搭建/Repo.md"
-    },
-    {
-      "basename": "转产验证",
-      "path": "source/开发环境搭建/转产验证.md"
-    },
-    {
-      "basename": "知识库",
-      "path": "source/开发环境搭建/知识库.md"
-    },
-    {
-      "basename": "Windows",
-      "path": "source/开发环境搭建/Windows.md"
-    },
-    {
-      "basename": "AutoHotkey",
-      "path": "source/开发环境搭建/AutoHotkey.md"
     }
   ],
   "omittedPaths": []

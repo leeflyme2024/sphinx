@@ -959,6 +959,27 @@ drwxr-xr-x 2 root root   2048 10月 28 04:13 boot
 ![[Pasted image 20250214152106.png]]
 
 
+- 核间通信
+	- 出现如下错误
+![[Pasted image 20250228161436.png]]
+
+	- 在下面代码处
+![[Pasted image 20250228161517.png]]
+
+- 如果不出现这个错误，把下面的加回来即可
+![[Pasted image 20250228161607.png]]
+
+
+- 同样，在k3-am62-production.dtso中出现如下错误
+![[Pasted image 20250228163703.png]]
+![[Pasted image 20250228163714.png]]
+![[Pasted image 20250228163725.png]]
+
+
+- 只需要把下面的修改加回来
+![[Pasted image 20250228163759.png]]
+
+
 ## atf
 - 已全部适配完成
 ![[Pasted image 20250124103358.png]]
@@ -1001,6 +1022,9 @@ drwxr-xr-x 2 root root   2048 10月 28 04:13 boot
 
 - 只有buildroot和ramdisk适配完成，其他的都没适配
 ![[Pasted image 20250124105743.png]]
+
+- buildroot中bluez编译后，不会自动将bluetooth.conf拷贝到/etc/dbus-1/system.d，导致bluetoothd无法正常启动
+![[img_v3_02jo_611b7fa6-12d5-40c4-8ba2-5520c75a347g.jpg]]
 
 - cfg报错
 ![[Pasted image 20250124135715.png]]

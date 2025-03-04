@@ -2,7 +2,7 @@
 
 ```Bash
 export REPO_URL="https://mirrors.tuna.tsinghua.edu.cn/git/git-repo/"
-repo init -u ssh://git@192.168.1.168:1022/root/1000-manifest.git -m default-local.xml
+repo init -u ssh://git@192.168.1.168:1022/root/1001-manifest.git -m default-local.xml
 cp -r .repo/repo/repo /usr/bin/repo
 
 
@@ -59,6 +59,8 @@ repo forall -c 'git checkout am62xx-sdk-v1.0.0.6,en-plus'
 repo forall -c 'git checkout master'
 repo forall -c 'git checkout enplus'
 repo forall -c 'git checkout wbstar'
+
+repo forall -c 'git fetch all && git checkout wbstar && git pull all wbstar'
 
 repo forall -c 'git remote add all ssh://git@gitee.com/leev2v1/manifest.git'
 repo forall -c 'git remote set-url --add all ssh://git@192.168.1.168:1022/root/0806-manifest.git'

@@ -13,8 +13,8 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "source/客户支持/驿普乐士.md",
-                "mode": "source",
+                "file": "source/内核驱动/03 处理器/remoteproc/测试报告.md",
+                "mode": "preview",
                 "backlinks": false,
                 "source": false
               }
@@ -49,7 +49,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "remoteproc",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "source/客户支持/驿普乐士.md",
+                "file": "source/内核驱动/03 处理器/remoteproc/测试报告.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "source/客户支持/驿普乐士.md",
+                "file": "source/内核驱动/03 处理器/remoteproc/测试报告.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "source/客户支持/驿普乐士.md"
+                "file": "source/内核驱动/03 处理器/remoteproc/测试报告.md"
               }
             }
           },
@@ -196,52 +196,52 @@
   },
   "active": "e4c611608a2470c6",
   "lastOpenFiles": [
-    "source/客户支持/万帮.md",
+    "source/内核驱动/03 处理器/remoteproc/DFT.md",
+    "source/内核驱动/04 存储管理/DDR/命令集.md",
+    "source/内核驱动/04 存储管理/DDR/DFT.md",
+    "source/内核驱动/04 存储管理/DDR/内存测试方案.md",
+    "source/内核驱动/01 时钟/RTC/DFT.md",
+    "source/内核驱动/03 处理器/remoteproc/测试报告.md",
+    "source/内核驱动/04 存储管理/DDR/测试报告.md",
+    "source/开发环境搭建/性能测试/内存性能测试.md",
+    "source/开发环境搭建/性能测试/性能测试方法.md",
+    "source/开发环境搭建/性能测试/CPU性能测试.md",
+    "source/开发环境搭建/性能测试",
+    "source/内核驱动/04 存储管理/FLASH/命令集.md",
+    "source/开发环境搭建/sdk升级.md",
+    "pic/Pasted image 20250310133656.png",
+    "source/内核驱动/04 存储管理/MMCSD/命令集.md",
+    "source/内核驱动/04 存储管理/MMCSD/测试报告.md",
+    "source/内核驱动/04 存储管理/MMCSD/DFT.md",
+    "source/开发环境搭建/TF卡制卡工具.md",
+    "source/内核驱动/04 存储管理/DDR",
+    "source/开发环境搭建/teraterm.md",
+    "source/开发环境搭建/AutoHotkey.md",
+    "source/开发环境搭建/WSL.md",
+    "source/开发环境搭建/ota.md",
+    "source/内核驱动/08 通信接口/UART/命令集.md",
+    "source/开发环境搭建/转产验证.md",
+    "source/开发环境搭建/efuse烧写工具.md",
     "source/客户支持/驿普乐士.md",
+    "source/客户支持/万帮.md",
     "source/开发环境搭建/开发环境搭建.md",
     "source/客户支持",
-    "source/内核驱动/08 通信接口/WIFI/定频测试.md",
-    "source/内核驱动/08 通信接口/WIFI/性能参数.md",
     "pic/Pasted image 20250303185648.png",
-    "source/内核驱动/08 通信接口/WIFI/DFT.md",
-    "source/内核驱动/08 通信接口/WIFI/命令集.md",
-    "source/内核驱动/08 通信接口/WIFI/测试报告.md",
-    "source/内核驱动/01 时钟/RTC/测试报告.md",
-    "source/内核驱动/01 时钟/RTC/DFT.md",
-    "source/内核驱动/01 时钟/RTC/背景知识.md",
-    "source/内核驱动/01 时钟/RTC/命令集.md",
-    "source/内核驱动/11 多媒体/摄像头/测试报告.md",
-    "source/内核驱动/11 多媒体/摄像头/DFT.md",
-    "source/开发环境搭建/ota.md",
-    "source/开发环境搭建/Repo.md",
-    "source/开发环境搭建/Git.md",
-    "source/开发环境搭建/WSL.md",
-    "source/开发环境搭建/AutoHotkey.md",
-    "source/开发环境搭建/Windows.md",
-    "source/开发环境搭建/Gitlab CI.md",
-    "source/开发环境搭建/Python.md",
-    "source/开发环境搭建/webtest.md",
     "pic/Pasted image 20250228163759.png",
-    "source/开发环境搭建/sdk升级.md",
     "pic/Pasted image 20250228163725.png",
     "pic/Pasted image 20250228163714.png",
     "pic/Pasted image 20250228163703.png",
-    "source/内核驱动/03 处理器/remoteproc/DFT.md",
-    "source/内核驱动/03 处理器/remoteproc/命令集.md",
     "pic/Pasted image 20250228161607.png",
     "pic/Pasted image 20250228161517.png",
     "pic/Pasted image 20250228161436.png",
     "source/内核驱动/03 处理器/remoteproc",
     "pic/Pasted image 20250224153725.png",
-    "pic/Pasted image 20250224153703.png",
     "source/土地经营权流转",
     "source/成本核算",
     "source/内核驱动/10 高速接口/USB/4G模块",
     "source/内核驱动/11 多媒体/触摸",
     "source/内核驱动/调试方法",
     "source/内核驱动/esm",
-    "未命名",
-    "source/内核驱动/12 安全系统/OPTEE",
     "未命名.canvas"
   ]
 }

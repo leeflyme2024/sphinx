@@ -49,7 +49,7 @@ hwclock --localtime
 ## date
 ```bash
 date
-date -s "2023-01-30 17:33:15"
+date -s "2025-03-12 14:55:15"
 ```
 
 ## timedatectl

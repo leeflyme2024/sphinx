@@ -1,0 +1,5 @@
+这是通过Cursor IDE的MCP工具创建并上传到GitHub的文件
+创建时间: 2025年3月17日
+内容仅供测试使用
+
+该文件由Cursor IDE的AI助手通过MCP工具直接创建 

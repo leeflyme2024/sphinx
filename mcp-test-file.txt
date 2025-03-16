@@ -1,0 +1,4 @@
+这是通过Cursor IDE的MCP工具上传的测试文件
+创建时间: 2025年3月17日
+文件内容: 使用@modelcontextprotocol/server-github的create_or_update_file工具
+该文件由Cursor IDE直接上传到GitHub仓库 
